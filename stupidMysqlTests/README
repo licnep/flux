@@ -1,0 +1,11 @@
+This thing is pretty useless, i just uploaded it to show that i'm actually doing something :P 
+
+This test will generate 2 tables: fluxes and routing,
+and, every second, call the function that moves the money, ONLY if the sender flux was updated more than 1 second ago, and if the amount of money he has is > 5$.
+
+RUNNING THE TEST:
+* modify create_tables.sh to change the name of the test database, the username and password
+* run 'create_tables.sh'
+* kill the script with ^C
+
+With the default parameters you will see that the money from row 5 will start moving (cause 5$ is the minimum) in an endless rotation
