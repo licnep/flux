@@ -75,7 +75,7 @@ function BubbleCanvas (canvas, cx, cy) {
 		var element = elements[i];
 		//apply a force towards the center
 		body.WakeUp();
-		force = new b2Vec2(200 - body.m_position0.x,200 - body.m_position0.y);
+		force = new b2Vec2((200 - body.m_position0.x)*0.5,(200 - body.m_position0.y)*0.5);
 		
 		//body.ApplyImpulse(force, body.m_position);
 		body.SetLinearVelocity(force);

@@ -1,0 +1,7 @@
+To install the "API tests":
+* edit "install_scripts/EDITME_config.sh" to suit your needs
+* run the script: install_scripts/install.sh
+
+
+Dependencies: 
+To run the test you need to have php and mysql installed (and php's mysql module)

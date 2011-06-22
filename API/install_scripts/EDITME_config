@@ -1,0 +1,7 @@
+#!/bin/bash
+
+#DATABASE CONFIGURATION:::::
+
+#You HAVE to edit these:
+db_username="root" 
+db_password="zxcvbnm"
