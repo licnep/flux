@@ -25,15 +25,22 @@
 ini_set('display_errors',1);
 error_reporting(E_ALL|E_STRICT);
 
-create_flux();
+$user_id = $_GET['user_id'];
+$confirmation_code = $_GET['confirmation_code'];
 
-function create_flux($user_id) {
-	//TODO login check
+registration_confirm($user_id,$confirmation_code);
 
+/**
+ * Activate the account with the confirmation code
+ */
+function registration_confirm($user_id,$confirmation_code) {
+	
 	require_once('execute_query.php');
 	$db = db_connect("flux_changer");
 
-	$query = "INSERT INTO fluxes VALUES ()";
+	$query = "UPDATE users SET confirmed = 1".
+			" WHERE user_id='".$user_id."';";
+
 	$result = mysql_query($query,$db);
     if(!$result) {
         //query failed
@@ -42,4 +49,4 @@ function create_flux($user_id) {
     }
 	echo "SUCCESS";
 }
-?>
+

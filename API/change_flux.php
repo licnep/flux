@@ -21,6 +21,7 @@
  *   It's our turn now. BE THE GIANT."
  */
 
+#FOR DEBUG: (enable error reporting)
 ini_set('display_errors',1);
 error_reporting(E_ALL|E_STRICT);
 
@@ -42,20 +43,18 @@ change_flux($flux_from_id,$flux_to_id,$new_share);
  */
 function change_flux($flux_from_id,$flux_to_id,$new_share) {
 
-	//TODO PSEUDOCODE:
-	$loggedin = true; if (!$loggedin) return;
-	//the user is logged in, can go on
+	//TODO check login and ownership of the flux
 	
-	//TODO PSEUDOCODE (not implemented):
 	require_once('execute_query.php');
 	$db = db_connect("flux_changer");
-	//TODO could try doing an overflow test with ridiculously high amounts
+
 	$query = "UPDATE routing SET share=".mysql_real_escape_string($new_share).
 			 " WHERE flux_from_id=".mysql_real_escape_string($flux_from_id).
 			 " AND flux_to_id=".mysql_real_escape_string($flux_to_id);
 	$result = mysql_query($query,$db);
     if(!$result) {
         //query failed
+		//TODO do something here
         die("query failed, query: ".$query."\n error:".mysql_error());
     }
 	echo "SUCCESS";

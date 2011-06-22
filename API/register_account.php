@@ -25,15 +25,30 @@
 ini_set('display_errors',1);
 error_reporting(E_ALL|E_STRICT);
 
-create_flux();
 
-function create_flux($user_id) {
-	//TODO login check
+$email = $_GET['email'];
+$password = $_GET['password'];
+$cellphone = $_GET['cellphone'];
 
+registration_phase_one($email,$password,$cellphone);
+
+/**
+ *  This only puts the data in the database, but you still have to confirm
+ *  in order to activate the account.
+ *  
+ */
+function registration_phase_one($email,$password,$cellphone) {
+
+	//TODO check login and ownership of the flux
+	
 	require_once('execute_query.php');
 	$db = db_connect("flux_changer");
 
-	$query = "INSERT INTO fluxes VALUES ()";
+	$query = "INSERT INTO users SET ".
+			" email = '".mysql_real_escape_string($email)."'".
+			",password = '".mysql_real_escape_string($password)."'".
+			",cellphone = '".mysql_real_escape_string($cellphone)."';";
+
 	$result = mysql_query($query,$db);
     if(!$result) {
         //query failed
@@ -42,4 +57,4 @@ function create_flux($user_id) {
     }
 	echo "SUCCESS";
 }
-?>
+
