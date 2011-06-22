@@ -29,8 +29,11 @@ error_reporting(E_ALL|E_STRICT);
 $email = $_GET['email'];
 $password = $_GET['password'];
 $cellphone = $_GET['cellphone'];
+$redirect = $_GET['redirect'];
 
 registration_phase_one($email,$password,$cellphone);
+
+header( 'Location: '.$redirect );
 
 /**
  *  This only puts the data in the database, but you still have to confirm

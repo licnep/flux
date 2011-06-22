@@ -27,8 +27,10 @@ error_reporting(E_ALL|E_STRICT);
 
 $user_id = $_GET['user_id'];
 $confirmation_code = $_GET['confirmation_code'];
+$redirect = $_GET['redirect'];
 
 registration_confirm($user_id,$confirmation_code);
+header( 'Location: '.$redirect );
 
 /**
  * Activate the account with the confirmation code
