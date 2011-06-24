@@ -49,6 +49,5 @@ function registration_confirm($user_id,$confirmation_code) {
 		//TODO do something here
         die("query failed, query: ".$query."\n error:".mysql_error());
     }
-	echo "SUCCESS";
 }
 

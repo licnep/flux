@@ -58,6 +58,5 @@ function registration_phase_one($email,$password,$cellphone) {
 		//TODO do something here
         die("query failed, query: ".$query."\n error:".mysql_error());
     }
-	echo "SUCCESS";
 }
 
