@@ -25,40 +25,33 @@
 ini_set('display_errors',1);
 error_reporting(E_ALL|E_STRICT);
 
+$flux_id = $_GET['flux_id'];
+if (isset($_GET['format'])) $format = $_GET['format'];
+else $format = "json"; //default format is json
 
-//we get the specifics for the transaction from the GET values passed
-$flux_from_id = $_GET['flux_from_id'];
-$flux_to_id = $_GET['flux_to_id'];
-$new_share = $_GET['new_share'];
+print_flux_info($flux_id,$format);
 
-change_flux($flux_from_id,$flux_to_id,$new_share);
-
-if (isset($_GET['redirect'])) header( 'Location: '.$_GET['redirect'] );
-/**
- *  This function sets the amount of a specific receiver in a specific 
- *  flux.
- *
- *  EXTRA INFO:
- *  This function can be used only if you're logged in.
- *  
- */
-function change_flux($flux_from_id,$flux_to_id,$new_share) {
-
-	//TODO check login and ownership of the flux
-	
+function print_flux_info($flux_id,$format = "json") {
 	require_once('execute_query.php');
 	$db = db_connect("flux_changer");
-
-	$query = "UPDATE routing SET share=".mysql_real_escape_string($new_share).
-			 " WHERE flux_from_id=".mysql_real_escape_string($flux_from_id).
-			 " AND flux_to_id=".mysql_real_escape_string($flux_to_id);
+	$query = "SELECT flux_from_id, flux_to_id, share FROM
+		fluxes, routing
+		WHERE fluxes.flux_id='".mysql_real_escape_string($flux_id).
+		"' AND routing.flux_from_id = fluxes.flux_id";
 	$result = mysql_query($query,$db);
-    if(!$result) {
-        //query failed
-		//TODO do something here
-        die("query failed, query: ".$query."\n error:".mysql_error());
-    }
-	echo "SUCCESS";
-}
+	if(!$result) {//TODO something
+		die("query failed, query: ".$query."\n error:".mysql_error());
+	}
+	while($row = mysql_fetch_array($result)) {
+		echo $row['flux_from_id']." TO ".$row['flux_to_id']." SHARE: ";
+		?> <form action="change_flux.php" method="GET">
+		<input type="hidden" name="flux_from_id" value="<?=$row['flux_from_id']?>" />
+		<input type="hidden" name="flux_to_id" value="<?=$row['flux_to_id']?>" />
+		<input type="hidden" name="redirect" value="get_flux_info.php?flux_id=<?=$flux_id?>">		
+		<input type="text" name="new_share" value="<?=$row['share']?>" /><input type="submit"/>
+		</form>
+		<?php
+	}
 
+}
 ?>

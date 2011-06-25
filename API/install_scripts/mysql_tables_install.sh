@@ -37,6 +37,13 @@ PRIMARY KEY (flux_id)
 ) ENGINE = InnoDB;"
 mysql -u $db_username -p"$db_password" -e "use $db_dbname;$query"
 
+echo "* Populating    : fluxes"
+#randomly populate table 'routes'
+query="INSERT INTO fluxes VALUES
+(), (), (), ();
+"
+mysql -u $db_username -p"$db_password" -e "use $db_dbname;$query"
+
 #
 # TABLE routes:::::::::::
 #

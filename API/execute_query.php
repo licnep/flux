@@ -38,7 +38,7 @@ function db_connect($id) {
 
 	$db_name = "testfluxAPI";
 	switch($id) {
-		case "flux_changer": $username="insertusername"; $password="insertpassword"; break;
+		case "flux_changer": $username="root"; $password="zxcvbnm"; break;
 	}
 	//making a persistent connection (it automatically uses an open one if it exists)
 	$db = mysql_pconnect('localhost',$username,$password);

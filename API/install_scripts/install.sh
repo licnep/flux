@@ -26,8 +26,10 @@ echo "$text"
 #clear the "testAPI" database and create the tables:
 source mysql_tables_install.sh
 
-echo "changing mysql username and password in the php script:"
+echo "changing mysql username and password in the php script"
 
 # substitute $username="anything" with $username="given_username" in execute_query.php
 sed -i "s/\$username=\"[^\"]*\"/\$username=\"$db_username\"/g" ../execute_query.php
 sed -i "s/\$password=\"[^\"]*\"/\$password=\"$db_password\"/g" ../execute_query.php
+
+echo "INSTALLATION COMPLETE!"
