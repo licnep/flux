@@ -1,7 +1,11 @@
 #!/bin/bash
 
 db_dbname="testfluxAPI"
-source EDITME_config
+#source EDITME_config
+echo "Insert the mysql username to install the tables (root usually):"
+read db_username
+echo "Insert the mysql password:"
+read db_password
 
 echo "====BEGIN TABLES INSTALLATION====="
 echo "* Creating database '$db_dbname'"

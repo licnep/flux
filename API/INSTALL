@@ -1,6 +1,5 @@
 To install the "API tests":
 * go in the folder "install_scripts"
-* edit "EDITME_config.sh" to suit your needs
 * run the script: "install.sh"
 
 
