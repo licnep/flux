@@ -33,14 +33,16 @@ mysql -u $db_username -p"$db_password" -e "use $db_dbname;$query"
 echo "* Creating TABLE: fluxes"
 query="CREATE TABLE fluxes(
 flux_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+name VARCHAR(32),
+owner INT UNSIGNED NOT NULL,
 PRIMARY KEY (flux_id)
 ) ENGINE = InnoDB;"
 mysql -u $db_username -p"$db_password" -e "use $db_dbname;$query"
 
 echo "* Populating    : fluxes"
 #randomly populate table 'routes'
-query="INSERT INTO fluxes VALUES
-(), (), (), ();
+query="INSERT INTO fluxes (name, owner) VALUES
+('nome1', 1), ('nom1',1), ('nome2',2), ('nom2',2);
 "
 mysql -u $db_username -p"$db_password" -e "use $db_dbname;$query"
 
