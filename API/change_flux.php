@@ -50,9 +50,9 @@ function change_flux($flux_from_id,$flux_to_id,$new_share) {
 	$db = db_connect("flux_changer");
 
 	$query = "INSERT INTO routing SET share=".mysql_real_escape_string($new_share).
-			 " WHERE flux_from_id=".mysql_real_escape_string($flux_from_id).
-			 " AND flux_to_id=".mysql_real_escape_string($flux_to_id).
-			 " ON DUPLICATE KEY UPDATE"; //insert or update the correct row
+			 ", flux_from_id=".mysql_real_escape_string($flux_from_id).
+			 ", flux_to_id=".mysql_real_escape_string($flux_to_id).
+			 " ON DUPLICATE KEY UPDATE share=".mysql_real_escape_string($new_share); //insert or update the correct row
 	$result = mysql_query($query,$db);
     if(!$result) {
         //query failed
