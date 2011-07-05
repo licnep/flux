@@ -11,7 +11,7 @@ Amount:<input type="text" name="amount" value="5.00" /> USD
 <input type="hidden" name="lc" value="US">
 
 <input type="hidden" name="item_name" value="FLUXcorporation">
-<input type="hidden" name="item_number" value="DONATIONID">
+<input type="hidden" name="item_number" value="3"><!--<< the flux id for now, maybe something more complex later -->
 <input type="hidden" name="bn" value="PP-DonationsBF:btn_donate_SM.gif:NonHostedGuest">
 <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
 </form>
