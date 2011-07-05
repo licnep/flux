@@ -2,6 +2,7 @@
 <body>
 <h1>[This is your persoanl page. Welcome]</h1>
 <h2>My FLUX:</h2>
+<?php include("include/paypal_donate_button.php"); ?>
 <div>
 <iframe src="../API/get_flux_info.php?flux_id=1"></iframe>
 </div>

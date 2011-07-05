@@ -58,7 +58,6 @@ function change_flux($flux_from_id,$flux_to_id,$new_share) {
 		//TODO do something here
         die("query failed, query: ".$query."\n error:".mysql_error());
     }
-	echo "SUCCESS";
 }
 
 ?>
