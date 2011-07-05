@@ -39,11 +39,10 @@ fputs ($fp, $header . $req);
 while (!feof($fp)) {
 $res = fgets ($fp, 1024);
 if (strcmp ($res, "VERIFIED") == 0) {
-// check the payment_status is Completed
-// check that txn_id has not been previously processed
-// check that receiver_email is your Primary PayPal email
-// check that payment_amount/payment_currency are correct
-// process payment
+// TODO check the payment_status is Completed
+// TODO check that txn_id has not been previously processed
+// TODO check that receiver_email is your Primary PayPal email
+// TODO process payment
 
 $mail_From = "From: me@mybiz.com";
 $mail_To = "lsnpreziosi@gmail.com";

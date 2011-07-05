@@ -1,15 +1,10 @@
-<form action='../API/paypal/express_checkout/expresscheckout.php' METHOD='POST'>
-Amount:<input type="text" name="amount" value="5.00" /> USD
-<input type='image' name='submit' src='https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif' border='0' align='top' alt='Check out with PayPal'/>
-</form>
-
 <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+Amount:<input type="text" name="amount" value="5.00" /> USD
 <input type="hidden" name="cmd" value="_donations">
-<input type="hidden" name="notify_url" value="http://178.254.1.64:89/flux/API/paypal/IPN.php" />
-<input type="hidden" name="amount" value="55.00">
+<input type="hidden" name="notify_url" value="http://178.254.1.64/flux/API/paypal/IPN.php" />
 <input type="hidden" name="currency_code" value="EUR">
-<input type="hidden" name="return" value="http://178.254.1.64:89/flux/website/account_home.php">
-<input type="hidden" name="cancel_return" value="http://178.254.1.64:89/flux/website/account_home.php">
+<input type="hidden" name="return" value="http://178.254.1.64/flux/website/account_home.php">
+<input type="hidden" name="cancel_return" value="http://178.254.1.64/flux/website/account_home.php">
 <input type="hidden" name="no_shipping" value="1">
 <input type="hidden" name="cbt" value="Return to FLUX.COM">
 <input type="hidden" name="business" value="seller_1309852781_biz@yahoo.com">

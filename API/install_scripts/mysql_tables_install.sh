@@ -35,6 +35,7 @@ query="CREATE TABLE fluxes(
 flux_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 name VARCHAR(32),
 owner INT UNSIGNED NOT NULL,
+money DECIMAL(7,2)  NOT NULL DEFAULT 0,
 PRIMARY KEY (flux_id)
 ) ENGINE = InnoDB;"
 mysql -u $db_username -p"$db_password" -e "use $db_dbname;$query"
