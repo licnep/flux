@@ -11,14 +11,11 @@ require_once ("paypalfunctions.php");
 //' earlier in a session variable 
 //' by the shopping cart page
 //'------------------------------------
-//$paymentAmount = $_SESSION["Payment_Amount"];
-//$paymentAmount = $_POST["amount"];
+$paymentAmount = $_POST["amount"];
 
 //FOR DEBUG: (enable error reporting)
 ini_set('display_errors',1);
 error_reporting(E_ALL|E_STRICT);
-
-$paymentAmount = "10.00";
 
 
 //'------------------------------------
@@ -34,7 +31,7 @@ $paymentType = "Sale";
 //'
 //' This is set to the value entered on the Integration Assistant 
 //'------------------------------------
-$returnURL = "WWW.RETURNURL.COM";
+$returnURL = "http://178.254.1.64:89/flux/website/account_home.php";
 
 //'------------------------------------
 //' The cancelURL is the location buyers are sent to when they hit the
@@ -42,9 +39,8 @@ $returnURL = "WWW.RETURNURL.COM";
 //'
 //' This is set to the value entered on the Integration Assistant 
 //'------------------------------------
-$cancelURL = "WWW.CANDELURL.COM";
+$cancelURL = "http://178.254.1.64:89/flux/website/account_home.php";
 
-echo "11111111";
 //'------------------------------------
 //' Calls the SetExpressCheckout API call
 //'
@@ -56,7 +52,6 @@ $resArray = CallShortcutExpressCheckout ($paymentAmount, $currencyCodeType, $pay
 $ack = strtoupper($resArray["ACK"]);
 if($ack=="SUCCESS" || $ack=="SUCCESSWITHWARNING")
 {
-	echo "SUCCESS";
 	RedirectToPayPal ( $resArray["TOKEN"] );
 } 
 else  
