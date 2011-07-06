@@ -9,7 +9,7 @@
 <h2>Account Balance:</h2>
 You have 0.00 $ <input type="submit" value="Withdraw"/>
 <h2>My projects:</h2>
-<iframe src="../API/list_my_fluxes.php?user_id=1"></iframe>
+<iframe src="../API/get_fluxes_owned_by.php?user_id=1"></iframe>
 <br/>
 <a href="new_project.php">New project</a>
 </body>

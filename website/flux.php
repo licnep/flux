@@ -8,7 +8,7 @@
 <h2>Routing:</h2>
 <iframe src="../API/get_flux_info.php?flux_id=<?=$_GET['id']?>"></iframe>
 <h2>Add this flux to one of your fluxes:</h2>
-<iframe src="../API/list_my_fluxes.php?user_id=1""></iframe>
+<iframe src="../API/get_fluxes_owned_by.php?user_id=1""></iframe>
 <form method="get" action="../API/change_flux.php">
 <input type="hidden" name="redirect" value="../website/account_home.php" />
 <input type="hidden" name="flux_from_id" value="1" />

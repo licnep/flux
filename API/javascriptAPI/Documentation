@@ -1,0 +1,23 @@
+===How to use:===
+include the "fluxAPI.js" in your webpage:
+<script type="text/javascript" src="xxxxxxx/fluxAPI.js"></script>
+
+
+===Functions:===
+
+##
+## Get the list of the fluxes owned by somebody
+##
+get_fluxes_owned_by(callback,user_id);
+
+# Example usage:----------------------------------------------------------------
+<script type="text/javascript" src="fluxAPI.js"></script>
+<script type="text/javascript">
+ //getting the fluxes with user_id=1 and calling an inline function
+ get_fluxes_owned_by(function(array) {alert("SO MUCH WIN!!!!! "+array);},1);
+</script>
+--------------------------------------------------------------------------------
+
+it gets a json array of fluxes (with the properties: "flux_id", "name")
+and passes it to the callback function, like:
+my_callback("[{"flux_id":"1","name":"first"},{"flux_id":"2","name":"second"}]");

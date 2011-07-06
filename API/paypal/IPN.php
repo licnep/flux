@@ -43,6 +43,11 @@ if (strcmp ($res, "VERIFIED") == 0) {
 // TODO check that txn_id has not been previously processed
 // TODO check that receiver_email is your Primary PayPal email
 // TODO process payment
+
+//TODO we must profile the different response for different transactions
+// to make sure if this is a transfer of money to our account or from our account
+// or something else
+
 require_once("add_money_in_database.php");
 $flux_id = $_POST['item_number'];
 $amount = $_POST['mc_gross'];
