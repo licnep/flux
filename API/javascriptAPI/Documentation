@@ -2,22 +2,26 @@
 include the "fluxAPI.js" in your webpage:
 <script type="text/javascript" src="xxxxxxx/fluxAPI.js"></script>
 
+To make any api call use:
+flux_api_call(callbackFunction,APICall,[optional: object]);
 
-===Functions:===
-
-##
-## Get the list of the fluxes owned by somebody
-##
-get_fluxes_owned_by(callback,user_id);
-
-# Example usage:----------------------------------------------------------------
+##Example 1:##
+------------------------------------------------------------------------
 <script type="text/javascript" src="fluxAPI.js"></script>
 <script type="text/javascript">
- //getting the fluxes with user_id=1 and calling an inline function
- get_fluxes_owned_by(function(array) {alert("SO MUCH WIN!!!!! "+array);},1);
+function myCallback(jsonArray) {alert("OK! array:"+jsonArray)}
+flux_api_call(myCallback,"http://localhost/API/get_flux_info.php?flux_id=1");
 </script>
---------------------------------------------------------------------------------
+------------------------------------------------------------------------
 
-it gets a json array of fluxes (with the properties: "flux_id", "name")
-and passes it to the callback function, like:
-my_callback("[{"flux_id":"1","name":"first"},{"flux_id":"2","name":"second"}]");
+##Example 2:## using an object method as a callback.
+------------------------------------------------------------------------
+<script type="text/javascript" src="fluxAPI.js"></script>
+<script type="text/javascript">
+/*
+ * Pretend that you have already created an object Obj and want to call
+ * Obj.update(json) once you get the data
+ */
+flux_api_call(Obj.update,"http://localhost/API/get_flux_info.php?flux_id=1",Obj);
+</script>
+------------------------------------------------------------------------

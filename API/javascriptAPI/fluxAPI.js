@@ -1,4 +1,5 @@
 //GET_FLUXES_OWNED_BY
+/// START DEPRECATED CODE::::::::::::::::::::::::::
 
 var get_fluxes_owned_by_callback = function(array) {alert("get_fluxes_owned_by_callback");};
 var bObj;
@@ -22,7 +23,38 @@ function get_fluxes_owned_by_CB(json_array) {
 	bObj.removeScriptTag();
 	get_fluxes_owned_by_callback(json_array);
 }
+///END DEPRECATED CODE:::::::::::::::::::::::::::::
 
+//GENERAL API WRAPPER
+
+//globals:
+var global_id = 0;
+var temp_scripts = new Array();
+
+function flux_api_call(callback_function, api_url, optional_object) {
+	scriptID = "scriptID"+global_id++;
+	address = api_url+"&callback=flux_api_callback(\""+scriptID+"\",%s);";
+	temp_scripts[scriptID] = new Array();
+	temp_scripts[scriptID]["callback"] = callback_function;
+	temp_scripts[scriptID]["object"] = optional_object;
+
+	bObj = new JSONscriptRequest(address);
+	bObj.buildScriptTag(scriptID); bObj.addScriptTag();
+}
+
+function flux_api_callback(id,jsonArray) {
+	//remove the temporary <script> tag that called us:
+	head = document.getElementsByTagName("head").item(0)
+	head.removeChild(document.getElementById(id));
+	if (temp_scripts[id]["object"]==undefined) {
+		//it's a global callback, just call the function
+		temp_scripts[id]["callback"](jsonArray);
+	} else {
+		//it's an object's method:
+		temp_scripts[id]["callback"].call(temp_scripts[id]["object"],jsonArray);
+	}
+	delete temp_scripts[id];
+}
 
 //#######################################################################################
 //INCLUDING THE JSONscriptREQUEST
@@ -70,7 +102,7 @@ JSONscriptRequest.scriptCounter = 1;
 
 // buildScriptTag method
 //
-JSONscriptRequest.prototype.buildScriptTag = function () {
+JSONscriptRequest.prototype.buildScriptTag = function (id) {
 
     // Create the script tag
     this.scriptObj = document.createElement("script");
@@ -79,7 +111,7 @@ JSONscriptRequest.prototype.buildScriptTag = function () {
     this.scriptObj.setAttribute("type", "text/javascript");
     this.scriptObj.setAttribute("charset", "utf-8");
     this.scriptObj.setAttribute("src", this.fullUrl + this.noCacheIE);
-    this.scriptObj.setAttribute("id", this.scriptId);
+    this.scriptObj.setAttribute("id", id);
 }
  
 // removeScriptTag method

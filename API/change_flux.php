@@ -30,8 +30,16 @@ error_reporting(E_ALL|E_STRICT);
 $flux_from_id = $_GET['flux_from_id'];
 $flux_to_id = $_GET['flux_to_id'];
 $new_share = $_GET['new_share'];
+$callback = $_GET['callback'];
+if (isset($_GET['format'])) $format = $_GET['format'];
+else $format = "json"; //default format is json
 
 change_flux($flux_from_id,$flux_to_id,$new_share);
+$result = require_once("print_formatted_result.php");
+
+if ($result==1) $return = "SUCCESS";
+else $return = "FAIL";
+print_formatted_result($return,$format,$callback);
 
 if (isset($_GET['redirect'])) header( 'Location: '.$_GET['redirect'] );
 /**
@@ -59,6 +67,7 @@ function change_flux($flux_from_id,$flux_to_id,$new_share) {
 		//TODO do something here
         die("query failed, query: ".$query."\n error:".mysql_error());
     }
+	return $result;
 }
 
 ?>

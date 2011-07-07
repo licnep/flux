@@ -29,9 +29,19 @@ $flux_id = $_GET['flux_id'];
 if (isset($_GET['format'])) $format = $_GET['format'];
 else $format = "json"; //default format is json
 
-print_flux_info($flux_id,$format);
+if (isset($_GET['callback'])) $callback = $_GET['callback'];
+else $callback = '';
 
-function print_flux_info($flux_id,$format = "json") {
+$result = get_flux_info($flux_id,$format);
+$rows = array();
+while($r = mysql_fetch_assoc($result)) {
+	array_push($rows,$r);
+}
+
+require_once("print_formatted_result.php");
+print_formatted_result($rows,$format,$callback);
+
+function get_flux_info($flux_id,$format = "json") {
 	require_once('execute_query.php');
 	$db = db_connect("flux_changer");
 	$query = "SELECT flux_from_id, flux_to_id, share FROM
@@ -42,7 +52,7 @@ function print_flux_info($flux_id,$format = "json") {
 	if(!$result) {//TODO something
 		die("query failed, query: ".$query."\n error:".mysql_error());
 	}
-	while($row = mysql_fetch_array($result)) {
+	/*while($row = mysql_fetch_array($result)) {
 		echo $row['flux_from_id']." TO ".$row['flux_to_id']." SHARE: ";
 		?> <form action="change_flux.php" method="GET">
 		<input type="hidden" name="flux_from_id" value="<?=$row['flux_from_id']?>" />
@@ -51,7 +61,8 @@ function print_flux_info($flux_id,$format = "json") {
 		<input type="text" name="new_share" value="<?=$row['share']?>" /><input type="submit"/>
 		</form>
 		<?php
-	}
+	}*/
+	return $result;
 
 }
 ?>

@@ -43,7 +43,12 @@ $callback = '';
 if (isset($_GET['callback'])) $callback = $_GET['callback'];
 
 $result = get_fluxes_owned_by($user_id);
-print_formatted_result($result,$format,$callback);
+$rows = array();
+while($r = mysql_fetch_assoc($result)) {
+	array_push($rows,$r);
+}
+require_once("print_formatted_result.php");
+print_formatted_result($rows,$format,$callback);
 
 function get_fluxes_owned_by($user_id) {
 	require_once('execute_query.php');
@@ -55,14 +60,11 @@ function get_fluxes_owned_by($user_id) {
 	if(!$result) {//TODO something
 		die("query failed, query: ".$query."\n error:".mysql_error());
 	}
-	/*while($row = mysql_fetch_array($result)) {
-		echo "Name: ".$row['name']." ID: ".$row['flux_id'].'<br/>';
-	}*/
 	return $result;
 
 }
 
-
+/* DEPRECATED
 function print_formatted_result($result,$format,$callback="") {
 	//JSON:
 	if ($format=="json") {
@@ -72,10 +74,15 @@ function print_formatted_result($result,$format,$callback="") {
 		}
 		//if callback is set, we return a valid javascript statement
 		//otherwise just the plain json data
-		if ($callback!='') echo $callback."(".json_encode($rows).");";
+		if ($callback!='') {
+			//we set the mime type to text/javascript
+			//otherwise chrome gives a warning
+			header('Content-type: text/javascript');
+			echo str_replace("%s",json_encode($rows),$callback);
+		}
 		else echo json_encode($rows);
 	}
 	//TODO other formats
 }
-
+*/
 ?>
