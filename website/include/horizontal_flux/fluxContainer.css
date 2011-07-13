@@ -1,0 +1,69 @@
+.fluxContainer {
+	margin: 0px;
+	margin-bottom: 50px;
+	padding:3px;
+	width: 700px;
+	background-color:#9ED9F6;
+	border:0px solid #101010;
+    -webkit-border-radius: 4px;    /* for Safari */
+    -moz-border-radius: 4px;       /* for Firefox */
+	/*overflow: hidden;*/
+}
+
+.receiverBox {
+	/*the little box containing each receiver*/
+	margin: 5px;
+	margin-left: 30px;
+	padding: 10px;
+	height: 20px;
+	background-color:#4E6685;
+	border:0px solid #101010;
+    -webkit-border-radius: 4px;    /* for Safari */
+    -moz-border-radius: 4px;       /* for Firefox */
+	color:white;
+}
+
+.sliderContainer {
+	bacground-color: red;
+	width: 200px;
+	float: right;
+}
+
+div.receiverShare {
+	width: 30px;
+	padding-left:25px;
+	float:right;
+}
+
+div.receiverArrow {
+	margin:5px;
+	width: 30px;
+	height: 30px;
+	float: left;
+	background-image: url('../../img/arrow.png');
+}
+
+/*used for the flux title, and opssibly in many other places, but not yet*/
+span.blueBox {
+	margin-right: 10px;
+	padding: 10px;
+	height: 20px;
+	width: 50px;
+	background-color:#4E6685;
+	border:0px solid #101010;
+    -webkit-border-radius: 4px;    /* for Safari */
+    -moz-border-radius: 4px;       /* for Firefox */
+	color:white;
+}
+
+.blueBox a, .blueBox a:visited {
+	color: white;
+}	
+
+div#myfluxes {
+	background-color: #232C37;
+	width:750px;
+	padding: 20px;
+    -webkit-border-radius: 10px;    /* for Safari */
+    -moz-border-radius: 10px;       /* for Firefox */
+}
