@@ -13,7 +13,7 @@
 .receiverBox {
 	/*the little box containing each receiver*/
 	margin: 5px;
-	margin-left: 30px;
+	/*margin-left: 30px;*/
 	padding: 10px;
 	height: 20px;
 	background-color:#4E6685;
@@ -33,14 +33,6 @@ div.receiverShare {
 	width: 30px;
 	padding-left:25px;
 	float:right;
-}
-
-div.receiverArrow {
-	margin:5px;
-	width: 30px;
-	height: 30px;
-	float: left;
-	background-image: url('../../img/arrow.png');
 }
 
 /*used for the flux title, and opssibly in many other places, but not yet*/
@@ -66,4 +58,8 @@ div#myfluxes {
 	padding: 20px;
     -webkit-border-radius: 10px;    /* for Safari */
     -moz-border-radius: 10px;       /* for Firefox */
+}
+
+ul.receiversUL {
+	list-style-image: url('../../img/arrow.png');
 }

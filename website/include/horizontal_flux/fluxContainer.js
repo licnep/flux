@@ -3,7 +3,7 @@ function FluxContainer(container,flux_id) {
 	this.container = container;
 	this.flux_id = flux_id;
 	//create the list containing the receivers:
-	//this.list = $("<ul></ul>").appendTo(container);
+	this.list = $("<ul class=\"receiversUL\"></ul>").sortable({helper:'clone',connectWith:'.receiversUL'}).appendTo(container);
 	//load the receivers:
 	var obj=this; //i think this is necessary to pass the object for the callback, if we use "this", "this" then no longer represents this object
 	flux_api_call(function(array) {obj.gotFluxInfo(array);},"http://localhost/API/get_flux_info.php?flux_id="+flux_id);
@@ -17,9 +17,10 @@ FluxContainer.prototype.gotFluxInfo = function(array) {
 }
 
 FluxContainer.prototype.addReceiver = function(id, name, description, share) {
+	//creating the list item:
+	listItem = $("<li class=\"receiverLI\"></li>").appendTo(this.list);
 	inner = name + " - <small>" + description + "</small>";
-	$("<div class=\"receiverArrow\"></div>").appendTo(this.container);
-	recBox = $("<div class=\"receiverBox\">"+inner+"</div>").appendTo(this.container);
+	recBox = $("<div class=\"receiverBox\">"+inner+"</div>").appendTo(listItem);
 	var obj = this;
 	var receiverShare = $("<div class=\"receiverShare\">"+share+"</div>").appendTo(recBox);
 	$("<div></div>").slider(
