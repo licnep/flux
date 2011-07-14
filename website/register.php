@@ -18,7 +18,8 @@
 
 				email = $('input[name=email]').val();
 				password = $('input[name=password]').val();
-				apiurl = "register_account.php?email="+email+"&password="+password
+				username = $('input[name=username]').val();
+				apiurl = "register_account.php?email="+email+"&password="+password+"&username="+username;
 				flux_api_call(registrationCallback,apiurl);
 				return false; //<- preventing form submit and page reload
 			});
@@ -26,12 +27,12 @@
 	</script>
 </head>
 <body>
-<h1>REGISTER</h1>
-<form id="registrationForm">
-<p>Email: <input type="text" name="email"value="" /></p>
-<p>Password: <input type="text" name="password" value="" /></p>
-<input type="submit" value="Register"/>
-</form>
-</form>
+	<h1>REGISTER</h1>
+	<form id="registrationForm">
+		<p>Email: <input type="text" name="email"value="" /></p>
+		<p>Username: <input type="text" name="username"value="" /></p>
+		<p>Password: <input type="text" name="password" value="" /></p>
+		<input type="submit" value="Register"/>
+	</form>
 </body>
 </html>

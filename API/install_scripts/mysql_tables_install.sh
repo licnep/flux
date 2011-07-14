@@ -19,6 +19,7 @@ mysql -u $db_username -p"$db_password" -e "DROP DATABASE IF EXISTS $db_dbname;CR
 echo "* Creating TABLE: users"
 query="CREATE TABLE users(
 user_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+username VARCHAR(32),
 email VARCHAR(32),
 password VARCHAR(32),
 cookie VARCHAR(32),

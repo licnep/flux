@@ -6,11 +6,13 @@ error_reporting(E_ALL|E_STRICT);
 
 $email = $_GET['email'];
 $password = $_GET['password'];
+if (isset($_GET['callback'])) $callback = $_GET['callback'];
+else $callback = '';
 
 $result = login($email,$password);
 require_once("print_formatted_result.php");
 $format='json';
-print_formatted_result($result,$format);
+print_formatted_result($result,$format,$callback);
 /**
  *  This only puts the data in the database, but you still have to confirm
  *  in order to activate the account.
@@ -34,7 +36,7 @@ function login($email,$password) {
     }
 	if (mysql_numrows($result)==1) {
 		$row = mysql_fetch_array($result);
-		$result = array("uid" => $row['user_id'], "cookie" => $row['cookie']);	
+		$result = array("uid" => $row['user_id'], 'username'=>$row['username'],"cookie" => $row['cookie']);	
 		return $result;
 	} else {
 		return 'false';

@@ -14,58 +14,43 @@ function user_logout() {
 }
 
 class user {
-	var $dblogin = null; // DB pointer
-
-	function user(&$dblogin) {
-		$this->dblogin = $dblogin;
-
-		if ($_SESSION['logged']) {
+	
+	function user() {
+		if (isset($_SESSION['logged'])&&$_SESSION['logged']) {
 			$this->_checkSession();
 		} elseif ( isset($_COOKIE['mtwebLogin']) ) {
 			$this->_checkRememberedCookie($_COOKIE['mtwebLogin']);
 		}
 	}
 
-	function _CheckLogin ($given_email, $given_plain_password, $remember) {
-
-            //  The plain password is used to generate the hash that corresponds to it and is stored on the database
-            $inserted_hash = md5(md5($given_plain_password).md5($given_email));
-
-            $query = "SELECT * FROM users WHERE " .
-                    "email = '".mysql_real_escape_string($given_email)."' AND " .
-                    "password = '$inserted_hash'";
-            $result = mysql_query($query, $this->dblogin);
-
-            if (!$result) {
-                //TODO something
-                die ('error, query:' .$query.' -- '. mysql_error());
-            }
-            else {
-                if (mysql_numrows($result) == 1) {
-                        $this->_setSession($result, $remember,1);
-                        return true;
-                } else {
-                        user_logout();
-                        return false;
-                }
-            }
+	function _CheckLogin ($email, $password, $remember) {
+		require_once('../../API/phpAPI/phpAPI.php');
+		$output = flux_api_call("login.php?email=".$email."&password=".$password);
+		//done with the remote connection, now the result of the login operation is in $output
+		$result = json_decode($output);
+		if ($result=="false") {
+			echo "ERROR";
+            user_logout();
+            return false;
+		} else {
+            $this->_setSession($result, $remember,1);
+            return true;
+		}
 	}
 
-	function _setSession(&$values_from_logindb, $remember = true, $init = true) {
-
-		$row_user = mysql_fetch_array($values_from_logindb);
-
-		$_SESSION['uid'] = $row_user['user_id'];
-		$_SESSION['username'] = $row_user['username'];
-		$_SESSION['cookie'] = $row_user['cookie'];
+	function _setSession($result, $remember = true, $init = true) {
+		$_SESSION['uid'] = $result->{'uid'};
+		$_SESSION['username'] = $result->{'username'};
+		$_SESSION['cookie'] = $result->{'cookie'};
 		$_SESSION['logged'] = true;
-
+		
 		if ($remember) {
-			$this->updateCookie($row_user['cookie']);
+			$this->updateCookie($result->{'cookie'});
 		}
 
+		/*
 		if ($init) {
-                        //metto nel database le informazioni di questa sessione
+            //put this session's info in the database
 			$query = "UPDATE account SET session = '".mysql_real_escape_string(session_id())."', ".
                                 "ip = '".$ip = mysql_real_escape_string($_SERVER['REMOTE_ADDR'])."' WHERE " .
 				"id = '".mysql_real_escape_string($_SESSION['uid'])."'";
@@ -73,15 +58,18 @@ class user {
 			if(!result) {
 				//loggare l'errore correttamenre
 				echo 'non sono riuscito a fare l\'update della sessione';
-                        }
-
-		}
+           }
+		}*/
 	}
 
 	function _checkSession() {
+
+		//TODO!!!!!!!!!!!!!!!!!!
+		//this has to be done remotely
+
         //i check the session parameters against the ones in the DB
         //if there's something wrong -> logout
-		$uid = mysql_real_escape_string($_SESSION['uid']);
+		/*$uid = mysql_real_escape_string($_SESSION['uid']);
 		$cookie = mysql_real_escape_string($_SESSION['cookie']);
 		$session = mysql_real_escape_string(session_id());
 		$ip = mysql_real_escape_string($_SERVER['REMOTE_ADDR']);
@@ -98,25 +86,27 @@ class user {
 		} else {
 			user_logout();
 			echo 'check sessione fallito, query:'. $query;
-		}
+		}*/
 	}
 
 	function updateCookie($cookie) {
 		$_SESSION['cookie'] = $cookie;
-                $serial = serialize(array($_SESSION['uid'], $cookie) );
-                //		  ( cooki-name , cookie , expires in a year, where the cookie is available(entire domain))
-                //              |           |              |          |
-                setcookie('mtwebLogin', $serial, time() + 31104000, '/');
+        $serial = serialize(array($_SESSION['uid'], $cookie) );
+        //		  ( cooki-name , cookie , expires in a year, where the cookie is available(entire domain))
+        //              |           |              |          |
+        setcookie('mtwebLogin', $serial, time() + 31104000, '/');
 	}
 
 	function _checkRememberedCookie($serialCook) {
 
-            //retrieves $username and $cookie from the cookie
+        //retrieves $username and $cookie from the cookie
 		list($uid, $cookie) = unserialize(stripslashes($serialCook));
 		if (!$uid or !$cookie) {
-                    return;
-                }
+            return;
+        }
 
+		//TODO remotely check cookie
+		/*
 		$uid = mysql_real_escape_string($uid);
 		$cookie = mysql_real_escape_string($cookie);
 
@@ -128,9 +118,9 @@ class user {
 		if ($result) {
 			$this->_setSession($result, true, true);
 		}
-                else {
-                    echo 'la query :'.$query.'e fallita, perche:'.mysql_error();
-                }
+        else {
+            echo 'la query :'.$query.'e fallita, perche:'.mysql_error();
+        }*/
 	}
 
 }

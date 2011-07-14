@@ -27,10 +27,11 @@ error_reporting(E_ALL|E_STRICT);
 
 
 $email = $_GET['email'];
+$username = $_GET['username'];
 $password = $_GET['password'];
 $callback = $_GET['callback'];
 
-$result = create_account($email,$password);
+$result = create_account($username,$email,$password);
 require_once("print_formatted_result.php");
 $format='json';
 print_formatted_result($result,$format,$callback);
@@ -39,17 +40,18 @@ print_formatted_result($result,$format,$callback);
  *  in order to activate the account.
  *  
  */
-function create_account($email,$password) {
+function create_account($username,$email,$password) {
 
 	require_once('execute_query.php');
 	$db = db_connect("flux_changer");
 
 	$email = mysql_real_escape_string($email);
+	$username = mysql_real_escape_string($username);
 	$hash = md5(md5($password).md5($email));
 	$cookie = md5($hash);
 
 	$query = "INSERT INTO users SET ".
-			" email = '$email',password = '$hash',cookie='$cookie';";
+			" email = '$email',username='$username', password = '$hash',cookie='$cookie';";
 
 	$result = mysql_query($query,$db);
     if(!$result) {

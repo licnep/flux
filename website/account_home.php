@@ -1,9 +1,11 @@
+<?php include('include/phpTOP.php'); ?>
 <html>
 <head>
 	<!--vvIMPORTANT! charset must be utf8 for box2d-->	
 	<meta http-equiv="Content-Type" content="text/html; charset = UTF-8" /> 
 	<!--jqueryUI css, not really necessary:-->
 	<link href="include/jquery/css/vader/jquery-ui.css" rel="stylesheet" type="text/css"/>
+	<link href="css/main.css" rel="stylesheet" type="text/css"/>	
 	<link href="include/horizontal_flux/fluxContainer.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="include/jquery/jquery-1.6.2.min.js"></script>
 <script type="text/javascript" src="include/jquery/jquery-ui.min.js"></script>
@@ -20,6 +22,7 @@
 </script>
 </head>
 <body>
+<?php include('include/topBar.php');?>
 <h1>[This is your personal page. Welcome]</h1>
 <?php include("include/paypal_donate_button.php"); ?>
 
