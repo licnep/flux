@@ -6,7 +6,7 @@ function FluxContainer(container,flux_id) {
 	this.list = $("<ul class=\"receiversUL\"></ul>").sortable({helper:'clone',connectWith:'.receiversUL'}).appendTo(container);
 	//load the receivers:
 	var obj=this; //i think this is necessary to pass the object for the callback, if we use "this", "this" then no longer represents this object
-	flux_api_call(function(array) {obj.gotFluxInfo(array);},"http://localhost/API/get_flux_info.php?flux_id="+flux_id);
+	flux_api_call(function(array) {obj.gotFluxInfo(array);},"get_flux_info.php?flux_id="+flux_id);
 }
 
 /*the callback called when we get the list of receivers*/

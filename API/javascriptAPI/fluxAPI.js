@@ -33,7 +33,7 @@ var temp_scripts = new Array();
 
 function flux_api_call(callback_function, api_url, optional_object) {
 	scriptID = "scriptID"+global_id++;
-	BASEAPIURL="http://localhost/API";
+	BASEAPIURL="http://localhost/API/";
 	address =  BASEAPIURL+api_url+"&callback=flux_api_callback(\""+scriptID+"\",%s);";
 	temp_scripts[scriptID] = new Array();
 	temp_scripts[scriptID]["callback"] = callback_function;

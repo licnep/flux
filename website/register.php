@@ -7,6 +7,8 @@
 			if (array==true) {
 				alert("Registration successful!");
 				window.location = "login.php";
+			} else {
+				alert(array);
 			}
 		}
 
