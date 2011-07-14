@@ -28,29 +28,28 @@ error_reporting(E_ALL|E_STRICT);
 
 $email = $_GET['email'];
 $password = $_GET['password'];
-$cellphone = $_GET['cellphone'];
-$redirect = $_GET['redirect'];
+$callback = $_GET['callback'];
 
-registration_phase_one($email,$password,$cellphone);
-
-header( 'Location: '.$redirect );
-
+$result = create_account($email,$password);
+require_once("print_formatted_result.php");
+$format='json';
+print_formatted_result($result,$format,$callback);
 /**
  *  This only puts the data in the database, but you still have to confirm
  *  in order to activate the account.
  *  
  */
-function registration_phase_one($email,$password,$cellphone) {
+function create_account($email,$password) {
 
-	//TODO check login and ownership of the flux
-	
 	require_once('execute_query.php');
 	$db = db_connect("flux_changer");
 
+	$email = mysql_real_escape_string($email);
+	$hash = md5(md5($password).md5($email));
+	$cookie = md5($hash);
+
 	$query = "INSERT INTO users SET ".
-			" email = '".mysql_real_escape_string($email)."'".
-			",password = '".mysql_real_escape_string($password)."'".
-			",cellphone = '".mysql_real_escape_string($cellphone)."';";
+			" email = '$email',password = '$hash',cookie='$cookie';";
 
 	$result = mysql_query($query,$db);
     if(!$result) {
@@ -58,5 +57,6 @@ function registration_phase_one($email,$password,$cellphone) {
 		//TODO do something here
         die("query failed, query: ".$query."\n error:".mysql_error());
     }
+	return $result;
 }
 

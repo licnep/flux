@@ -32,7 +32,7 @@ FluxContainer.prototype.addReceiver = function(id, name, description, share) {
 
 
 FluxContainer.prototype.changeSubflux = function(subflux_id,new_share) {
-	flux_api_call(function() {},"http://localhost/API/change_flux.php?flux_from_id="+this.flux_id+"&flux_to_id="+subflux_id+"&new_share="+new_share);
+	flux_api_call(function() {},"change_flux.php?flux_from_id="+this.flux_id+"&flux_to_id="+subflux_id+"&new_share="+new_share);
 }
 
 ///OLD DELETE EVERYTHING

@@ -21,9 +21,10 @@ query="CREATE TABLE users(
 user_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 email VARCHAR(32),
 password VARCHAR(32),
-cellphone VARCHAR(32),
+cookie VARCHAR(32),
 confirmed BOOL DEFAULT 0,
-PRIMARY KEY (user_id)
+PRIMARY KEY (user_id),
+UNIQUE (email)
 ) ENGINE = InnoDB;"
 mysql -u $db_username -p"$db_password" -e "use $db_dbname;$query"
 

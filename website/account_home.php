@@ -38,7 +38,7 @@ function gotFluxList(json) {
 		var tmp = new FluxContainer($("<div class=\"fluxContainer\"></div>").appendTo("#myfluxes"),json[i]["flux_id"]);
 	}	
 }
-$(document).ready(flux_api_call(gotFluxList,"http://localhost/API/get_fluxes_owned_by.php?user_id=1"));
+$(document).ready(flux_api_call(gotFluxList,"get_fluxes_owned_by.php?user_id=1"));
 </script>
 
 <h2>My Account:</h2>
