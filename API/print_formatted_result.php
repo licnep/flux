@@ -13,7 +13,7 @@ function print_formatted_result($result,$format,$callback="") {
 		if ($callback!='') {
 			//we set the mime type to text/javascript otherwise chrome gives a warning
 			header('Content-type: text/javascript');
-			echo str_replace("%s",json_encode($result),$callback);
+			echo str_replace("%s",json_encode($result),stripslashes($callback));
 		}
 		else echo json_encode($result);
 	}
