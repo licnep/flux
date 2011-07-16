@@ -1,32 +1,27 @@
 <?php
 
-#FOR DEBUG: (enable error reporting)
-ini_set('display_errors',1);
-error_reporting(E_ALL|E_STRICT);
+include('API_common.php');
 
-$email = $_GET['email'];
-$password = $_GET['password'];
-if (isset($_GET['callback'])) $callback = $_GET['callback'];
-else $callback = '';
+$username = $_GET['username'];
+$hash = $_GET['hash'];
 
-$result = login($email,$password);
+$result = login($username,$hash);
 require_once("print_formatted_result.php");
-$format='json';
 print_formatted_result($result,$format,$callback);
 /**
  *  This only puts the data in the database, but you still have to confirm
  *  in order to activate the account.
  *  
  */
-function login($email,$password) {
+function login($username,$hash) {
 
 	require_once('execute_query.php');
 	$db = db_connect("flux_changer");
 
-	$email = mysql_real_escape_string($email);
-	$hash = md5(md5($password).md5($email));
+	$username = mysql_real_escape_string($username);
+	$hash = mysql_real_escape_string($hash);
 
-	$query = "SELECT * FROM users WHERE email = '$email' AND password = '$hash';";
+	$query = "SELECT * FROM users WHERE username = '$username' AND hash = '$hash';";
 
 	$result = mysql_query($query,$db);
     if(!$result) {
@@ -36,7 +31,7 @@ function login($email,$password) {
     }
 	if (mysql_numrows($result)==1) {
 		$row = mysql_fetch_array($result);
-		$result = array("uid" => $row['user_id'], 'username'=>$row['username'],"cookie" => $row['cookie']);	
+		$result = array("uid" => $row['user_id'], 'username'=>$row['username'],'hash'=>$row['hash']);	
 		return $result;
 	} else {
 		return 'false';

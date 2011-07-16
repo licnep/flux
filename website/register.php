@@ -16,10 +16,9 @@
 			$('#registrationForm').submit(function () {
 				//preventing double submit:
 
-				email = $('input[name=email]').val();
 				password = $('input[name=password]').val();
 				username = $('input[name=username]').val();
-				apiurl = "register_account.php?email="+email+"&password="+password+"&username="+username;
+				apiurl = "register_account.php?password="+password+"&username="+username;
 				flux_api_call(registrationCallback,apiurl);
 				return false; //<- preventing form submit and page reload
 			});
@@ -29,9 +28,8 @@
 <body>
 	<h1>REGISTER</h1>
 	<form id="registrationForm">
-		<p>Email: <input type="text" name="email"value="" /></p>
 		<p>Username: <input type="text" name="username"value="" /></p>
-		<p>Password: <input type="text" name="password" value="" /></p>
+		<p>Password: <input type="password" name="password" value="" /></p>
 		<input type="submit" value="Register"/>
 	</form>
 </body>

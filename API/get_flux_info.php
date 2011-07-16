@@ -1,15 +1,7 @@
 <?php
 
-//FOR DEBUG: (enable error reporting)
-ini_set('display_errors',1);
-error_reporting(E_ALL|E_STRICT);
-
+include('API_common.php');
 $flux_id = $_GET['flux_id'];
-if (isset($_GET['format'])) $format = $_GET['format'];
-else $format = "json"; //default format is json
-
-if (isset($_GET['callback'])) $callback = $_GET['callback'];
-else $callback = '';
 
 $result = get_flux_info($flux_id,$format);
 $rows = array();

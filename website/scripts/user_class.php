@@ -1,4 +1,7 @@
 <?
+ini_set('display_errors', 'On');
+error_reporting(E_ALL);
+
 function session_defaults() {
 	$_SESSION['logged'] = false;
 	$_SESSION['uid'] = 0;
@@ -20,12 +23,17 @@ class user {
 			$this->_checkSession();
 		} elseif ( isset($_COOKIE['mtwebLogin']) ) {
 			$this->_checkRememberedCookie($_COOKIE['mtwebLogin']);
+		} else {
+			user_logout();
 		}
 	}
 
-	function _CheckLogin ($email, $password, $remember) {
-		require_once('../../API/phpAPI/phpAPI.php');
-		$output = flux_api_call("login.php?email=".$email."&password=".$password);
+	function _CheckLogin ($username, $hash, $remember) {
+		//TODO: this has to change, did it because the require wouldn't work 
+		//from both the root and scripts directory
+		if (file_exists('../../API/phpAPI/phpAPI.php')) require_once('../../API/phpAPI/phpAPI.php');
+		else require_once('../API/phpAPI/phpAPI.php');
+		$output = flux_api_call("check_login.php?username=".$username."&hash=".$hash);
 		//done with the remote connection, now the result of the login operation is in $output
 		$result = json_decode($output);
 		if ($result=="false") {
@@ -41,11 +49,11 @@ class user {
 	function _setSession($result, $remember = true, $init = true) {
 		$_SESSION['uid'] = $result->{'uid'};
 		$_SESSION['username'] = $result->{'username'};
-		$_SESSION['cookie'] = $result->{'cookie'};
+		$_SESSION['hash'] = $result->{'hash'};
 		$_SESSION['logged'] = true;
 		
 		if ($remember) {
-			$this->updateCookie($result->{'cookie'});
+			$this->updateCookie($result->{'hash'});
 		}
 
 		/*
@@ -66,6 +74,9 @@ class user {
 
 		//TODO!!!!!!!!!!!!!!!!!!
 		//this has to be done remotely
+		$username = $_SESSION['username'];
+		$hash = $_SESSION['hash'];
+		$this->_CheckLogin($username,$hash,false);
 
         //i check the session parameters against the ones in the DB
         //if there's something wrong -> logout
@@ -91,7 +102,7 @@ class user {
 
 	function updateCookie($cookie) {
 		$_SESSION['cookie'] = $cookie;
-        $serial = serialize(array($_SESSION['uid'], $cookie) );
+        $serial = serialize(array($_SESSION['username'], $cookie) );
         //		  ( cooki-name , cookie , expires in a year, where the cookie is available(entire domain))
         //              |           |              |          |
         setcookie('mtwebLogin', $serial, time() + 31104000, '/');
@@ -100,27 +111,11 @@ class user {
 	function _checkRememberedCookie($serialCook) {
 
         //retrieves $username and $cookie from the cookie
-		list($uid, $cookie) = unserialize(stripslashes($serialCook));
-		if (!$uid or !$cookie) {
+		list($username, $cookie) = unserialize(stripslashes($serialCook));
+		if (!$username or !$cookie) {
             return;
         }
-
-		//TODO remotely check cookie
-		/*
-		$uid = mysql_real_escape_string($uid);
-		$cookie = mysql_real_escape_string($cookie);
-
-		$query = "SELECT * FROM account WHERE " .
-			"(id = '$uid') AND (cookie = '$cookie')";
-
-		$result = mysql_query($query);
-
-		if ($result) {
-			$this->_setSession($result, true, true);
-		}
-        else {
-            echo 'la query :'.$query.'e fallita, perche:'.mysql_error();
-        }*/
+		$this->_CheckLogin($username,$cookie,true);
 	}
 
 }

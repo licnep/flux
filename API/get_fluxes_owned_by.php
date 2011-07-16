@@ -21,26 +21,10 @@
  *   It's our turn now. BE THE GIANT."
  */
 
-//FOR DEBUG: (enable error reporting)
-ini_set('display_errors',1);
-error_reporting(E_ALL|E_STRICT);
+include('API_common.php');
 
 //get the user_id (you can request this info for any user)
 $user_id = $_GET['user_id'];
-
-//set the output format
-$format = 'json';
-if (isset($_GET['format'])) {
-	switch($_GET['format']) {
-		case 'json': $format = 'json'; break;
-		case 'xml': $format = 'xml'; break; //just an example, not working, we still gotta choose the other formats
-	}
-}
-
-//set an optional callback function
-// useful for the javascript api (see: http://www.xml.com/pub/a/2005/12/21/json-dynamic-script-tag.html)
-$callback = '';
-if (isset($_GET['callback'])) $callback = $_GET['callback'];
 
 $result = get_fluxes_owned_by($user_id);
 $rows = array();

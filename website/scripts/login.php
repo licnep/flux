@@ -7,12 +7,12 @@
 
 
 	//try to login to the remote API with some "curl"
-	$email = $_GET['email'];
+	$username = $_GET['username'];
 	$password = $_GET['password'];
+	$hash = md5(md5($password).md5($username));
 
 	require_once('user_class.php');
 	$user = new user();
-	$user->_CheckLogin($email,$password,true);
-
+	$user->_CheckLogin($username,$hash,true);
 	header('location: ../account_home.php');
 ?>

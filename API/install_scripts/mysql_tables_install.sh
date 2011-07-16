@@ -20,12 +20,10 @@ echo "* Creating TABLE: users"
 query="CREATE TABLE users(
 user_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 username VARCHAR(32),
-email VARCHAR(32),
-password VARCHAR(32),
-cookie VARCHAR(32),
+hash VARCHAR(32),
 confirmed BOOL DEFAULT 0,
 PRIMARY KEY (user_id),
-UNIQUE (email)
+UNIQUE (username)
 ) ENGINE = InnoDB;"
 mysql -u $db_username -p"$db_password" -e "use $db_dbname;$query"
 
