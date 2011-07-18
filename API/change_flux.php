@@ -20,19 +20,12 @@
  *   We are dwarfs sitting on the shoulders of giants.
  *   It's our turn now. BE THE GIANT."
  */
-
-//FOR DEBUG: (enable error reporting)
-ini_set('display_errors',1);
-error_reporting(E_ALL|E_STRICT);
-
+include('API_common.php');
 
 //we get the specifics for the transaction from the GET values passed
 $flux_from_id = $_GET['flux_from_id'];
 $flux_to_id = $_GET['flux_to_id'];
 $new_share = $_GET['new_share'];
-$callback = $_GET['callback'];
-if (isset($_GET['format'])) $format = $_GET['format'];
-else $format = "json"; //default format is json
 
 $result = change_flux($flux_from_id,$flux_to_id,$new_share);
 require_once("print_formatted_result.php");

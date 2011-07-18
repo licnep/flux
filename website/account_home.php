@@ -36,7 +36,10 @@
 function gotFluxList(json) {
 	for (var i=0;i<json.length;i++) {
 		id = json[i]["flux_id"];
-		$("<span class=\"blueBox\">"+json[i]["name"]+"</span>").appendTo("#myfluxes").draggable({revert:'invalid',connectToSortable:'.receiversUL',helper:'clone'});
+		titleSpan = $("<span class=\"blueBox draggable\">"+json[i]["name"]+"</span>").appendTo("#myfluxes").draggable({revert:'invalid',connectToSortable:'.receiversUL',helper:'clone'});
+		titleSpan.attr("flux_id",id);
+		titleSpan.attr("name",json[i]["name"]);
+		titleSpan.attr("description",json[i]["description"]);
 		$("<span class=\"blueBox\"><a href=\"#\">DONATE</a></span>").appendTo("#myfluxes");
 		var tmp = new FluxContainer($("<div class=\"fluxContainer\"></div>").appendTo("#myfluxes"),json[i]["flux_id"]);
 	}	
@@ -45,7 +48,7 @@ $(document).ready(flux_api_call(gotFluxList,"get_fluxes_owned_by.php?user_id=1")
 </script>
 
 <h2>My Account:</h2>
-<span class="blueBox draggable">Licnep</span><span class="blueBox">0.00 $ <a href="hahaYoullneverGetThemMoney.exe">Withdraw</a></span>
+<span class="blueBox draggable" flux_id="712739" name="Licnep" description="---">Licnep</span><span class="blueBox">0.00 $ <a href="hahaYoullneverGetThemMoney.exe">Withdraw</a></span>
 <br/>
 </body>
 </html>
