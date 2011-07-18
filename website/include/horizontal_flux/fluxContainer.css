@@ -35,6 +35,16 @@ div.receiverShare {
 	float:right;
 }
 
+.xbutton {
+	width: 25px;
+	height: 25px;
+	text-align: center;
+	float: right;
+	background-color: #FF5050;
+    -webkit-border-radius: 2px;    /* for Safari */
+    -moz-border-radius: 2px;       /* for Firefox */
+}
+
 /*used for the flux title, and opssibly in many other places, but not yet*/
 span.blueBox {
 	margin-right: 10px;
@@ -63,3 +73,4 @@ div#myfluxes {
 ul.receiversUL {
 	list-style-image: url('../../img/arrow.png');
 }
+

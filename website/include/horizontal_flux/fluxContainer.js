@@ -34,14 +34,25 @@ FluxContainer.prototype.droppedFlux = function(droppedObj) {
 	droppedObj.replaceWith(newRec);},"change_flux.php?flux_from_id="+this.flux_id+"&flux_to_id="+subflux_id+"&new_share=10");
 }
 
+FluxContainer.prototype.xButtonCB = function(xbutton) {
+	listItem  = $(xbutton).closest(".draggable");
+	subflux_id = listItem.attr("flux_id");
+	listItem.remove();
+	flux_api_call(function() {},"remove_receiver.php?flux_from_id="+this.flux_id+"&flux_to_id="+subflux_id);
+}
+
 function Receiver(id, name, description, share, parent) {
+	var obj = parent;
 	listItem = $("<li class=\"receiverLI draggable\"></li>");
 	listItem.attr("flux_id",id);
 	listItem.attr("name",name);
 	listItem.attr("description",description);
 	inner = name + " - <small>" + description + "</small>";
 	recBox = $("<div class=\"receiverBox\">"+inner+"</div>").appendTo(listItem);
-	var obj = parent;
+	xbutton = $('<div class="xbutton">X</div>').appendTo(recBox);
+	xbutton.click(function(event) {
+		obj.xButtonCB(event.target);
+	});
 	var receiverShare = $("<div class=\"receiverShare\">"+share+"</div>").appendTo(recBox);
 	$("<div></div>").slider(
 		{ value: share, 
