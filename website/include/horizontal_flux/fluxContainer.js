@@ -9,6 +9,7 @@ function FluxContainer(container,flux_id) {
 		connectWith:'.receiversUL',
 		stop: function(event,ui) {thisObj.droppedFlux($(ui.item[0]));}
 	}).appendTo(container);
+	$('<div class="dropHint">(+) Drop fluxes here to add them.</div>').appendTo(container);
 	//load the receivers:
 	flux_api_call(function(array) {thisObj.gotFluxInfo(array);},"get_flux_info.php?flux_id="+flux_id);
 }
@@ -37,7 +38,7 @@ FluxContainer.prototype.droppedFlux = function(droppedObj) {
 FluxContainer.prototype.xButtonCB = function(xbutton) {
 	listItem  = $(xbutton).closest(".draggable");
 	subflux_id = listItem.attr("flux_id");
-	listItem.remove();
+	listItem.fadeOut(500); //attention, it only becomes invisible, it's not really eliminated
 	flux_api_call(function() {},"remove_receiver.php?flux_from_id="+this.flux_id+"&flux_to_id="+subflux_id);
 }
 

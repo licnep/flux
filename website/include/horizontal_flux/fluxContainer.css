@@ -24,9 +24,9 @@
 }
 
 .sliderContainer {
-	bacground-color: red;
 	width: 200px;
 	float: right;
+	cursor: default;
 }
 
 div.receiverShare {
@@ -43,6 +43,7 @@ div.receiverShare {
 	background-color: #FF5050;
     -webkit-border-radius: 2px;    /* for Safari */
     -moz-border-radius: 2px;       /* for Firefox */
+	cursor: pointer;
 }
 
 /*used for the flux title, and opssibly in many other places, but not yet*/
@@ -71,6 +72,18 @@ div#myfluxes {
 }
 
 ul.receiversUL {
+	padding-top:2px;
+	padding-bottom:2px;
 	list-style-image: url('../../img/arrow.png');
 }
 
+.draggable {
+	cursor: move;
+}
+
+.dropHint {
+	width: 100%;	
+	text-align:center;
+	color: #003050;
+	margin-bottom:4px;
+}

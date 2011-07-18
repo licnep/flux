@@ -39,7 +39,7 @@ function get_fluxes_owned_by($user_id) {
 	$db = db_connect("flux_changer");
 	$query = "SELECT flux_id, name, description FROM
 		fluxes
-		WHERE owner='".mysql_real_escape_string($user_id)."';";
+		WHERE owner='".mysql_real_escape_string($user_id)."' AND userflux=0;";
 	$result = mysql_query($query,$db);
 	if(!$result) {//TODO something
 		die("query failed, query: ".$query."\n error:".mysql_error());

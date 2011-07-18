@@ -21,25 +21,33 @@
  *   It's our turn now. BE THE GIANT."
  */
 
-#FOR DEBUG: (enable error reporting)
-ini_set('display_errors',1);
-error_reporting(E_ALL|E_STRICT);
+include('API_common.php');
 
-create_flux();
+$user_id = $_GET['user_id'];
+$name = $_GET['name'];
+$description = $_GET['description'];
+$result = create_flux($user_id,$name,$description);
 
-function create_flux($user_id) {
+require_once('print_formatted_result.php');
+print_formatted_result($result,$format,$callback);
+
+function create_flux($user_id,$name,$description) {
 	//TODO login check
 
 	require_once('execute_query.php');
 	$db = db_connect("flux_changer");
 
-	$query = "INSERT INTO fluxes VALUES ()";
+	$user_id = mysql_real_escape_string($user_id);
+	$name = mysql_real_escape_string($name);
+	$description = mysql_real_escape_string($description);
+
+	$query = "INSERT INTO fluxes SET name='$name', owner='$user_id', description='$description'";
 	$result = mysql_query($query,$db);
     if(!$result) {
         //query failed
 		//TODO do something here
         die("query failed, query: ".$query."\n error:".mysql_error());
     }
-	echo "SUCCESS";
+	return true;
 }
 ?>

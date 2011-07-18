@@ -27,7 +27,9 @@
 <?php include("include/paypal_donate_button.php"); ?>
 
 <h2>My FLUXES:</h2>
-<div id="myfluxes"></div>
+<div id="myfluxes">
+</div>
+<span class="blueBox"><a href="include/create_flux.php">+ Create a new flux</a></span>
 
 <script type="text/javascript">
 
@@ -36,7 +38,7 @@
 function gotFluxList(json) {
 	for (var i=0;i<json.length;i++) {
 		id = json[i]["flux_id"];
-		titleSpan = $("<span class=\"blueBox draggable\">"+json[i]["name"]+"</span>").appendTo("#myfluxes").draggable({revert:'invalid',connectToSortable:'.receiversUL',helper:'clone'});
+		titleSpan = $('<span class="blueBox draggable">'+json[i]["name"]+"</span>").appendTo("#myfluxes").draggable({revert:'invalid',connectToSortable:'.receiversUL',helper:'clone'});
 		titleSpan.attr("flux_id",id);
 		titleSpan.attr("name",json[i]["name"]);
 		titleSpan.attr("description",json[i]["description"]);

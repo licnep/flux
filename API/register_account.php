@@ -31,6 +31,23 @@ function create_account($username,$password) {
 		//TODO do something here
         die("query failed, query: ".$query."\n error:".mysql_error());
     }
+
+	//create the users'flux, this flux represents the user account, it only accumulates money
+	//it cannot have receivers
+	
+	//this returns the last autoincrement id, that is the id of the just inserted user
+	//are we sure this works and returns the new user's id 100% of the times??
+	$id = mysql_insert_id();
+	$query = "INSERT INTO fluxes SET owner=$id, userflux=1, ".
+		"name='$username', description=''";
+
+	$result = mysql_query($query,$db);
+    if(!$result) {
+        //query failed
+		//TODO do something here
+        die("query failed, query: ".$query."\n error:".mysql_error());
+    }
+
 	return $result;
 }
-
+		

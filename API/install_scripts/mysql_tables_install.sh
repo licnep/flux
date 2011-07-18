@@ -37,6 +37,7 @@ name VARCHAR(32),
 owner INT UNSIGNED NOT NULL,
 description TEXT(100),
 money DECIMAL(7,2)  NOT NULL DEFAULT 0,
+userflux BOOL DEFAULT 0,
 PRIMARY KEY (flux_id)
 ) ENGINE = InnoDB;"
 mysql -u $db_username -p"$db_password" -e "use $db_dbname;$query"
