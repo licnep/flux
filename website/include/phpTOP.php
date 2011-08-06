@@ -14,4 +14,3 @@ $user = new user();
 
 //passing the user variables to javascript, in case it's needed in the page:
 ?>
-
