@@ -11,5 +11,11 @@ require_once ('scripts/user_class.php');
 
 //calling "user= new user" it checks the session and the cookie and sets _SESSION['logged']
 $user = new user();
+
+//passing the user variables to javascript, in case it's needed in the page:
+?><script type="text/javascript">
+<?php
+	echo 'var _session = '.json_encode($_SESSION).";\n";
 ?>
+</script>
 

@@ -1,4 +1,12 @@
 <?php include('include/phpTOP.php'); ?>
+<?php
+	//if he's not logged in redirect to the login window 
+	//^ this will be changed in the future, even non logged in users can log in
+	if (!($_SESSION['logged'])) {
+    	header("location: login.php");
+    	exit();
+	}
+?>
 <html>
 <head>
 	<!--vvIMPORTANT! charset must be utf8 for box2d-->	
@@ -29,11 +37,9 @@
 <h2>My FLUXES:</h2>
 <div id="myfluxes">
 </div>
-<span class="blueBox"><a href="include/create_flux.php">+ Create a new flux</a></span>
+<span class="blueBox"><a href="create_flux.php">+ Create a new flux</a></span>
 
 <script type="text/javascript">
-
-//var horizontalFluxes = new Array();
 
 function gotFluxList(json) {
 	for (var i=0;i<json.length;i++) {
@@ -46,7 +52,7 @@ function gotFluxList(json) {
 		var tmp = new FluxContainer($("<div class=\"fluxContainer\"></div>").appendTo("#myfluxes"),json[i]["flux_id"]);
 	}	
 }
-$(document).ready(flux_api_call(gotFluxList,"get_fluxes_owned_by.php?user_id=1"));
+$(document).ready(flux_api_call(gotFluxList,"get_fluxes_owned_by.php?user_id="+_session["uid"]));
 </script>
 
 <h2>My Account:</h2>
