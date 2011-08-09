@@ -36,6 +36,14 @@ What? you don\'t know git? What a flaming faggot. Ask in the irc or skim through
 INSERT INTO tasks 
 SET date = '2011-08-06',
 description = '
+<b>Fix a bug or security hole.<br/></b>
+Go bug hunting.<br/>
+<b>Award</b>: 1~9001 points, depending on the severiy of the issue
+';
+
+INSERT INTO tasks 
+SET date = '2011-08-06',
+description = '
 <b>Draw a mockup, or something like that.<br/></b>
 Draw a mockup, and upload it somewhere (possibly the git repo).<br/>
 Currently most needed mockups: 
