@@ -34,7 +34,7 @@ function login($username,$hash) {
 		$result = array("uid" => $row['user_id'], 'username'=>$row['username'],'hash'=>$row['hash']);	
 		return $result;
 	} else {
-		return 'false';
+		return false;
 	}
 }
 
