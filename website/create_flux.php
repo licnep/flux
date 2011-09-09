@@ -1,4 +1,7 @@
 <?php include('include/phpTOP.php'); ?>
+<script type="text/javascript">
+<?php echo 'var _session = '.json_encode($_SESSION).";\n"; ?>
+</script>
 <html>
 <head>
 	<script type="text/javascript" src="include/jquery/jquery-1.6.2.min.js"></script>
@@ -14,13 +17,14 @@
 		}
 
 		$(document).ready( function() {
-			$('#creationForm').submit(function () {
+			$('#creationForm').submit(function (e) {
 				//preventing double submit:
 				name = $('input[name=name]').val();
 				description = $('input[name=description]').val();
 				apiurl = "create_flux.php?name="+name+"&description="+description+"&user_id="+_session['uid'];
 				flux_api_call(registrationCallback,apiurl);
-				return false; //<- preventing form submit and page reload
+                e.preventDefault(); //<- preventing form submit and page reload
+				return false; 
 			});
 		})
 	</script>
