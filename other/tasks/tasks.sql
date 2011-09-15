@@ -1,5 +1,9 @@
 USE fluxTasks;
 
+#create the fluxtask user:
+CREATE USER 'fluxtask'@'localhost' IDENTIFIED BY 'fluxtask';
+GRANT ALL ON fluxTasks.* TO 'fluxtask'@'localhost';
+
 #
 # tasks are put directly in this file
 # Try to make tasks as easy and small as possible

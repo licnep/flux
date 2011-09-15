@@ -11,8 +11,8 @@ ini_set('display_errors',1);
 error_reporting(E_ALL|E_STRICT);
 
 $db_name = "fluxTasks";
-$username="root"; 
-$password="zxcvbnm";
+$username="fluxtask"; 
+$password="fluxtask";
 
 $db = mysql_pconnect('localhost',$username,$password);
 

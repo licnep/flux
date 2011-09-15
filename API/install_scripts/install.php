@@ -57,6 +57,12 @@ function install_tables($db) {
         
         "USE $db_dbname",
         
+        "DROP USER 'fluxAPIuser'@'localhost'",
+        
+        "CREATE USER 'fluxAPIuser'@'localhost' IDENTIFIED BY 'password'",
+        
+        "GRANT ALL ON $db_dbname.* TO 'fluxAPIuser'@'localhost'",
+        
         "CREATE TABLE users(
         user_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
         username VARCHAR(32),
@@ -87,20 +93,20 @@ function install_tables($db) {
     );
     foreach ($queries as $query) {
         $result = mysql_query($query,$db);
-        echo '<div class="'.($result?"success":"fail").'"><small>'.$query.'</small> : <b>'.($result?"SUCCESS":"FAIL").'</b></div>';
+        echo '<div class="'.($result?"success":"fail").'"><small>'.$query.'</small> : <b>'.($result?"SUCCESS":"FAIL: ".mysql_error()).'</b></div>';
     }    
 }
 
 function update_LocalSettings($username,$password) {
     $data = "<?php\n";
-    $data .= '$C_username = "'.$username.'";'."\n";
-    $data .= '$C_password = "'.$password.'";'."\n";
+    $data .= '$C_username = "fluxAPIuser";'."\n";
+    $data .= '$C_password = "password";'."\n";
     $data .= "?>";
     $result = file_put_contents("../LocalSettings.php",$data);
     if ($result) {
-        echo "LOCALSETTINGS.PHP SUCCESS";
+        echo "localsettings.php succesfully saved";
     } else {
-        echo "LOCALSETTINGS.PHP ERROR!!";
+        echo "ERROR while saving localsettings.php!!";
     }
 }
 
