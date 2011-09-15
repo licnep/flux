@@ -8,5 +8,6 @@
 		<p>Password: <input type="password" name="password" value=""/></p>
 		<input type="submit" value="Login"/>
 	</form>
+    or <a href="register.php">Register</a>
 </body>
 </html>
