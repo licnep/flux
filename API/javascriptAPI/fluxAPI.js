@@ -1,30 +1,3 @@
-//GET_FLUXES_OWNED_BY
-/// START DEPRECATED CODE::::::::::::::::::::::::::
-
-var get_fluxes_owned_by_callback = function(array) {alert("get_fluxes_owned_by_callback");};
-var bObj;
-
-function get_fluxes_owned_by(callback,user_id) {
-
-	//remember the callback globally:
-	get_fluxes_owned_by_callback = callback;
-
-	address = 'http://localhost/API/get_fluxes_owned_by.php?user_id=1&callback=get_fluxes_owned_by_CB';
-
-	// Create a new request object
-	bObj = new JSONscriptRequest(address); 
-
-	//TODO: this two functions must be condensed in a single one:
-	bObj.buildScriptTag(); 	bObj.addScriptTag();
-
-}
-
-function get_fluxes_owned_by_CB(json_array) {
-	bObj.removeScriptTag();
-	get_fluxes_owned_by_callback(json_array);
-}
-///END DEPRECATED CODE:::::::::::::::::::::::::::::
-
 //GENERAL API WRAPPER
 
 //globals:
@@ -33,7 +6,7 @@ var temp_scripts = new Array();
 
 function flux_api_call(callback_function, api_url, optional_object) {
 	scriptID = "scriptID"+global_id++;
-	BASEAPIURL="http://localhost/API/";
+	BASEAPIURL="http://flux.lolwut.net/flux/API/";
 	address =  BASEAPIURL+api_url+"&callback=flux_api_callback(\""+scriptID+"\",%s);";
 	console.log(address);
 	temp_scripts[scriptID] = new Array();

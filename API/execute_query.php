@@ -15,9 +15,11 @@ Possibly
 */
 function db_connect($id) {
 
+    include("LocalSettings.php");
+
 	$db_name = "testfluxAPI";
 	switch($id) {
-		case "flux_changer": $username="root"; $password="zxcvbnm"; break;
+		case "flux_changer": $username=$C_username; $password=$C_password; break;
 	}
 	//making a persistent connection (it automatically uses an open one if it exists)
 	$db = mysql_pconnect('localhost',$username,$password);
