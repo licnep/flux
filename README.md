@@ -1,16 +1,16 @@
-LIVE VERSION
+Live Version
 ============
 
 We have a live version of the project always running at:
 [current snapshot](http://flux.lolwut.net/flux/website/index.php)
 
-This is a sandbox version that can be modified by anyone from the website itself:
+This live version can be modified by anyone from the website itself:
 [online IDE](http://flux.lolwut.net:3000/)
 
 Changes made to the live version will be reviewed and added to the repo.
-If you want to make more serious changes, clone the repo and install a local version.
+If you want to make more serious changes, clone or fork the repo and install a local version.
 
-INSTALLATION
+Installation
 ============
 
 Requirements: apache, php, mysql.
@@ -18,7 +18,7 @@ Requirements: apache, php, mysql.
 open up your browser and go to:
 API/install_scripts/install.php
 
-MORE INFO
+Help
 =========
 
-More info on the [flux website](http://flux.lolwut.net/)
+For more info go to the [flux website](http://flux.lolwut.net/).
