@@ -4,22 +4,13 @@
 ini_set('display_errors',1);
 error_reporting(E_ALL|E_STRICT);
 
-/**
-Executes a query on a database. The user and database to be used are identified
-by $id.
-If the query fails it does something, but what?
-Possibly 
-* - print out an error
-* - throw an exception
-* - send an email to the admins
-*/
 function db_connect($id = "") {
 
     include("LocalSettings.php");
 
-	$db_name = "testfluxAPI";
+	$db_name = "lovePool";
 	switch($id) {
-		default: $username=$C_username; $password=$C_password; break;
+		default : $username=$C_username; $password=$C_password; break;
 	}
 	//making a persistent connection (it automatically uses an open one if it exists)
 	$db = mysql_pconnect('localhost',$username,$password);

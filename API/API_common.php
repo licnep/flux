@@ -3,6 +3,11 @@
 	ini_set('display_errors',1);
 	error_reporting(E_ALL|E_STRICT);
 
+	/*we include the print_formatted_result function because it's needed by all the api calls, so they don't have to include it in every file and can just call the print_formatted_result function*/
+	require_once(dirname(__FILE__)."/print_formatted_result.php");
+	/*the execute_query is also required by all calls that need to interact with the DB*/
+	require_once(dirname(__FILE__)."/execute_query.php");
+
 	
 	//set the output format
 	$format = 'json'; //default is json

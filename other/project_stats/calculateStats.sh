@@ -3,7 +3,7 @@
 #we dont want to count the binary files (images etc.), so we add "sed" rules to ignore them
 ignore="sed"
 ignore="${ignore} -e '/^.*png/ d' " #exclude *.png
-ignore="${ignore} -e '/^API\/paypal\/lib.*/ d'" #exclude the paypal lib (just copied code)
+ignore="${ignore} -e '/^paypalPool\/paypal\/lib.*/ d'" #exclude the paypal lib (just copied code)
 ignore="${ignore} -e '/^website\/include\/jquery.*/ d'" #exclude jquery
 
 #moving to project root

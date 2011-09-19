@@ -1,7 +1,12 @@
-To install the "API tests":
-* go in the folder "install_scripts"
-* run the script: "install.sh"
+To install the flux API (backend):
+1) set LocalSettings.php to be modified by the user running apache, for example:
+$ chmod a+w LocalSettings.php
+
+2) run install_scripts/install.php from your browser
+
+3) change back the permissions of LocalSettings.php
+
 
 
 Dependencies: 
-To run the test you need to have php and mysql installed (and php's mysql module)
+You need to have php and mysql installed (and php's mysql module)
