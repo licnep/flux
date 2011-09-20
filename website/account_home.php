@@ -43,6 +43,7 @@
 
 <script type="text/javascript">
 
+/*this callback is called once we get the list of fluxes owned by the user from the API*/
 function gotFluxList(json) {
     /*For each fluc owned by the user:*/
 	for (var i=0;i<json.length;i++) {
@@ -51,25 +52,37 @@ function gotFluxList(json) {
 		titleSpan.attr("flux_id",id);
 		titleSpan.attr("name",json[i]["name"]);
 		titleSpan.attr("description",json[i]["description"]);
-        /*create the "donate" button*/
-		donateBtn = $("<span class=\"blueBox\"><a href=\"#\">DONATE</a></span>").appendTo("#myfluxes");
-        /*when the donate button is clicked we do an API call to get a transaction key*/
-        donateBtn.click(function() {
-            flux_api_call(function(json) {
-                transaction_key = json;
-                window.location = "../pools/lovePool/sendLove.php?transaction_key="+transaction_key;
-            },
-            "pool/create_transaction_key.php?key="+_session["hash"]+"&pool_id=1");
-        });
-        /*create the cool container, automatically populating it with all the cool shit (subfluxes...)*/
-		var tmp = new FluxContainer($("<div class=\"fluxContainer\"></div>").appendTo("#myfluxes"),json[i]["flux_id"]);
+                /*create the "donate" button*/
+                        donateBtn = $("<span class=\"blueBox\"><a href=\"#\">DONATE</a></span>").appendTo("#myfluxes");
+                /*when the donate button is clicked we do an API call to get a transaction key*/
+                donateBtn.click(function() {
+                    flux_api_call(function(json) {
+                        transaction_key = json;
+                        window.location = "../pools/lovePool/sendLove.php?transaction_key="+transaction_key;
+                    },
+                    "pool/create_transaction_key.php?key="+_session["hash"]+"&pool_id=1&flux_to_id="+id);
+                });
+                /*create the cool container, automatically populating it with all the cool shit (subfluxes...)*/
+		var tmp = new FluxContainer($("<div class=\"fluxContainer\"></div>").appendTo("#myfluxes"),id);
 	}	
 }
-$(document).ready(flux_api_call(gotFluxList,"get_fluxes_owned_by.php?user_id="+_session["uid"]));
+
+/*this callback is called once we get the id of the user's personal flux*/
+function gotUserFluxID(json) {
+    alert(json);
+}
+
+/*Once the document is ready we actually populate the page with some data:*/
+$(document).ready(function() {
+    /*we retrieve the list of the fluxes owned by the user to populate his page.*/
+    flux_api_call(gotFluxList,"get_fluxes_owned_by.php?user_id="+_session["uid"]);
+    /*we retrieve the id of the user's personal flux to show it at the bottom of the page*/
+    /*flux_api_call(gotUserFluxID,"get_user_flux_ID.php?user_id="+_sesssion["uid"]);   */
+});
 </script>
 
 <h2>My Account:</h2>
-<span class="blueBox draggable" flux_id="712739" name="Licnep" description="---">Licnep</span><span class="blueBox">0.00 $ <a href="hahaYoullneverGetThemMoney.exe">Withdraw</a></span>
+<span id="myFlux" class="blueBox draggable" flux_id="FLUXID" name="USERNAME" description="---">USERNAME</span><span class="blueBox">0.00 $ <a href="hahaYoullneverGetThemMoney.exe">Withdraw</a></span>
 <br/>
 </body>
 </html>

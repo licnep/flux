@@ -31,7 +31,6 @@ $rows = array();
 while($r = mysql_fetch_assoc($result)) {
 	array_push($rows,$r);
 }
-require_once("print_formatted_result.php");
 print_formatted_result($rows,$format,$callback);
 
 function get_fluxes_owned_by($user_id) {

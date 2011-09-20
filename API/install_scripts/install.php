@@ -95,26 +95,28 @@ function install_tables($db) {
         ) ENGINE = InnoDB;",
 
         /*i put a timestamp so we could eliminate unused transaction keys after a while*/
-		"CREATE TABLE transactions(
-		transaction_id VARCHAR(36),
-		user_id INT UNSIGNED NOT NULL,
-		pool_id INT UNSIGNED NOT NULL,
-		flux_to_id INT UNSIGNED NOT NULL,
-		status INT DEFAULT 0,
+        "CREATE TABLE transactions(
+        transaction_id VARCHAR(36),
+        user_id INT UNSIGNED NOT NULL,
+        pool_id INT UNSIGNED NOT NULL,
+        flux_to_id INT UNSIGNED NOT NULL,
+        amount DECIMAL(7,2),
+        status INT DEFAULT 0,
         timestamp TIMESTAMP DEFAULT NOW(),
-		PRIMARY KEY (transaction_id)
-		) ENGINE = InnoDB;",
+        PRIMARY KEY (transaction_id)
+        ) ENGINE = InnoDB;",
 
-		"INSERT INTO transactions SET transaction_id=1, pool_id=1",
+        /*this was just for testing, can be eliminated now*/
+        "INSERT INTO transactions SET transaction_id=1, pool_id=1",
 
-		"CREATE TABLE pools(
-		pool_id INT UNSIGNED NOT NULL,
-		public_key BLOB NOT NULL,
-		ack_url BLOB NOT NULL,
-		PRIMARY KEY (pool_id)
-		) ENGINE = InnoDB;",
+        "CREATE TABLE pools(
+        pool_id INT UNSIGNED NOT NULL,
+        public_key BLOB NOT NULL,
+        ack_url BLOB NOT NULL,
+        PRIMARY KEY (pool_id)
+        ) ENGINE = InnoDB;",
 
-		"INSERT INTO pools SET pool_id=1,ack_url='www.google.com',public_key=
+        "INSERT INTO pools SET pool_id=1,ack_url='www.google.com',public_key=
 '-----BEGIN PUBLIC KEY-----
 MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBANDiE2+Xi/WnO+s120NiiJhNyIButVu6
 zxqlVzz0wy2j4kQVUC4ZRZD80IY+4wIiX2YxKBZKGnd2TtPkcJ/ljkUCAwEAAQ==

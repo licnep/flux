@@ -5,6 +5,7 @@ include(dirname(__FILE__).'/../API_common.php');
 include(dirname(__FILE__).'/../check_API_key.php');
 
 $pool_id = $_GET['pool_id'];
+$flux_to_id = $_GET['flux_to_id'];
 
 //generate the unique transaction id:
 $transaction_id = uniqid(); 
@@ -13,7 +14,8 @@ $transaction_id = uniqid();
 require_once(dirname(__FILE__) . '/../execute_query.php');
 $db = db_connect("flux_changer");
 $query = "INSERT INTO transactions SET transaction_id='".$transaction_id."', user_id='".
-        mysql_real_escape_string($_USER['uid'])."', pool_id='".mysql_real_escape_string($pool_id)."'"; 
+        mysql_real_escape_string($_USER['uid'])."', pool_id='".mysql_real_escape_string($pool_id)."', flux_to_id='".
+        mysql_real_escape_string($flux_to_id)."'"; 
 $result = mysql_query($query,$db);
 if(!$result) {
     //query failed

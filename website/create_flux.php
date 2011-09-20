@@ -23,7 +23,7 @@
 				description = $('input[name=description]').val();
 				apiurl = "create_flux.php?name="+name+"&description="+description+"&user_id="+_session['uid'];
 				flux_api_call(registrationCallback,apiurl);
-                e.preventDefault(); //<- preventing form submit and page reload
+                                e.preventDefault(); //<- preventing form submit and page reload
 				return false; 
 			});
 		})
