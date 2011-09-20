@@ -14,7 +14,7 @@
 <head>
 	<!--vvIMPORTANT! charset must be utf8 for box2d-->	
 	<meta http-equiv="Content-Type" content="text/html; charset = UTF-8" /> 
-	<!--jqueryUI css, not really necessary:-->
+	<!--jqueryUI's css, not really necessary:-->
 	<link href="include/jquery/css/vader/jquery-ui.css" rel="stylesheet" type="text/css"/>
 	<link href="css/main.css" rel="stylesheet" type="text/css"/>	
 	<link href="include/horizontal_flux/fluxContainer.css" rel="stylesheet" type="text/css"/>
@@ -35,7 +35,6 @@
 <body>
 <?php include('include/topBar.php');?>
 <h1>[This is your personal page. Welcome]</h1>
-<?php include("include/paypal_donate_button.php"); ?>
 
 <h2>My FLUXES:</h2>
 <div id="myfluxes">
@@ -45,13 +44,24 @@
 <script type="text/javascript">
 
 function gotFluxList(json) {
+    /*For each fluc owned by the user:*/
 	for (var i=0;i<json.length;i++) {
 		id = json[i]["flux_id"];
 		titleSpan = $('<span class="blueBox draggable">'+json[i]["name"]+"</span>").appendTo("#myfluxes").draggable({revert:'invalid',connectToSortable:'.receiversUL',helper:'clone'});
 		titleSpan.attr("flux_id",id);
 		titleSpan.attr("name",json[i]["name"]);
 		titleSpan.attr("description",json[i]["description"]);
-		$("<span class=\"blueBox\"><a href=\"#\">DONATE</a></span>").appendTo("#myfluxes");
+        /*create the "donate" button*/
+		donateBtn = $("<span class=\"blueBox\"><a href=\"#\">DONATE</a></span>").appendTo("#myfluxes");
+        /*when the donate button is clicked we do an API call to get a transaction key*/
+        donateBtn.click(function() {
+            flux_api_call(function(json) {
+                transaction_key = json;
+                window.location = "../pools/lovePool/sendLove.php?transaction_key="+transaction_key;
+            },
+            "pool/create_transaction_key.php?key="+_session["hash"]+"&pool_id=1");
+        });
+        /*create the cool container, automatically populating it with all the cool shit (subfluxes...)*/
 		var tmp = new FluxContainer($("<div class=\"fluxContainer\"></div>").appendTo("#myfluxes"),json[i]["flux_id"]);
 	}	
 }

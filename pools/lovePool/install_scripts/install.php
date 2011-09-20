@@ -67,7 +67,7 @@ function install_tables($db) {
         "GRANT ALL ON $db_dbname.* TO 'poolUser'@'localhost'",
         
         "CREATE TABLE transactions(
-        transaction_id INT UNSIGNED NOT NULL,
+        transaction_id VARCHAR(36),
         amount DECIMAL(5,2),
 		ack BOOL DEFAULT 0,
         PRIMARY KEY (transaction_id)
@@ -83,6 +83,7 @@ function update_LocalSettings($username,$password) {
     $data = "<?php\n";
     $data .= '$C_username = "poolUser";'."\n";
     $data .= '$C_password = "password";'."\n";
+    $data .= '$C_API_base_url = "http://flux.lolwut.net/flux/API";'."\n";
     $data .= "?>";
     $result = file_put_contents("../LocalSettings.php",$data);
     if ($result) {

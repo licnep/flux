@@ -52,15 +52,16 @@ I2SvDkQ5CmrzkW5qPaE2oO7BSqAhRZxiYpZFb5CI
 	phase 2: send the ACK request
 	**/
 	require_once("get_webpage.php");
-	$url = "http://localhost/API/pool/ack_transaction.php?".
+    include("LocalSettings.php");
+	$url = $C_API_base_url."/pool/ack_transaction.php?".
 			"transaction_id=".$transaction_id.
 			"&&amount=".$amount.
 			"&signature=".urlencode(base64_encode($signature));
 	$response=get_webpage($url);
 	if ($response=="SUCCESS") {
 		$db = db_connect();
-		$query="UPDATE transactions SET ack=1 WHERE transaction_id=".
-				mysql_real_escape_string($transaction_id);
+		$query="UPDATE transactions SET ack=1 WHERE transaction_id='".
+				mysql_real_escape_string($transaction_id)."'";
 		$result = mysql_query($query,$db);
 		if(!$result) {
 			die("Transaction FAILED, query: ".$query."\n error:".mysql_error());

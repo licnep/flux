@@ -55,7 +55,7 @@ if ($ok!=1) {die("Signature Error, you fucking trying to fool me motherfucker?!!
 CHECK N.2 COMPLETE!
 If we're here everything is ok, we just gotta store the transaction in our db and send the confirmation to the pool
 */
-$query = "UPDATE transactions SET status=1 WHERE transaction_id=".mysql_real_escape_string($transaction_id);
+$query = "UPDATE transactions SET status=1 WHERE transaction_id='".mysql_real_escape_string($transaction_id)."'";
 $result = mysql_query($query,$db);
 if (!$result) {die ('ERROR during update, Query:'.$query.' Error:'.mysql_error());} 
 

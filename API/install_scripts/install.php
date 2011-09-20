@@ -94,12 +94,14 @@ function install_tables($db) {
         PRIMARY KEY (flux_from_id,flux_to_id)
         ) ENGINE = InnoDB;",
 
+        /*i put a timestamp so we could eliminate unused transaction keys after a while*/
 		"CREATE TABLE transactions(
-		transaction_id VARCHAR(32) NOT NULL,
+		transaction_id VARCHAR(36),
 		user_id INT UNSIGNED NOT NULL,
 		pool_id INT UNSIGNED NOT NULL,
 		flux_to_id INT UNSIGNED NOT NULL,
 		status INT DEFAULT 0,
+        timestamp TIMESTAMP DEFAULT NOW(),
 		PRIMARY KEY (transaction_id)
 		) ENGINE = InnoDB;",
 

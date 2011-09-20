@@ -29,10 +29,7 @@ class user {
 	}
 
 	function _CheckLogin ($username, $hash, $remember) {
-		//TODO: this has to change, did it because the require wouldn't work 
-		//from both the root and scripts directory
-		if (file_exists('../../API/phpAPI/phpAPI.php')) require_once('../../API/phpAPI/phpAPI.php');
-		else require_once('../API/phpAPI/phpAPI.php');
+		require_once(dirname(__FILE__).'/../../API/phpAPI/phpAPI.php');
 		$output = flux_api_call("check_login.php?username=".$username."&hash=".$hash);
 		//done with the remote connection, now the result of the login operation is in $output
 		$result = json_decode($output);
