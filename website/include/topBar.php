@@ -4,3 +4,12 @@ if (!isset($_SESSION['logged'])||!($_SESSION['logged'])) echo ('<a href="login.p
 else echo (sprintf('Goodmorning <a href="me.php">%s</a>,',$_SESSION['username']) .' <a href="scripts/logout.php?goto='.urlencode('http://'.$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"]).'">'.'logout</a>');
 ?>
 </div>
+<!-- if he's a temporary user we show the warning bar-->
+<?php
+if ($_SESSION['temp']==1) {
+?>
+<div class="warning">
+    WARNING: You are logged in as a temporary user. <a href="register.php">Register</a> for free or <a href="login.php">login</a> to save you changes.
+</div>
+<?php } ?>
+

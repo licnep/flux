@@ -22,10 +22,12 @@ error_reporting(E_ALL|E_STRICT);
 //when the user first opens the page we show a form where he must insert the database credential to install:
 if (!isset($_GET['user'])) {
     ?>
-    Please insert the database credential to install the databases:
     <form method="GET">
-        <p>Username:</p><input type="text" name="user" value="" />
-        <p>Password:</p><input type="text" name="password" value="" />
+    Please insert the database credential to install the database:
+        <p>Username: <input type="text" name="user" value="" /></p>
+        <p>Password: <input type="text" name="password" value="" /></p>
+	And the base url of the flux api (usually "http://localhost/something/flux/API/")
+		<p>API base url: <input type="text" name="APIurl" size="50" value="http://flux.lolwut.net/flux/API/" /></p>
         <input type="submit" name="submit" value="Create"/>
     </form>
     <?php
@@ -69,8 +71,10 @@ function install_tables($db) {
         "CREATE TABLE users(
         user_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
         username VARCHAR(32),
+        email VARCHAR(32),
         hash VARCHAR(32),
         confirmed BOOL DEFAULT 0,
+        temp BOOL DEFAULT 0,
         PRIMARY KEY (user_id),
         UNIQUE (username)
         ) ENGINE = InnoDB",
@@ -81,6 +85,7 @@ function install_tables($db) {
         owner INT UNSIGNED NOT NULL,
         description TEXT(100),
         money DECIMAL(7,2)  NOT NULL DEFAULT 0,
+        last_update TIMESTAMP DEFAULT NOW(),
         userflux BOOL DEFAULT 0,
         PRIMARY KEY (flux_id)
         ) ENGINE = InnoDB",
@@ -121,7 +126,10 @@ function install_tables($db) {
 MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBANDiE2+Xi/WnO+s120NiiJhNyIButVu6
 zxqlVzz0wy2j4kQVUC4ZRZD80IY+4wIiX2YxKBZKGnd2TtPkcJ/ljkUCAwEAAQ==
 -----END PUBLIC KEY-----'"
+        
     );
+    /*we append the queries to create the procedures that move the money around*/
+    include("add_procedure_creation_queries.php");
     foreach ($queries as $query) {
         $result = mysql_query($query,$db);
         echo '<div class="'.($result?"success":"fail").'"><small>'.$query.'</small> : <b>'.($result?"SUCCESS":"FAIL: ".mysql_error()).'</b></div>';
@@ -132,6 +140,7 @@ function update_LocalSettings($username,$password) {
     $data = "<?php\n";
     $data .= '$C_username = "fluxAPIuser";'."\n";
     $data .= '$C_password = "password";'."\n";
+    $data .= '$C_API_base_url = "'.$_GET['APIurl'].'";'."\n";
     $data .= "?>";
     $result = file_put_contents("../LocalSettings.php",$data);
     if ($result) {

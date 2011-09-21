@@ -1,10 +1,9 @@
-<?php include('include/phpTOP.php'); ?>
+<?php include(dirname(__FILE__).'/include/phpTOP.php'); ?>
 <?php
 	//if he's not logged in redirect to the login window 
 	//^ this will be changed in the future, even non logged in users can log in
 	if (!($_SESSION['logged'])) {
     	header("location: login.php");
-    	exit();
 	}
 ?>
 <script type="text/javascript">
@@ -69,7 +68,11 @@ function gotFluxList(json) {
 
 /*this callback is called once we get the id of the user's personal flux*/
 function gotUserFluxID(json) {
-    alert(json);
+    $("#myFlux")
+        .attr("flux_id",json["flux_id"])
+        .attr("name", _session["username"])
+        .html(_session["username"]);
+    $("#myMoney").html(json["money"]);
 }
 
 /*Once the document is ready we actually populate the page with some data:*/
@@ -77,12 +80,12 @@ $(document).ready(function() {
     /*we retrieve the list of the fluxes owned by the user to populate his page.*/
     flux_api_call(gotFluxList,"get_fluxes_owned_by.php?user_id="+_session["uid"]);
     /*we retrieve the id of the user's personal flux to show it at the bottom of the page*/
-    /*flux_api_call(gotUserFluxID,"get_user_flux_ID.php?user_id="+_sesssion["uid"]);   */
+    flux_api_call(gotUserFluxID,"get_user_flux_ID.php?user_id="+_session["uid"]);
 });
 </script>
 
 <h2>My Account:</h2>
-<span id="myFlux" class="blueBox draggable" flux_id="FLUXID" name="USERNAME" description="---">USERNAME</span><span class="blueBox">0.00 $ <a href="hahaYoullneverGetThemMoney.exe">Withdraw</a></span>
+<span id="myFlux" class="blueBox draggable" flux_id="FLUXID" name="USERNAME" description="---">USERNAME</span><span class="blueBox"><span id="myMoney">MONEY</span> $ <a href="hahaYoullneverGetThemMoney.exe">Withdraw</a></span>
 <br/>
 </body>
 </html>

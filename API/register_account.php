@@ -5,7 +5,10 @@ include('API_common.php');
 $username = $_GET['username'];
 $password = $_GET['password'];
 
-$result = create_account($username,$password);
+isset($_GET['email'])? $email=$_GET['email']:$email="";
+isset($_GET['temp'])? $temp=1:$temp=0;
+
+$result = create_account($username,$password,$email,$temp);
 require_once("print_formatted_result.php");
 print_formatted_result($result,$format,$callback);
 
@@ -14,16 +17,18 @@ print_formatted_result($result,$format,$callback);
  *  in order to activate the account.
  *  
  */
-function create_account($username,$password) {
+function create_account($username,$password,$email,$temp=0) {
 
 	require_once('execute_query.php');
 	$db = db_connect("flux_changer");
 
 	$username = mysql_real_escape_string($username);
 	$hash = md5(md5($password).md5($username));
+        $temp = mysql_real_escape_string($temp);
+        $email = mysql_real_escape_string($email);
 
 	$query = "INSERT INTO users SET ".
-			" username='$username', hash = '$hash';";
+			" username='$username', hash = '$hash', temp='$temp', email='$email'";
 
 	$result = mysql_query($query,$db);
     if(!$result) {

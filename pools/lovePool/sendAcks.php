@@ -52,7 +52,7 @@ I2SvDkQ5CmrzkW5qPaE2oO7BSqAhRZxiYpZFb5CI
 	phase 2: send the ACK request
 	**/
 	require_once("get_webpage.php");
-    include("LocalSettings.php");
+        include("LocalSettings.php");
 	$url = $C_API_base_url."/pool/ack_transaction.php?".
 			"transaction_id=".$transaction_id.
 			"&&amount=".$amount.

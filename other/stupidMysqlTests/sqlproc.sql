@@ -1,9 +1,9 @@
 
-DROP PROCEDURE IF EXISTS move_money; #drop the procedure before creating it, just to B sure
+DROP PROCEDURE IF EXISTS move_money; #drop the procedure before creating it, just to be sure
 DELIMITER // #change the delimiter
 
 CREATE PROCEDURE move_money (from_id INT)
-#this procedures takes the least updated flux and moves his money to the right recipients
+#this procedures moves the money from a flux to the right recipients
 BEGIN # {
     DECLARE total INT; # declare a variable total (type INT)
     #now we set total to the sum of the shares coming from 'from_id' (usually 100)
@@ -11,7 +11,7 @@ BEGIN # {
        WHERE flux_id = from_id
        INTO total;
 
-    #money movement has to be a transactions, either the 2 queryes are successfull, or they both fail
+    #money movement has to be a transactions, either the 2 queries are both successfull, or they both fail
     START TRANSACTION; #{
        #remove money from the giver flux:
        UPDATE fluxes SET money_waiting = 0, last_update = NOW() WHERE flux_id = from_id;
@@ -46,7 +46,7 @@ BEGIN # {
              LEAVE loopa; #leave if all fluxes are updated enough and with too little money to move
         END IF;
         CALL move_money(id);
-	SET i = i+1;
+		SET i = i+1;
         IF i > max 
            THEN LEAVE loopa; #to exit the loop
         END IF;

@@ -9,6 +9,13 @@
 	color: white;
 }
 
+.warning {
+    background-color: #FF7;
+    margin: 5px;
+    padding: 3px;
+    border: 1px solid #AA0;
+}
+
 body {
 	padding: 0px;
 	margin: 0px;

@@ -1,4 +1,4 @@
-<html>
+<html><?php include(include/phpTOP.php);?>
 <head>
 	<script type="text/javascript" src="include/jquery/jquery-1.6.2.min.js"></script>
 	<script type="text/javascript" src="../API/javascriptAPI/fluxAPI.js"></script>
@@ -18,7 +18,8 @@
 
 				password = $('input[name=password]').val();
 				username = $('input[name=username]').val();
-				apiurl = "register_account.php?password="+password+"&username="+username;
+                                email = $('input[name=email]').val();
+				apiurl = "register_account.php?password="+password+"&username="+username+"&email="+email;
 				flux_api_call(registrationCallback,apiurl);
 				return false; //<- preventing form submit and page reload
 			});
@@ -28,7 +29,8 @@
 <body>
 	<h1>REGISTER</h1>
 	<form id="registrationForm">
-		<p>Username: <input type="text" name="username"value="" /></p>
+		<p>Username: <input type="text" name="username" value="" /></p>
+                <p>Email: <input type="text" name="email" value="" /></p>
 		<p>Password: <input type="password" name="password" value="" /></p>
 		<input type="submit" value="Register"/>
 	</form>

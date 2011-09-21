@@ -75,6 +75,11 @@ if ($r1 and $r2) {$result = mysql_query("COMMIT");} else {$result = mysql_query(
 
 if (!$result) {die ('ERROR during transaction, Error:'.mysql_error());} 
 
+/*
+ * Let's move the money a little by 'pushing' it through the receiver flux, so it's immediately
+ * divided among the receivers.
+ */
+$result = mysql_query("CALL move_money($flux_to_id)");
 
 /*
 EVERYTHING OK

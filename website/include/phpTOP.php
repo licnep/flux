@@ -7,10 +7,10 @@
 
 //queste cose servono per controllare il login
 session_start();
-require_once ('scripts/user_class.php');
+require_once (dirname(__FILE__).'/../scripts/user_class.php');
 
 //calling "user= new user" it checks the session and the cookie and sets _SESSION['logged']
 $user = new user();
-
+session_write_close();
 //passing the user variables to javascript, in case it's needed in the page:
 ?>

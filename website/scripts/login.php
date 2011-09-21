@@ -14,5 +14,6 @@
 	require_once('user_class.php');
 	$user = new user();
 	$user->_CheckLogin($username,$hash,true);
+        session_write_close();
 	header('location: ../account_home.php');
 ?>
