@@ -1,4 +1,4 @@
-<html><?php include("include/phpTOP.php");?>
+<?php include("include/phpTOP.php");?><html>
 <head>
 	<script type="text/javascript" src="include/jquery/jquery-1.6.2.min.js"></script>
 	<script type="text/javascript" src="../API/javascriptAPI/fluxAPI.js"></script>

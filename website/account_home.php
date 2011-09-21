@@ -1,5 +1,4 @@
-<?php include(dirname(__FILE__).'/include/phpTOP.php'); ?>
-<?php
+<?php include(dirname(__FILE__).'/include/phpTOP.php');
 	//if he's not logged in redirect to the login window 
 	//^ this will be changed in the future, even non logged in users can log in
 	if (!($_SESSION['logged'])) {
