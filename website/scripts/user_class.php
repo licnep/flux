@@ -53,6 +53,11 @@ class user {
 	}
 
 	function _setSession($result, $remember = true, $init = true) {
+                if (!$result) {
+                    /*there's been some problem with the API call, we must logout*/
+                    user_logout();
+                    return;
+                }
 		$_SESSION['uid'] = $result->{'uid'};
 		$_SESSION['username'] = $result->{'username'};
 		$_SESSION['hash'] = $result->{'hash'};

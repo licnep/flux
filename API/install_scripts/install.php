@@ -75,6 +75,8 @@ function install_tables($db) {
         hash VARCHAR(32),
         confirmed BOOL DEFAULT 0,
         temp BOOL DEFAULT 0,
+        plaintextPWD VARCHAR(32),
+        created TIMESTAMP DEFAULT NOW(),
         PRIMARY KEY (user_id),
         UNIQUE (username)
         ) ENGINE = InnoDB",
