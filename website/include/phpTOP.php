@@ -13,4 +13,7 @@ require_once (dirname(__FILE__).'/../scripts/user_class.php');
 $user = new user();
 session_write_close();
 //passing the user variables to javascript, in case it's needed in the page:
+echo "<script type=\"text/javascript\">\n";
+echo 'var _session = '.json_encode($_SESSION).";\n";
+echo "</script>\n";
 ?>

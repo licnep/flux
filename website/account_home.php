@@ -6,9 +6,6 @@
     	header("location: login.php");
 	}
 ?>
-<script type="text/javascript">
-<?php echo 'var _session = '.json_encode($_SESSION).";\n"; ?>
-</script>
 <html>
 <head>
 	<!--vvIMPORTANT! charset must be utf8 for box2d-->	
