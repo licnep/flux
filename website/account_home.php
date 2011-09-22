@@ -17,6 +17,7 @@
 <script type="text/javascript" src="include/jquery/jquery-ui.min.js"></script>
 <script type="text/javascript" src="../API/javascriptAPI/fluxAPI.js"></script>
 <script type="text/javascript" src="include/horizontal_flux/fluxContainer.js"></script>
+<script type="text/javascript" src="include/searchBox.js"></script>
 <script type="text/javascript">
 	$(document).ready( function() {
 		$('.draggable').draggable({
@@ -29,6 +30,11 @@
 </head>
 <body>
 <?php include('include/topBar.php');?>
+<div id="searchbox">
+    Search fluxes:<br/>
+    <input id="searchbar" type="text" class="search" name="search" value="insert keyword or email" size="30"/>
+    <div id="results"></div>
+</div>
 <h1>[This is your personal page. Welcome]</h1>
 
 <h2>My FLUXES:</h2>
@@ -48,7 +54,7 @@ function gotFluxList(json) {
 		titleSpan.attr("name",json[i]["name"]);
 		titleSpan.attr("description",json[i]["description"]);
                 /*create the "donate" button*/
-                        donateBtn = $("<span class=\"blueBox\"><a href=\"#\">DONATE</a></span>").appendTo("#myfluxes");
+                donateBtn = $("<span class=\"blueBox\"><a href=\"#\">DONATE</a></span>").appendTo("#myfluxes");
                 /*when the donate button is clicked we do an API call to get a transaction key*/
                 donateBtn.click(function() {
                     flux_api_call(function(json) {

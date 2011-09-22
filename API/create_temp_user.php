@@ -31,11 +31,20 @@ if (!isset($_GET['email'])) {
     echo $json;
 } else {
     /*we have an email, make an email-only temporary account*/
-    make_email_only_account($_GET['email']);
+    $result = make_email_only_account($_GET['email']);
+    print_formatted_result($result, $format, $callback);
 }
 
 function make_email_only_account($email) {
     $email = mysql_real_escape_string($email);
+    //a 'random' password
+    $password = uniqid();
+    //make the API call to create the user account:
+    require_once(dirname(__FILE__)."/phpAPI/phpAPI.php");
+    $apicall = "register_account.php?username=$email&password=$password&email=$email&temp=1";
+    $result = flux_api_call($apicall);
+    if (!$result) {die("error, call=".$apicall);}
+    return true;
 }
 
 ?>

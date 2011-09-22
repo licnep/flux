@@ -146,10 +146,11 @@ function update_LocalSettings($username,$password) {
     $data .= "?>";
     $result = file_put_contents("../LocalSettings.php",$data);
     if ($result) {
-        echo "localsettings.php succesfully saved";
+        echo "<div class=\"success\">localsettings.php succesfully saved</div>";
     } else {
-        echo "ERROR while saving localsettings.php!!";
+        echo "<div class=\"fail\">ERROR while saving localsettings.php!!</div>";
     }
+    echo "NOW remember to open /API/javascriptAPI/fluxAPI.js AND change the API base url (default is localhost)";
 }
 
 ?>
