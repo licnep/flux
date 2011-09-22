@@ -26,7 +26,7 @@
                                 if (_session['temp']) {
                                     apiurl = apiurl+"&oldId="+_session['uid']+"&oldHash="+_session['hash'];
                                 }
-				flux_api_call(registrationCallback,apiurl);
+				flux_api_call(apiurl,registrationCallback);
 				return false; //<- preventing form submit and page reload
 			});
 		})

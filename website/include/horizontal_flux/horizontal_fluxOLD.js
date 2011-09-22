@@ -11,7 +11,7 @@ function HorizontalFlux(container_id,flux_id,flux_name) {
 	//call the api to get the info about the flux
 	var obj = this;
 	//flux_api_call(function() {obj.gotFluxInfo();},"http://localhost/API/get_flux_info.php?flux_id="+flux_id,this);
-	flux_api_call(function(array) {obj.gotFluxInfo(array);},"http://localhost/API/get_flux_info.php?flux_id="+flux_id);
+	flux_api_call("http://localhost/API/get_flux_info.php?flux_id="+flux_id,function(array) {obj.gotFluxInfo(array);});
 }
 
 HorizontalFlux.prototype.gotFluxInfo = function(array) {
@@ -47,7 +47,7 @@ HorizontalFlux.prototype.step = function() {
 }
 
 HorizontalFlux.prototype.changeSubflux = function(subflux_id,new_share) {
-	flux_api_call(this.changedFluxCB,"http://localhost/API/change_flux.php?flux_from_id="+this.flux_id+"&flux_to_id="+subflux_id+"&new_share="+new_share,this);
+	flux_api_call("http://localhost/API/change_flux.php?flux_from_id="+this.flux_id+"&flux_to_id="+subflux_id+"&new_share="+new_share,this.changedFluxCB,this);
 }
 
 HorizontalFlux.prototype.changedFluxCB = function(jsonArray) {

@@ -1,5 +1,5 @@
 function search() {
-    flux_api_call(updateResults, "search_flux.php?string="+$("#searchbar").val());
+    flux_api_call("search_flux.php?string="+$("#searchbar").val(),updateResults);
 }
 
 function updateResults(json) {
