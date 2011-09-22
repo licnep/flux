@@ -41,10 +41,12 @@ function make_email_only_account($email) {
     $password = uniqid();
     //make the API call to create the user account:
     require_once(dirname(__FILE__)."/phpAPI/phpAPI.php");
-    $apicall = "register_account.php?username=$email&password=$password&email=$email&temp=1";
+    $apicall = "register_account.php?username=$email&password=$password&email=$email&temp=1&plaintext=1";
     $result = flux_api_call($apicall);
     if (!$result) {die("error, call=".$apicall);}
-    return true;
+    
+    
+    return $result;
 }
 
 ?>

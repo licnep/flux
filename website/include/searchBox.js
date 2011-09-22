@@ -12,6 +12,7 @@ function updateResults(json) {
         newFlux.attr("name",json[i]["name"]);
         newFlux.attr("description",json[i]["description"]);
     }
+    if (json.length==0) {$("<div>no fluxes found.</div>").appendTo("#results");}
     /*after the results, we put the email thingy*/
     if ($("#searchbar").val()!="") {
         $('<div class="separator">Donate to email:</div>').appendTo($("#results"));

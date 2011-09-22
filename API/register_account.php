@@ -6,6 +6,7 @@
  * - password
  * - email
  * - [temp] #only used internally, set to 1 to register a temporary user
+ * - [plaintext] #if set to one we save also the plaintext password, this is used only for email-only accounts that must still be confirmed
  * - [oldId] 
  * - [oldHash]
  * 
@@ -21,12 +22,13 @@ $password = $_GET['password'];
 
 isset($_GET['email'])? $email=$_GET['email']:$email="";
 isset($_GET['temp'])? $temp=1:$temp=0;
+isset($_GET['plaintext'])? $plaintext=1:$plaintext=0;
 if (isset($_GET['oldId'])&&isset($_GET['oldHash'])) {
     //we're just upgrading a temporary account:
     $result = upgrade_temp_account($username,$password,$email,$_GET['oldId'],$_GET['oldHash']);
 } else {
     //it's a new account from scratch:
-    $result = create_account($username,$password,$email,$temp);
+    $result = create_account($username,$password,$email,$temp,$plaintext);
 }
 
 print_formatted_result($result,$format,$callback);
@@ -36,7 +38,7 @@ print_formatted_result($result,$format,$callback);
  *  in order to activate the account.
  *  
  */
-function create_account($username,$password,$email,$temp=0) {
+function create_account($username,$password,$email,$temp=0,$plaintext=0) {
 
 	$db = db_connect();
 
@@ -46,7 +48,8 @@ function create_account($username,$password,$email,$temp=0) {
         $email = mysql_real_escape_string($email);
 
 	$query = "INSERT INTO users SET ".
-			" username='$username', hash = '$hash', temp='$temp', email='$email'";
+			" username='$username', hash = '$hash', temp='$temp', email='$email' ".
+                ($plaintext?",plaintextPWD='".mysql_real_escape_string($password)."'":"");
 
 	$result = mysql_query($query,$db);
     if(!$result) {

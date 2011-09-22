@@ -29,15 +29,28 @@ FluxContainer.prototype.changeSubflux = function(subflux_id,new_share) {
 }
 
 FluxContainer.prototype.droppedFlux = function(droppedObj) {
+    	var thisObj = this;
         /*
          * if it's an emailFlux, it means it's just an email, not a flux yet, so when it's dropped
          * we have to automatically create the associated flux
          */
         if(droppedObj.attr("emailFlux")=="1") {
+            flux_api_call("create_temp_user.php?email="+droppedObj.html(),
+                function() {
+                    flux_api_call("search_flux.php?string="+droppedObj.html(),
+                        function(data) {
+                            droppedObj.attr("flux_id",data[0]["flux_id"]);
+                            droppedObj.attr("name",data[0]["name"]);
+                            droppedObj.attr("description",data[0]["description"]);
+                            droppedObj.attr("emailFlux","0");
+                            thisObj.droppedFlux(droppedObj);
+                        }
+                    );
+                }
+            );
             return;
         }
 	subflux_id = droppedObj.attr('flux_id');
-	var thisObj = this;
 	flux_api_call("change_flux.php?flux_from_id="+this.flux_id+"&flux_to_id="+subflux_id+"&new_share=10",
             function() {
             newRec = new Receiver(subflux_id,droppedObj.attr("name"),droppedObj.attr("description"),10,thisObj);

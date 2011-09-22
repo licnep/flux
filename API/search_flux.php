@@ -13,7 +13,7 @@ print_formatted_result($result, $format,$callback);
 function search_flux($string) {
     $db = db_connect();
     $string = mysql_real_escape_string($string);
-    $query = "SELECT * FROM fluxes WHERE name LIKE '$string%'";
+    $query = "SELECT * FROM fluxes WHERE name LIKE '$string%' LIMIT 10";
     $result = mysql_query($query);
     if (!$result) {die("XP query:".$query." error:".mysql_error());}
     $rows = array();
