@@ -57,11 +57,7 @@ array_push($queries,
                THEN LEAVE loopa; #to exit the loop
             END IF;
         END LOOP;
-    END # }",
-        /*for tests:*/
-        "insert into fluxes set flux_id=1,money=100,owner=0",
-        "insert into fluxes set flux_id=5,money=5,owner=0",
-        "insert into routing set flux_from_id=1,flux_to_id=5,share=7"
+    END # }"
         
 );
 ?>

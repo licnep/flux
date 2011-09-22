@@ -7,6 +7,9 @@
 	require_once(dirname(__FILE__)."/print_formatted_result.php");
 	/*the execute_query is also required by all calls that need to interact with the DB*/
 	require_once(dirname(__FILE__)."/execute_query.php");
+        /*sometimes we want to make api calls from the api itself, so let's include this too.*/
+        /*this can also be used for calls to APIs on other domains, trough 'get_webpage($url)'*/
+        require_once(dirname(__FILE__)."/phpAPI/phpAPI.php");
 
 	
 	//set the output format

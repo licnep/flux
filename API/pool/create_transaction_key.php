@@ -15,7 +15,7 @@ require_once(dirname(__FILE__) . '/../execute_query.php');
 $db = db_connect("flux_changer");
 $query = "INSERT INTO transactions SET transaction_id='".$transaction_id."', user_id='".
         mysql_real_escape_string($_USER['uid'])."', pool_id='".mysql_real_escape_string($pool_id)."', flux_to_id='".
-        mysql_real_escape_string($flux_to_id)."'"; 
+        mysql_real_escape_string($flux_to_id)."', type=0"; 
 $result = mysql_query($query,$db);
 if(!$result) {
     //query failed

@@ -102,19 +102,19 @@ function install_tables($db) {
         ) ENGINE = InnoDB;",
 
         /*i put a timestamp so we could eliminate unused transaction keys after a while*/
+        /*STATUS is 0 when the key is generated, 1 when the transaction is completed*/
+        /*TYPE is the type of transaction. 0 for donation, 1 for withdrawal*/
         "CREATE TABLE transactions(
         transaction_id VARCHAR(36),
         user_id INT UNSIGNED NOT NULL,
         pool_id INT UNSIGNED NOT NULL,
         flux_to_id INT UNSIGNED NOT NULL,
         amount DECIMAL(7,2),
+        type INT NOT NULL,
         status INT DEFAULT 0,
         timestamp TIMESTAMP DEFAULT NOW(),
         PRIMARY KEY (transaction_id)
         ) ENGINE = InnoDB;",
-
-        /*this was just for testing, can be eliminated now*/
-        "INSERT INTO transactions SET transaction_id=1, pool_id=1",
 
         "CREATE TABLE pools(
         pool_id INT UNSIGNED NOT NULL,

@@ -76,7 +76,11 @@ function gotUserFluxID(json) {
         .attr("flux_id",json["flux_id"])
         .attr("name", _session["username"])
         .html(_session["username"]);
-    $("#myMoney").html(json["money"]);
+}
+
+/*this is called once the API responds with the amount of money in the user account*/
+function gotUserBalance(json) {
+    $("#myMoney").html(json);
 }
 
 /*Once the document is ready we actually populate the page with some data:*/
@@ -85,11 +89,13 @@ $(document).ready(function() {
     flux_api_call("get_fluxes_owned_by.php?user_id="+_session["uid"],gotFluxList);
     /*we retrieve the id of the user's personal flux to show it at the bottom of the page*/
     flux_api_call("get_user_flux_ID.php?user_id="+_session["uid"],gotUserFluxID);
+    /*we also make the api call (which calls the pool), to see how much money the user has*/
+    flux_api_call("get_user_balance.php?pool_id=1&user_id="+_session['uid'],gotUserBalance);
 });
 </script>
 
 <h2>My Account:</h2>
-<span id="myFlux" class="blueBox draggable" flux_id="FLUXID" name="USERNAME" description="---">USERNAME</span><span class="blueBox"><span id="myMoney">MONEY</span> $ <a href="hahaYoullneverGetThemMoney.exe">Withdraw</a></span>
+<span id="myFlux" class="blueBox draggable" flux_id="FLUXID" name="USERNAME" description="---">USERNAME</span><span class="blueBox"><span id="myMoney">MONEY</span> <a href="hahaYoullneverGetThemMoney.exe">Withdraw</a></span>
 <br/>
 </body>
 </html>
