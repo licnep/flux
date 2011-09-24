@@ -1,9 +1,9 @@
 <?php include(dirname(__FILE__).'/include/phpTOP.php');
+        /* OLD, now even unregistered users are logged in as guests
 	//if he's not logged in redirect to the login window 
-	//^ this will be changed in the future, even non logged in users can log in
 	if (!($_SESSION['logged'])) {
     	header("location: login.php");
-	}
+	}*/
 ?>
 <html>
 <head>
@@ -91,11 +91,21 @@ $(document).ready(function() {
     flux_api_call("get_user_flux_ID.php?user_id="+_session["uid"],gotUserFluxID);
     /*we also make the api call (which calls the pool), to see how much money the user has*/
     flux_api_call("get_user_balance.php?pool_id=1&user_id="+_session['uid'],gotUserBalance);
+    /*Initialize the withdraw button:*/
+    $('#withdrawBtn').click(function() {
+        flux_api_call(
+            "pool/start_withdrawal_get_key.php?key="+_session['hash'],
+            function(json) {
+                transaction_key = json;
+                window.location = "../pools/lovePool/withdraw.php?transaction_key="+transaction_key;
+            }
+        );
+    });
 });
 </script>
 
 <h2>My Account:</h2>
-<span id="myFlux" class="blueBox draggable" flux_id="FLUXID" name="USERNAME" description="---">USERNAME</span><span class="blueBox"><span id="myMoney">MONEY</span> <a href="hahaYoullneverGetThemMoney.exe">Withdraw</a></span>
+<span id="myFlux" class="blueBox draggable" flux_id="FLUXID" name="USERNAME" description="---">USERNAME</span><span class="blueBox"><span id="myMoney">MONEY</span> <a id="withdrawBtn" href="#">Withdraw</a></span>
 <br/>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <h1>Send ACKS</h1>
-Normally, the pool server will continuosly check which transactions haven't yet been ACKd by the flux backend and keep sending their data, but for now (we're just testing) we do it by hand.<br/>
+Normally, the pool server will continuously check which transactions haven't yet been ACKd by the flux backend and keep sending their data, but for now (we're just testing) we do it by hand.<br/>
 Every time you load this page, all the ack requests for unACKd transactions are sent.<br/>
 <h2>UnACKED transactions:</h2>
 <small>(if you reload the page it will send ack requests for these transactions)</small>
@@ -68,7 +68,9 @@ I2SvDkQ5CmrzkW5qPaE2oO7BSqAhRZxiYpZFb5CI
 		}
 		if ($result==1) echo "SUCCESS!!";
 		else echo $response;
-	}
+	} else {
+            echo $response;
+        }
 }
 
 ?>

@@ -26,8 +26,6 @@ if (!isset($_GET['user'])) {
     Please insert the database credential to install the database:
         <p>Username: <input type="text" name="user" value="" /></p>
         <p>Password: <input type="text" name="password" value="" /></p>
-	And the base url of the flux api (usually "http://localhost/something/flux/API")
-		<p>API base url: <input type="text" name="APIurl" size="50" value="http://flux.lolwut.net/flux/API" /></p>
         <input type="submit" name="submit" value="Create"/>
     </form>
     <?php
@@ -85,7 +83,7 @@ function update_LocalSettings($username,$password) {
     $data = "<?php\n";
     $data .= '$C_username = "poolUser";'."\n";
     $data .= '$C_password = "password";'."\n";
-    $data .= '$C_API_base_url = "'.$_GET['APIurl'].'";'."\n";
+    $data .= '$C_API_base_url = "http://'.$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME']."/../../../../API/\";\n";
     $data .= "?>";
     $result = file_put_contents("../LocalSettings.php",$data);
     if ($result) {

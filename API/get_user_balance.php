@@ -14,7 +14,7 @@ $db = db_connect();
 /*
  * 1) We find the total amount of money in the db.
  */
-$result = mysql_query("SELECT SUM(money) AS total FROM fluxes");
+$result = mysql_query("SELECT total FROM pools WHERE pool_id=1");
 if (!$result) die("Error:".  mysql_error());
 $row = mysql_fetch_array($result);
 $total = $row['total'];

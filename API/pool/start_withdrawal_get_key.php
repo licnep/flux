@@ -5,6 +5,9 @@ include(dirname(__FILE__).'/../API_common.php');
  * This freezes the money in the user account and generates a withdrawal transaction key.
  * This key has to be passed to the pool to withdraw.
  * The money will stay freezed forever, unless the pool says the transaction failed.
+ * 
+ * Input:
+ * -key (the user's API key)
  */
 
 //check the api key, if it's wrong log out
@@ -51,5 +54,6 @@ if ($r2 and $r3) {$result = mysql_query("COMMIT");} else {$result = mysql_query(
 mysql_query("UNLOCK TABLES");
 
 //all is good.
+print_formatted_result($transaction_id, $format, $callback);
 
 ?>

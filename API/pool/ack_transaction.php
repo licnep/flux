@@ -17,13 +17,15 @@ Requirements:
 
 /*
 CHECK n.1
-We look for the transaction in the database, and also retrieve the public key associated with this particular pool
+We look for the transaction in the database, and also retrieve the public key associated with this particular pool.
+ * We do this to verify that the transaction key is correct (exists, and is associated with the pool), and to later check
+ * the pool's signature.
 */
 $transaction_id = $_GET['transaction_id'];
 $db = db_connect();
 $query = "SELECT status, flux_to_id, public_key , ack_url
 		  FROM transactions AS t, pools AS p
-		  WHERE t.transaction_id='".mysql_real_escape_string($transaction_id)."' AND t.pool_id=p.pool_id";
+		  WHERE t.transaction_id='".mysql_real_escape_string($transaction_id)."' AND t.pool_id=p.pool_id AND p.pool_id=1";
 $result = mysql_query($query,$db);
 if (!$result) {die("fatal error");}
 if (mysql_num_rows($result)!=1) {die("No such transaction, QUERY:".$query." ERROR:".mysql_error());}
@@ -69,9 +71,10 @@ $r1 = mysql_query("UPDATE transactions SET status=1,amount='$amount' WHERE trans
 if (!$r1) {echo mysql_error();}
 $r2 = mysql_query("UPDATE fluxes SET money=money+'$amount' WHERE flux_id='$flux_to_id'");
 if (!$r2) {echo mysql_error();}
+$r3 = mysql_query ("UPDATE pools SET total=total+$amount WHERE pool_id=1");
+if (!$r3) {echo mysql_error();}
 
-$result = false;
-if ($r1 and $r2) {$result = mysql_query("COMMIT");} else {$result = mysql_query("ROLLBACK");}
+if (($r1 and $r2) and $r3) {$result = mysql_query("COMMIT");} else {$result = mysql_query("ROLLBACK");}
 
 if (!$result) {die ('ERROR during transaction, Error:'.mysql_error());} 
 

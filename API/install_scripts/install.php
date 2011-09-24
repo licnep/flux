@@ -26,8 +26,6 @@ if (!isset($_GET['user'])) {
     Please insert the database credential to install the database:
         <p>Username: <input type="text" name="user" value="" /></p>
         <p>Password: <input type="text" name="password" value="" /></p>
-	And the base url of the flux api (usually "http://localhost/something/flux/API/")
-		<p>API base url: <input type="text" name="APIurl" size="50" value="http://flux.lolwut.net/flux/API/" /></p>
         <input type="submit" name="submit" value="Create"/>
     </form>
     <?php
@@ -102,7 +100,7 @@ function install_tables($db) {
         ) ENGINE = InnoDB;",
 
         /*i put a timestamp so we could eliminate unused transaction keys after a while*/
-        /*STATUS is 0 when the key is generated, 1 when the transaction is completed*/
+        /*STATUS is 0 when the key is generated, 1 when the transaction is completed, 2 when it has failed (but the key can't be used again)*/
         /*TYPE is the type of transaction. 0 for donation, 1 for withdrawal*/
         "CREATE TABLE transactions(
         transaction_id VARCHAR(36),
@@ -120,6 +118,7 @@ function install_tables($db) {
         pool_id INT UNSIGNED NOT NULL,
         public_key BLOB NOT NULL,
         ack_url BLOB NOT NULL,
+        total DECIMAL(7,2) NOT NULL DEFAULT 0,
         PRIMARY KEY (pool_id)
         ) ENGINE = InnoDB;",
 
@@ -142,7 +141,7 @@ function update_LocalSettings($username,$password) {
     $data = "<?php\n";
     $data .= '$C_username = "fluxAPIuser";'."\n";
     $data .= '$C_password = "password";'."\n";
-    $data .= '$C_API_base_url = "'.$_GET['APIurl'].'";'."\n";
+    $data .= '$C_API_base_url = "http://'.$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME']."/../../\";\n";
     $data .= "?>";
     $result = file_put_contents("../LocalSettings.php",$data);
     if ($result) {
