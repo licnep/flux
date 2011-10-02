@@ -45,7 +45,9 @@ function make_email_only_account($email) {
     $result = flux_api_call($apicall);
     if (!$result) {die("error, call=".$apicall);}
     
-    
+    //TODO the email should only be sent once the guy gets some money in his account
+    require_once(dirname(__FILE__).'/email_templates.php');
+    send_email_someone_is_trying_to_donate_to_your_email($email,$password);
     return $result;
 }
 
