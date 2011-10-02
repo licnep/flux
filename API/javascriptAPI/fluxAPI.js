@@ -6,7 +6,7 @@ var temp_scripts = new Array();
 
 function flux_api_call(api_url, callback_function, optional_object) {
 	scriptID = "scriptID"+global_id++;
-	BASEAPIURL="http://localhost/API/";
+	BASEAPIURL="http://flux.lolwut.net/flux/API/";
 	address =  BASEAPIURL+api_url+"&callback=flux_api_callback(\""+scriptID+"\",%s);";
 	console.log(address);
 	temp_scripts[scriptID] = new Array();

@@ -1,0 +1,995 @@
+20:54:54 10/01/11 caller [info] #####SOAP#####
+20:54:54 10/01/11 caller [info] request: 
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+ <soap:Body><PayRequest>
+    <requestEnvelope>
+        <errorLanguage>en_US</errorLanguage>
+    </requestEnvelope>
+    <clientDetails>
+        <ipAddress>127.0.0.1</ipAddress>
+        <deviceId>127001</deviceId>
+        <applicationId>APP-80W284485P519543T</applicationId>
+    </clientDetails>
+    <actionType>PAY</actionType>
+    <cancelUrl>http://178.254.1.64/flux/website/account_home.php</cancelUrl>
+    <currencyCode>EUR</currencyCode>
+    <receiverList>
+        <receiver>
+            <amount>0.00</amount>
+            <email>lsnpre_1235310181_per@yahoo.com</email>
+            <paymentType>PERSONAL</paymentType>
+        </receiver>
+    </receiverList>
+    <senderEmail>seller_1309852781_biz@yahoo.com</senderEmail>
+    <returnUrl>http://178.254.1.64/flux/website/account_home.php</returnUrl>
+    <fundingConstraint>BALANCE</fundingConstraint>
+</PayRequest></soap:Body>
+</soap:Envelope>
+
+20:54:56 10/01/11 caller [info] response: <?xml version='1.0' encoding='utf-8'?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body><soapenv:Fault xmlns:axis2ns140825="http://schemas.xmlsoap.org/soap/envelope/"><faultcode>axis2ns140825:Server</faultcode><faultstring>Invalid request parameter: amount must be greater than zero</faultstring><detail><ns3:FaultMessage xmlns:ns3="http://svcs.paypal.com/types/common" xmlns:ns2="http://svcs.paypal.com/types/ap"><responseEnvelope><timestamp>2011-10-01T11:54:56.101-07:00</timestamp><ack>Failure</ack><correlationId>39ab7a4d5e9b2</correlationId><build>2142261</build></responseEnvelope><error><errorId>580022</errorId><domain>PLATFORM</domain><subdomain>Application</subdomain><severity>Error</severity><category>Application</category><message>Invalid request parameter: amount must be greater than zero</message><parameter>amount</parameter><parameter>0.00</parameter></error><error><errorId>580022</errorId><domain>PLATFORM</domain><subdomain>Application</subdomain><severity>Error</severity><category>Application</category><message>Invalid request parameter: allowedFundingType cannot be null</message><parameter>allowedFundingType</parameter><parameter>null</parameter></error></ns3:FaultMessage></detail></soapenv:Fault></soapenv:Body></soapenv:Envelope>
+20:57:59 10/01/11 caller [info] #####SOAP#####
+20:57:59 10/01/11 caller [info] request: 
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+ <soap:Body><PayRequest>
+    <requestEnvelope>
+        <errorLanguage>en_US</errorLanguage>
+    </requestEnvelope>
+    <clientDetails>
+        <ipAddress>127.0.0.1</ipAddress>
+        <deviceId>127001</deviceId>
+        <applicationId>APP-80W284485P519543T</applicationId>
+    </clientDetails>
+    <actionType>PAY</actionType>
+    <cancelUrl>http://178.254.1.64/flux/website/account_home.php</cancelUrl>
+    <currencyCode>EUR</currencyCode>
+    <receiverList>
+        <receiver>
+            <amount>10.00</amount>
+            <email>lsnpre_1235310181_per@yahoo.com</email>
+            <paymentType>PERSONAL</paymentType>
+        </receiver>
+    </receiverList>
+    <senderEmail>seller_1309852781_biz@yahoo.com</senderEmail>
+    <returnUrl>http://178.254.1.64/flux/website/account_home.php</returnUrl>
+    <fundingConstraint>BALANCE</fundingConstraint>
+</PayRequest></soap:Body>
+</soap:Envelope>
+
+20:58:01 10/01/11 caller [info] response: <?xml version='1.0' encoding='utf-8'?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body><soapenv:Fault xmlns:axis2ns55929="http://schemas.xmlsoap.org/soap/envelope/"><faultcode>axis2ns55929:Server</faultcode><faultstring>Invalid request parameter: allowedFundingType cannot be null</faultstring><detail><ns3:FaultMessage xmlns:ns3="http://svcs.paypal.com/types/common" xmlns:ns2="http://svcs.paypal.com/types/ap"><responseEnvelope><timestamp>2011-10-01T11:58:01.522-07:00</timestamp><ack>Failure</ack><correlationId>552ea8468e3f1</correlationId><build>2142261</build></responseEnvelope><error><errorId>580022</errorId><domain>PLATFORM</domain><subdomain>Application</subdomain><severity>Error</severity><category>Application</category><message>Invalid request parameter: allowedFundingType cannot be null</message><parameter>allowedFundingType</parameter><parameter>null</parameter></error></ns3:FaultMessage></detail></soapenv:Fault></soapenv:Body></soapenv:Envelope>
+20:58:55 10/01/11 caller [info] #####SOAP#####
+20:58:55 10/01/11 caller [info] request: 
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+ <soap:Body><PayRequest>
+    <requestEnvelope>
+        <errorLanguage>en_US</errorLanguage>
+    </requestEnvelope>
+    <clientDetails>
+        <ipAddress>127.0.0.1</ipAddress>
+        <deviceId>127001</deviceId>
+        <applicationId>APP-80W284485P519543T</applicationId>
+    </clientDetails>
+    <actionType>PAY</actionType>
+    <cancelUrl>http://178.254.1.64/flux/website/account_home.php</cancelUrl>
+    <currencyCode>EUR</currencyCode>
+    <receiverList>
+        <receiver>
+            <amount>10.00</amount>
+            <email>lsnpre_1235310181_per@yahoo.com</email>
+            <paymentType>PERSONAL</paymentType>
+        </receiver>
+    </receiverList>
+    <senderEmail>seller_1309852781_biz@yahoo.com</senderEmail>
+    <returnUrl>http://178.254.1.64/flux/website/account_home.php</returnUrl>
+    <fundingConstraint>BALANCE</fundingConstraint>
+    <allowedFundingType>BALANCE</allowedFundingType>
+</PayRequest></soap:Body>
+</soap:Envelope>
+
+20:58:57 10/01/11 caller [info] response: <?xml version='1.0' encoding='utf-8'?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body><soapenv:Fault xmlns:axis2ns141004="http://schemas.xmlsoap.org/soap/envelope/"><faultcode>axis2ns141004:Server</faultcode><faultstring>Invalid request parameter: allowedFundingType cannot be null</faultstring><detail><ns3:FaultMessage xmlns:ns3="http://svcs.paypal.com/types/common" xmlns:ns2="http://svcs.paypal.com/types/ap"><responseEnvelope><timestamp>2011-10-01T11:58:57.000-07:00</timestamp><ack>Failure</ack><correlationId>8ee81052959a1</correlationId><build>2142261</build></responseEnvelope><error><errorId>580022</errorId><domain>PLATFORM</domain><subdomain>Application</subdomain><severity>Error</severity><category>Application</category><message>Invalid request parameter: allowedFundingType cannot be null</message><parameter>allowedFundingType</parameter><parameter>null</parameter></error></ns3:FaultMessage></detail></soapenv:Fault></soapenv:Body></soapenv:Envelope>
+21:02:23 10/01/11 caller [info] #####SOAP#####
+21:02:23 10/01/11 caller [info] request: 
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+ <soap:Body><PayRequest>
+    <requestEnvelope>
+        <errorLanguage>en_US</errorLanguage>
+    </requestEnvelope>
+    <clientDetails>
+        <ipAddress>127.0.0.1</ipAddress>
+        <deviceId>127001</deviceId>
+        <applicationId>APP-80W284485P519543T</applicationId>
+    </clientDetails>
+    <actionType>PAY</actionType>
+    <cancelUrl>http://178.254.1.64/flux/website/account_home.php</cancelUrl>
+    <currencyCode>EUR</currencyCode>
+    <receiverList>
+        <receiver>
+            <amount>10.00</amount>
+            <email>lsnpre_1235310181_per@yahoo.com</email>
+            <paymentType>PERSONAL</paymentType>
+        </receiver>
+    </receiverList>
+    <senderEmail>seller_1309852781_biz@yahoo.com</senderEmail>
+    <returnUrl>http://178.254.1.64/flux/website/account_home.php</returnUrl>
+</PayRequest></soap:Body>
+</soap:Envelope>
+
+21:02:28 10/01/11 caller [info] response: <?xml version='1.0' encoding='utf-8'?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body><ns2:PayResponse xmlns:ns2="http://svcs.paypal.com/types/ap"><responseEnvelope><timestamp>2011-10-01T12:02:28.666-07:00</timestamp><ack>Success</ack><correlationId>b2dddab6e8768</correlationId><build>2142261</build></responseEnvelope><payKey>AP-6VK44858SW6086918</payKey><paymentExecStatus>COMPLETED</paymentExecStatus></ns2:PayResponse></soapenv:Body></soapenv:Envelope>
+21:25:38 10/01/11 caller [info] #####SOAP#####
+21:25:38 10/01/11 caller [info] request: 
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+ <soap:Body><PayRequest>
+    <requestEnvelope>
+        <errorLanguage>en_US</errorLanguage>
+    </requestEnvelope>
+    <clientDetails>
+        <ipAddress>127.0.0.1</ipAddress>
+        <deviceId>127001</deviceId>
+        <applicationId>APP-80W284485P519543T</applicationId>
+    </clientDetails>
+    <actionType>PAY</actionType>
+    <cancelUrl>http://flux.lolwut.net/flux/website/account_home.php</cancelUrl>
+    <currencyCode>EUR</currencyCode>
+    <ipnNotificationUrl>http://flux.lolwut.net/flux/pools/paypalPool/paypal/IPN.php</ipnNotificationUrl>
+    <receiverList>
+        <receiver>
+            <amount>10.00</amount>
+            <email>lsnpre_1235310181_per@yahoo.com</email>
+            <paymentType>PERSONAL</paymentType>
+        </receiver>
+    </receiverList>
+    <senderEmail>seller_1309852781_biz@yahoo.com</senderEmail>
+    <returnUrl>http://flux.lolwut.net/flux/website/account_home.php</returnUrl>
+</PayRequest></soap:Body>
+</soap:Envelope>
+
+21:25:44 10/01/11 caller [info] response: <?xml version='1.0' encoding='utf-8'?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body><ns2:PayResponse xmlns:ns2="http://svcs.paypal.com/types/ap"><responseEnvelope><timestamp>2011-10-01T12:25:44.427-07:00</timestamp><ack>Success</ack><correlationId>38b257f13b385</correlationId><build>2142261</build></responseEnvelope><payKey>AP-58N77471CT3975717</payKey><paymentExecStatus>COMPLETED</paymentExecStatus></ns2:PayResponse></soapenv:Body></soapenv:Envelope>
+21:41:55 10/01/11 caller [info] #####SOAP#####
+21:41:55 10/01/11 caller [info] request: 
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+ <soap:Body><PayRequest>
+    <requestEnvelope>
+        <errorLanguage>en_US</errorLanguage>
+    </requestEnvelope>
+    <clientDetails>
+        <ipAddress>127.0.0.1</ipAddress>
+        <deviceId>127001</deviceId>
+        <applicationId>APP-80W284485P519543T</applicationId>
+    </clientDetails>
+    <actionType>PAY</actionType>
+    <cancelUrl>http://flux.lolwut.net/flux/website/account_home.php</cancelUrl>
+    <currencyCode>EUR</currencyCode>
+    <ipnNotificationUrl>http://flux.lolwut.net/flux/pools/paypalPool/paypal/IPN.php</ipnNotificationUrl>
+    <receiverList>
+        <receiver>
+            <amount>10.00</amount>
+            <email>lsnpre_1235310181_per@yahoo.com</email>
+            <paymentType>PERSONAL</paymentType>
+        </receiver>
+    </receiverList>
+    <senderEmail>seller_1309852781_biz@yahoo.com</senderEmail>
+    <returnUrl>http://flux.lolwut.net/flux/website/account_home.php</returnUrl>
+</PayRequest></soap:Body>
+</soap:Envelope>
+
+21:42:01 10/01/11 caller [info] response: <?xml version='1.0' encoding='utf-8'?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body><ns2:PayResponse xmlns:ns2="http://svcs.paypal.com/types/ap"><responseEnvelope><timestamp>2011-10-01T12:42:01.318-07:00</timestamp><ack>Success</ack><correlationId>6c1778c00956b</correlationId><build>2142261</build></responseEnvelope><payKey>AP-36H48376X51062834</payKey><paymentExecStatus>COMPLETED</paymentExecStatus></ns2:PayResponse></soapenv:Body></soapenv:Envelope>
+02:39:21 10/02/11 caller [info] #####SOAP#####
+02:39:21 10/02/11 caller [info] request: 
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+ <soap:Body><PayRequest>
+    <requestEnvelope>
+        <errorLanguage>en_US</errorLanguage>
+    </requestEnvelope>
+    <clientDetails>
+        <ipAddress>127.0.0.1</ipAddress>
+        <deviceId>127001</deviceId>
+        <applicationId>APP-80W284485P519543T</applicationId>
+    </clientDetails>
+    <actionType>PAY</actionType>
+    <cancelUrl>http://flux.lolwut.net/flux/website/account_home.php</cancelUrl>
+    <currencyCode>EUR</currencyCode>
+    <ipnNotificationUrl>http://flux.lolwut.net/flux/pools/paypalPool/paypal/IPN.php</ipnNotificationUrl>
+    <receiverList>
+        <receiver>
+            <amount>10.00</amount>
+            <email>lsnpre_1235310181_per@yahoo.com</email>
+            <paymentType>PERSONAL</paymentType>
+        </receiver>
+    </receiverList>
+    <senderEmail>seller_1309852781_biz@yahoo.com</senderEmail>
+    <returnUrl>http://flux.lolwut.net/flux/website/account_home.php</returnUrl>
+</PayRequest></soap:Body>
+</soap:Envelope>
+
+02:39:26 10/02/11 caller [info] response: <?xml version='1.0' encoding='utf-8'?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body><ns2:PayResponse xmlns:ns2="http://svcs.paypal.com/types/ap"><responseEnvelope><timestamp>2011-10-01T17:39:26.917-07:00</timestamp><ack>Success</ack><correlationId>89c6a7f0114d1</correlationId><build>2142261</build></responseEnvelope><payKey>AP-8HX86049BX8974430</payKey><paymentExecStatus>COMPLETED</paymentExecStatus></ns2:PayResponse></soapenv:Body></soapenv:Envelope>
+02:45:10 10/02/11 caller [info] #####SOAP#####
+02:45:10 10/02/11 caller [info] request: 
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+ <soap:Body><PayRequest>
+    <requestEnvelope>
+        <errorLanguage>en_US</errorLanguage>
+    </requestEnvelope>
+    <clientDetails>
+        <ipAddress>127.0.0.1</ipAddress>
+        <deviceId>127001</deviceId>
+        <applicationId>APP-80W284485P519543T</applicationId>
+    </clientDetails>
+    <actionType>PAY</actionType>
+    <cancelUrl>http://flux.lolwut.net/flux/website/account_home.php</cancelUrl>
+    <currencyCode>EUR</currencyCode>
+    <ipnNotificationUrl>http://flux.lolwut.net/flux/pools/paypalPool/paypal/IPN.php</ipnNotificationUrl>
+    <receiverList>
+        <receiver>
+            <amount>10.00</amount>
+            <email>lsnpre_1235310181_per@yahoo.com</email>
+            <paymentType>PERSONAL</paymentType>
+        </receiver>
+    </receiverList>
+    <senderEmail>seller_1309852781_biz@yahoo.com</senderEmail>
+    <returnUrl>http://flux.lolwut.net/flux/website/account_home.php</returnUrl>
+</PayRequest></soap:Body>
+</soap:Envelope>
+
+02:45:16 10/02/11 caller [info] response: <?xml version='1.0' encoding='utf-8'?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body><ns2:PayResponse xmlns:ns2="http://svcs.paypal.com/types/ap"><responseEnvelope><timestamp>2011-10-01T17:45:16.447-07:00</timestamp><ack>Success</ack><correlationId>bdea118c62f89</correlationId><build>2142261</build></responseEnvelope><payKey>AP-33A32264C39621302</payKey><paymentExecStatus>COMPLETED</paymentExecStatus></ns2:PayResponse></soapenv:Body></soapenv:Envelope>
+02:48:58 10/02/11 caller [info] #####SOAP#####
+02:48:58 10/02/11 caller [info] request: 
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+ <soap:Body><PayRequest>
+    <requestEnvelope>
+        <errorLanguage>en_US</errorLanguage>
+    </requestEnvelope>
+    <clientDetails>
+        <ipAddress>127.0.0.1</ipAddress>
+        <deviceId>127001</deviceId>
+        <applicationId>APP-80W284485P519543T</applicationId>
+    </clientDetails>
+    <actionType>PAY</actionType>
+    <cancelUrl>http://flux.lolwut.net/flux/website/account_home.php</cancelUrl>
+    <currencyCode>EUR</currencyCode>
+    <ipnNotificationUrl>http://flux.lolwut.net/flux/pools/paypalPool/paypal/IPN.php</ipnNotificationUrl>
+    <receiverList>
+        <receiver>
+            <amount>10.00</amount>
+            <email>lsnpre_1235310181_per@yahoo.com</email>
+            <paymentType>PERSONAL</paymentType>
+        </receiver>
+    </receiverList>
+    <senderEmail>seller_1309852781_biz@yahoo.com</senderEmail>
+    <returnUrl>http://flux.lolwut.net/flux/website/account_home.php</returnUrl>
+</PayRequest></soap:Body>
+</soap:Envelope>
+
+02:49:03 10/02/11 caller [info] response: <?xml version='1.0' encoding='utf-8'?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body><ns2:PayResponse xmlns:ns2="http://svcs.paypal.com/types/ap"><responseEnvelope><timestamp>2011-10-01T17:49:03.890-07:00</timestamp><ack>Success</ack><correlationId>078e75dcba7ac</correlationId><build>2142261</build></responseEnvelope><payKey>AP-8UP99149KA945642Y</payKey><paymentExecStatus>COMPLETED</paymentExecStatus></ns2:PayResponse></soapenv:Body></soapenv:Envelope>
+02:54:54 10/02/11 caller [info] #####SOAP#####
+02:54:54 10/02/11 caller [info] request: 
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+ <soap:Body><PayRequest>
+    <requestEnvelope>
+        <errorLanguage>en_US</errorLanguage>
+    </requestEnvelope>
+    <clientDetails>
+        <ipAddress>127.0.0.1</ipAddress>
+        <deviceId>127001</deviceId>
+        <applicationId>APP-80W284485P519543T</applicationId>
+    </clientDetails>
+    <actionType>PAY</actionType>
+    <cancelUrl>http://flux.lolwut.net/flux/website/account_home.php</cancelUrl>
+    <currencyCode>EUR</currencyCode>
+    <ipnNotificationUrl>http://flux.lolwut.net/flux/pools/paypalPool/paypal/IPN.php</ipnNotificationUrl>
+    <receiverList>
+        <receiver>
+            <amount>10.00</amount>
+            <email>lsnpre_1235310181_per@yahoo.com</email>
+            <paymentType>PERSONAL</paymentType>
+        </receiver>
+    </receiverList>
+    <senderEmail>seller_1309852781_biz@yahoo.com</senderEmail>
+    <returnUrl>http://flux.lolwut.net/flux/website/account_home.php</returnUrl>
+</PayRequest></soap:Body>
+</soap:Envelope>
+
+02:55:00 10/02/11 caller [info] #####SOAP#####
+02:55:00 10/02/11 caller [info] request: 
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+ <soap:Body><PayRequest>
+    <requestEnvelope>
+        <errorLanguage>en_US</errorLanguage>
+    </requestEnvelope>
+    <clientDetails>
+        <ipAddress>127.0.0.1</ipAddress>
+        <deviceId>127001</deviceId>
+        <applicationId>APP-80W284485P519543T</applicationId>
+    </clientDetails>
+    <actionType>PAY</actionType>
+    <cancelUrl>http://flux.lolwut.net/flux/website/account_home.php</cancelUrl>
+    <currencyCode>EUR</currencyCode>
+    <ipnNotificationUrl>http://flux.lolwut.net/flux/pools/paypalPool/paypal/IPN.php</ipnNotificationUrl>
+    <receiverList>
+        <receiver>
+            <amount>10.00</amount>
+            <email>lsnpre_1235310181_per@yahoo.com</email>
+            <paymentType>PERSONAL</paymentType>
+        </receiver>
+    </receiverList>
+    <senderEmail>seller_1309852781_biz@yahoo.com</senderEmail>
+    <returnUrl>http://flux.lolwut.net/flux/website/account_home.php</returnUrl>
+</PayRequest></soap:Body>
+</soap:Envelope>
+
+02:55:00 10/02/11 caller [info] response: <?xml version='1.0' encoding='utf-8'?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body><ns2:PayResponse xmlns:ns2="http://svcs.paypal.com/types/ap"><responseEnvelope><timestamp>2011-10-01T17:55:00.443-07:00</timestamp><ack>Success</ack><correlationId>3cc75e2935133</correlationId><build>2142261</build></responseEnvelope><payKey>AP-74436484KA425472M</payKey><paymentExecStatus>COMPLETED</paymentExecStatus></ns2:PayResponse></soapenv:Body></soapenv:Envelope>
+02:55:05 10/02/11 caller [info] response: <?xml version='1.0' encoding='utf-8'?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body><ns2:PayResponse xmlns:ns2="http://svcs.paypal.com/types/ap"><responseEnvelope><timestamp>2011-10-01T17:55:05.795-07:00</timestamp><ack>Success</ack><correlationId>4cd6f35034363</correlationId><build>2142261</build></responseEnvelope><payKey>AP-95F18810JA027210A</payKey><paymentExecStatus>COMPLETED</paymentExecStatus></ns2:PayResponse></soapenv:Body></soapenv:Envelope>
+03:20:20 10/02/11 caller [info] #####SOAP#####
+03:20:20 10/02/11 caller [info] request: 
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+ <soap:Body><PayRequest>
+    <requestEnvelope>
+        <errorLanguage>en_US</errorLanguage>
+    </requestEnvelope>
+    <clientDetails>
+        <ipAddress>127.0.0.1</ipAddress>
+        <deviceId>127001</deviceId>
+        <applicationId>APP-80W284485P519543T</applicationId>
+    </clientDetails>
+    <actionType>PAY</actionType>
+    <cancelUrl>http://flux.lolwut.net/flux/website/account_home.php</cancelUrl>
+    <currencyCode>EUR</currencyCode>
+    <ipnNotificationUrl>http://flux.lolwut.net/flux/pools/paypalPool/paypal/IPN.php</ipnNotificationUrl>
+    <receiverList>
+        <receiver>
+            <amount>0.00</amount>
+            <email>lsnpre_1235310181_per@yahoo.com</email>
+            <paymentType>PERSONAL</paymentType>
+        </receiver>
+    </receiverList>
+    <senderEmail>seller_1309852781_biz@yahoo.com</senderEmail>
+    <returnUrl>http://flux.lolwut.net/flux/website/account_home.php</returnUrl>
+</PayRequest></soap:Body>
+</soap:Envelope>
+
+03:20:21 10/02/11 caller [info] response: <?xml version='1.0' encoding='utf-8'?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body><soapenv:Fault xmlns:axis2ns59730="http://schemas.xmlsoap.org/soap/envelope/"><faultcode>axis2ns59730:Server</faultcode><faultstring>Invalid request parameter: amount must be greater than zero</faultstring><detail><ns3:FaultMessage xmlns:ns3="http://svcs.paypal.com/types/common" xmlns:ns2="http://svcs.paypal.com/types/ap"><responseEnvelope><timestamp>2011-10-01T18:20:21.630-07:00</timestamp><ack>Failure</ack><correlationId>6f13a63d6f9c4</correlationId><build>2142261</build></responseEnvelope><error><errorId>580022</errorId><domain>PLATFORM</domain><subdomain>Application</subdomain><severity>Error</severity><category>Application</category><message>Invalid request parameter: amount must be greater than zero</message><parameter>amount</parameter><parameter>0.00</parameter></error></ns3:FaultMessage></detail></soapenv:Fault></soapenv:Body></soapenv:Envelope>
+03:20:38 10/02/11 caller [info] #####SOAP#####
+03:20:38 10/02/11 caller [info] request: 
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+ <soap:Body><PayRequest>
+    <requestEnvelope>
+        <errorLanguage>en_US</errorLanguage>
+    </requestEnvelope>
+    <clientDetails>
+        <ipAddress>127.0.0.1</ipAddress>
+        <deviceId>127001</deviceId>
+        <applicationId>APP-80W284485P519543T</applicationId>
+    </clientDetails>
+    <actionType>PAY</actionType>
+    <cancelUrl>http://flux.lolwut.net/flux/website/account_home.php</cancelUrl>
+    <currencyCode>EUR</currencyCode>
+    <ipnNotificationUrl>http://flux.lolwut.net/flux/pools/paypalPool/paypal/IPN.php</ipnNotificationUrl>
+    <receiverList>
+        <receiver>
+            <amount>10.00</amount>
+            <email>lsnpre_1235310181_per@yahoo.com</email>
+            <paymentType>PERSONAL</paymentType>
+        </receiver>
+    </receiverList>
+    <senderEmail>seller_1309852781_biz@yahoo.com</senderEmail>
+    <returnUrl>http://flux.lolwut.net/flux/website/account_home.php</returnUrl>
+</PayRequest></soap:Body>
+</soap:Envelope>
+
+03:20:44 10/02/11 caller [info] response: <?xml version='1.0' encoding='utf-8'?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body><ns2:PayResponse xmlns:ns2="http://svcs.paypal.com/types/ap"><responseEnvelope><timestamp>2011-10-01T18:20:44.535-07:00</timestamp><ack>Success</ack><correlationId>27e033ad4c10e</correlationId><build>2142261</build></responseEnvelope><payKey>AP-5SA821160K905803C</payKey><paymentExecStatus>COMPLETED</paymentExecStatus></ns2:PayResponse></soapenv:Body></soapenv:Envelope>
+03:57:32 10/02/11 caller [info] #####SOAP#####
+03:57:32 10/02/11 caller [info] request: 
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+ <soap:Body><PayRequest>
+    <requestEnvelope>
+        <errorLanguage>en_US</errorLanguage>
+    </requestEnvelope>
+    <clientDetails>
+        <ipAddress>127.0.0.1</ipAddress>
+        <deviceId>127001</deviceId>
+        <applicationId>APP-80W284485P519543T</applicationId>
+    </clientDetails>
+    <actionType>PAY</actionType>
+    <cancelUrl>http://flux.lolwut.net/flux/website/account_home.php</cancelUrl>
+    <currencyCode>EUR</currencyCode>
+    <ipnNotificationUrl>http://flux.lolwut.net/flux/pools/paypalPool/paypal/IPN.php</ipnNotificationUrl>
+    <receiverList>
+        <receiver>
+            <amount>10.00</amount>
+            <email>lsnpre_1235310181_per@yahoo.com</email>
+            <paymentType>PERSONAL</paymentType>
+        </receiver>
+    </receiverList>
+    <senderEmail>seller_1309852781_biz@yahoo.com</senderEmail>
+    <returnUrl>http://flux.lolwut.net/flux/website/account_home.php</returnUrl>
+</PayRequest></soap:Body>
+</soap:Envelope>
+
+03:57:37 10/02/11 caller [info] response: <?xml version='1.0' encoding='utf-8'?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body><ns2:PayResponse xmlns:ns2="http://svcs.paypal.com/types/ap"><responseEnvelope><timestamp>2011-10-01T18:57:37.800-07:00</timestamp><ack>Success</ack><correlationId>39840a848ec46</correlationId><build>2142261</build></responseEnvelope><payKey>AP-1ML77937D1948141V</payKey><paymentExecStatus>COMPLETED</paymentExecStatus></ns2:PayResponse></soapenv:Body></soapenv:Envelope>
+03:58:56 10/02/11 caller [info] #####SOAP#####
+03:58:56 10/02/11 caller [info] request: 
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+ <soap:Body><PayRequest>
+    <requestEnvelope>
+        <errorLanguage>en_US</errorLanguage>
+    </requestEnvelope>
+    <clientDetails>
+        <ipAddress>127.0.0.1</ipAddress>
+        <deviceId>127001</deviceId>
+        <applicationId>APP-80W284485P519543T</applicationId>
+    </clientDetails>
+    <actionType>PAY</actionType>
+    <cancelUrl>http://flux.lolwut.net/flux/website/account_home.php</cancelUrl>
+    <currencyCode>EUR</currencyCode>
+    <ipnNotificationUrl>http://flux.lolwut.net/flux/pools/paypalPool/paypal/IPN.php</ipnNotificationUrl>
+    <receiverList>
+        <receiver>
+            <amount>10.00</amount>
+            <email>lsnpre_1235310181_per@yahoo.com</email>
+            <paymentType>PERSONAL</paymentType>
+        </receiver>
+    </receiverList>
+    <senderEmail>seller_1309852781_biz@yahoo.com</senderEmail>
+    <returnUrl>http://flux.lolwut.net/flux/website/account_home.php</returnUrl>
+</PayRequest></soap:Body>
+</soap:Envelope>
+
+03:59:01 10/02/11 caller [info] response: <?xml version='1.0' encoding='utf-8'?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body><ns2:PayResponse xmlns:ns2="http://svcs.paypal.com/types/ap"><responseEnvelope><timestamp>2011-10-01T18:59:01.602-07:00</timestamp><ack>Success</ack><correlationId>6783c85ba62fc</correlationId><build>2142261</build></responseEnvelope><payKey>AP-34494569LY8412027</payKey><paymentExecStatus>COMPLETED</paymentExecStatus></ns2:PayResponse></soapenv:Body></soapenv:Envelope>
+04:05:53 10/02/11 caller [info] #####SOAP#####
+04:05:53 10/02/11 caller [info] request: 
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+ <soap:Body><PayRequest>
+    <requestEnvelope>
+        <errorLanguage>en_US</errorLanguage>
+    </requestEnvelope>
+    <clientDetails>
+        <ipAddress>127.0.0.1</ipAddress>
+        <deviceId>127001</deviceId>
+        <applicationId>APP-80W284485P519543T</applicationId>
+    </clientDetails>
+    <actionType>PAY</actionType>
+    <cancelUrl>http://flux.lolwut.net/flux/website/account_home.php</cancelUrl>
+    <currencyCode>EUR</currencyCode>
+    <ipnNotificationUrl>http://flux.lolwut.net/flux/pools/paypalPool/paypal/IPN.php</ipnNotificationUrl>
+    <receiverList>
+        <receiver>
+            <amount>10.00</amount>
+            <email>lsnpre_1235310181_per@yahoo.com</email>
+            <paymentType>PERSONAL</paymentType>
+        </receiver>
+    </receiverList>
+    <senderEmail>seller_1309852781_biz@yahoo.com</senderEmail>
+    <returnUrl>http://flux.lolwut.net/flux/website/account_home.php</returnUrl>
+</PayRequest></soap:Body>
+</soap:Envelope>
+
+04:05:58 10/02/11 caller [info] response: <?xml version='1.0' encoding='utf-8'?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body><ns2:PayResponse xmlns:ns2="http://svcs.paypal.com/types/ap"><responseEnvelope><timestamp>2011-10-01T19:05:58.839-07:00</timestamp><ack>Success</ack><correlationId>fe0f8ec425d23</correlationId><build>2142261</build></responseEnvelope><payKey>AP-1G383214NL171142Y</payKey><paymentExecStatus>COMPLETED</paymentExecStatus></ns2:PayResponse></soapenv:Body></soapenv:Envelope>
+04:08:42 10/02/11 caller [info] #####SOAP#####
+04:08:42 10/02/11 caller [info] request: 
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+ <soap:Body><PayRequest>
+    <requestEnvelope>
+        <errorLanguage>en_US</errorLanguage>
+    </requestEnvelope>
+    <clientDetails>
+        <ipAddress>127.0.0.1</ipAddress>
+        <deviceId>127001</deviceId>
+        <applicationId>APP-80W284485P519543T</applicationId>
+    </clientDetails>
+    <actionType>PAY</actionType>
+    <cancelUrl>http://flux.lolwut.net/flux/website/account_home.php</cancelUrl>
+    <currencyCode>EUR</currencyCode>
+    <ipnNotificationUrl>http://flux.lolwut.net/flux/pools/paypalPool/paypal/IPN.php</ipnNotificationUrl>
+    <receiverList>
+        <receiver>
+            <amount>10.00</amount>
+            <email>lsnpre_1235310181_per@yahoo.com</email>
+            <paymentType>PERSONAL</paymentType>
+        </receiver>
+    </receiverList>
+    <senderEmail>seller_1309852781_biz@yahoo.com</senderEmail>
+    <returnUrl>http://flux.lolwut.net/flux/website/account_home.php</returnUrl>
+</PayRequest></soap:Body>
+</soap:Envelope>
+
+04:08:48 10/02/11 caller [info] response: <?xml version='1.0' encoding='utf-8'?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body><ns2:PayResponse xmlns:ns2="http://svcs.paypal.com/types/ap"><responseEnvelope><timestamp>2011-10-01T19:08:48.200-07:00</timestamp><ack>Success</ack><correlationId>b72e1ed3294ba</correlationId><build>2142261</build></responseEnvelope><payKey>AP-5E010846RA458690H</payKey><paymentExecStatus>COMPLETED</paymentExecStatus></ns2:PayResponse></soapenv:Body></soapenv:Envelope>
+04:12:27 10/02/11 caller [info] #####SOAP#####
+04:12:27 10/02/11 caller [info] request: 
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+ <soap:Body><PayRequest>
+    <requestEnvelope>
+        <errorLanguage>en_US</errorLanguage>
+    </requestEnvelope>
+    <clientDetails>
+        <ipAddress>127.0.0.1</ipAddress>
+        <deviceId>127001</deviceId>
+        <applicationId>APP-80W284485P519543T</applicationId>
+    </clientDetails>
+    <actionType>PAY</actionType>
+    <cancelUrl>http://flux.lolwut.net/flux/website/account_home.php</cancelUrl>
+    <currencyCode>EUR</currencyCode>
+    <ipnNotificationUrl>http://flux.lolwut.net/flux/pools/paypalPool/paypal/IPN.php</ipnNotificationUrl>
+    <receiverList>
+        <receiver>
+            <amount>10.00</amount>
+            <email>lsnpre_1235310181_per@yahoo.com</email>
+            <paymentType>PERSONAL</paymentType>
+        </receiver>
+    </receiverList>
+    <senderEmail>seller_1309852781_biz@yahoo.com</senderEmail>
+    <returnUrl>http://flux.lolwut.net/flux/website/account_home.php</returnUrl>
+</PayRequest></soap:Body>
+</soap:Envelope>
+
+04:12:33 10/02/11 caller [info] response: <?xml version='1.0' encoding='utf-8'?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body><ns2:PayResponse xmlns:ns2="http://svcs.paypal.com/types/ap"><responseEnvelope><timestamp>2011-10-01T19:12:33.407-07:00</timestamp><ack>Success</ack><correlationId>0913446545d4c</correlationId><build>2142261</build></responseEnvelope><payKey>AP-0RP190397W572592N</payKey><paymentExecStatus>COMPLETED</paymentExecStatus></ns2:PayResponse></soapenv:Body></soapenv:Envelope>
+04:13:36 10/02/11 caller [info] #####SOAP#####
+04:13:36 10/02/11 caller [info] request: 
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+ <soap:Body><PayRequest>
+    <requestEnvelope>
+        <errorLanguage>en_US</errorLanguage>
+    </requestEnvelope>
+    <clientDetails>
+        <ipAddress>127.0.0.1</ipAddress>
+        <deviceId>127001</deviceId>
+        <applicationId>APP-80W284485P519543T</applicationId>
+    </clientDetails>
+    <actionType>PAY</actionType>
+    <cancelUrl>http://flux.lolwut.net/flux/website/account_home.php</cancelUrl>
+    <currencyCode>EUR</currencyCode>
+    <ipnNotificationUrl>http://flux.lolwut.net/flux/pools/paypalPool/paypal/IPN.php</ipnNotificationUrl>
+    <receiverList>
+        <receiver>
+            <amount>10.00</amount>
+            <email>lsnpre_1235310181_per@yahoo.com</email>
+            <paymentType>PERSONAL</paymentType>
+        </receiver>
+    </receiverList>
+    <senderEmail>seller_1309852781_biz@yahoo.com</senderEmail>
+    <returnUrl>http://flux.lolwut.net/flux/website/account_home.php</returnUrl>
+</PayRequest></soap:Body>
+</soap:Envelope>
+
+04:13:43 10/02/11 caller [info] response: <?xml version='1.0' encoding='utf-8'?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body><ns2:PayResponse xmlns:ns2="http://svcs.paypal.com/types/ap"><responseEnvelope><timestamp>2011-10-01T19:13:43.083-07:00</timestamp><ack>Success</ack><correlationId>29ac1a639251f</correlationId><build>2142261</build></responseEnvelope><payKey>AP-2XT95113T85989717</payKey><paymentExecStatus>COMPLETED</paymentExecStatus></ns2:PayResponse></soapenv:Body></soapenv:Envelope>
+04:14:30 10/02/11 caller [info] #####SOAP#####
+04:14:30 10/02/11 caller [info] request: 
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+ <soap:Body><PayRequest>
+    <requestEnvelope>
+        <errorLanguage>en_US</errorLanguage>
+    </requestEnvelope>
+    <clientDetails>
+        <ipAddress>127.0.0.1</ipAddress>
+        <deviceId>127001</deviceId>
+        <applicationId>APP-80W284485P519543T</applicationId>
+    </clientDetails>
+    <actionType>PAY</actionType>
+    <cancelUrl>http://flux.lolwut.net/flux/website/account_home.php</cancelUrl>
+    <currencyCode>EUR</currencyCode>
+    <ipnNotificationUrl>http://flux.lolwut.net/flux/pools/paypalPool/paypal/IPN.php</ipnNotificationUrl>
+    <receiverList>
+        <receiver>
+            <amount>10.00</amount>
+            <email>lsnpre_1235310181_per@yahoo.com</email>
+            <paymentType>PERSONAL</paymentType>
+        </receiver>
+    </receiverList>
+    <senderEmail>seller_1309852781_biz@yahoo.com</senderEmail>
+    <returnUrl>http://flux.lolwut.net/flux/website/account_home.php</returnUrl>
+</PayRequest></soap:Body>
+</soap:Envelope>
+
+04:14:35 10/02/11 caller [info] response: <?xml version='1.0' encoding='utf-8'?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body><ns2:PayResponse xmlns:ns2="http://svcs.paypal.com/types/ap"><responseEnvelope><timestamp>2011-10-01T19:14:35.840-07:00</timestamp><ack>Success</ack><correlationId>bbac98bea7db1</correlationId><build>2142261</build></responseEnvelope><payKey>AP-56J576446D218763M</payKey><paymentExecStatus>COMPLETED</paymentExecStatus></ns2:PayResponse></soapenv:Body></soapenv:Envelope>
+04:19:16 10/02/11 caller [info] #####SOAP#####
+04:19:16 10/02/11 caller [info] request: 
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+ <soap:Body><PayRequest>
+    <requestEnvelope>
+        <errorLanguage>en_US</errorLanguage>
+    </requestEnvelope>
+    <clientDetails>
+        <ipAddress>127.0.0.1</ipAddress>
+        <deviceId>127001</deviceId>
+        <applicationId>APP-80W284485P519543T</applicationId>
+    </clientDetails>
+    <actionType>PAY</actionType>
+    <cancelUrl>http://flux.lolwut.net/flux/website/account_home.php</cancelUrl>
+    <currencyCode>EUR</currencyCode>
+    <ipnNotificationUrl>http://flux.lolwut.net/flux/pools/paypalPool/paypal/IPN.php</ipnNotificationUrl>
+    <receiverList>
+        <receiver>
+            <amount>10.00</amount>
+            <email>lsnpre_1235310181_per@yahoo.com</email>
+            <paymentType>PERSONAL</paymentType>
+        </receiver>
+    </receiverList>
+    <senderEmail>seller_1309852781_biz@yahoo.com</senderEmail>
+    <returnUrl>http://flux.lolwut.net/flux/website/account_home.php</returnUrl>
+</PayRequest></soap:Body>
+</soap:Envelope>
+
+04:19:21 10/02/11 caller [info] response: <?xml version='1.0' encoding='utf-8'?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body><ns2:PayResponse xmlns:ns2="http://svcs.paypal.com/types/ap"><responseEnvelope><timestamp>2011-10-01T19:19:21.711-07:00</timestamp><ack>Success</ack><correlationId>af748b72cf890</correlationId><build>2142261</build></responseEnvelope><payKey>AP-9LX6035198559082S</payKey><paymentExecStatus>COMPLETED</paymentExecStatus></ns2:PayResponse></soapenv:Body></soapenv:Envelope>
+04:19:52 10/02/11 caller [info] #####SOAP#####
+04:19:52 10/02/11 caller [info] request: 
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+ <soap:Body><PayRequest>
+    <requestEnvelope>
+        <errorLanguage>en_US</errorLanguage>
+    </requestEnvelope>
+    <clientDetails>
+        <ipAddress>127.0.0.1</ipAddress>
+        <deviceId>127001</deviceId>
+        <applicationId>APP-80W284485P519543T</applicationId>
+    </clientDetails>
+    <actionType>PAY</actionType>
+    <cancelUrl>http://flux.lolwut.net/flux/website/account_home.php</cancelUrl>
+    <currencyCode>EUR</currencyCode>
+    <ipnNotificationUrl>http://flux.lolwut.net/flux/pools/paypalPool/paypal/IPN.php</ipnNotificationUrl>
+    <receiverList>
+        <receiver>
+            <amount>10.00</amount>
+            <email>lsnpre_1235310181_per@yahoo.com</email>
+            <paymentType>PERSONAL</paymentType>
+        </receiver>
+    </receiverList>
+    <senderEmail>seller_1309852781_biz@yahoo.com</senderEmail>
+    <returnUrl>http://flux.lolwut.net/flux/website/account_home.php</returnUrl>
+</PayRequest></soap:Body>
+</soap:Envelope>
+
+04:19:58 10/02/11 caller [info] response: <?xml version='1.0' encoding='utf-8'?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body><ns2:PayResponse xmlns:ns2="http://svcs.paypal.com/types/ap"><responseEnvelope><timestamp>2011-10-01T19:19:58.045-07:00</timestamp><ack>Success</ack><correlationId>c3bb557fd177c</correlationId><build>2142261</build></responseEnvelope><payKey>AP-2XT26191W2923400P</payKey><paymentExecStatus>COMPLETED</paymentExecStatus></ns2:PayResponse></soapenv:Body></soapenv:Envelope>
+04:20:51 10/02/11 caller [info] #####SOAP#####
+04:20:51 10/02/11 caller [info] request: 
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+ <soap:Body><PayRequest>
+    <requestEnvelope>
+        <errorLanguage>en_US</errorLanguage>
+    </requestEnvelope>
+    <clientDetails>
+        <ipAddress>127.0.0.1</ipAddress>
+        <deviceId>127001</deviceId>
+        <applicationId>APP-80W284485P519543T</applicationId>
+    </clientDetails>
+    <actionType>PAY</actionType>
+    <cancelUrl>http://flux.lolwut.net/flux/website/account_home.php</cancelUrl>
+    <currencyCode>EUR</currencyCode>
+    <ipnNotificationUrl>http://flux.lolwut.net/flux/pools/paypalPool/paypal/IPN.php</ipnNotificationUrl>
+    <receiverList>
+        <receiver>
+            <amount>10.00</amount>
+            <email>lsnpre_1235310181_per@yahoo.com</email>
+            <paymentType>PERSONAL</paymentType>
+        </receiver>
+    </receiverList>
+    <senderEmail>seller_1309852781_biz@yahoo.com</senderEmail>
+    <returnUrl>http://flux.lolwut.net/flux/website/account_home.php</returnUrl>
+</PayRequest></soap:Body>
+</soap:Envelope>
+
+04:20:56 10/02/11 caller [info] response: <?xml version='1.0' encoding='utf-8'?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body><ns2:PayResponse xmlns:ns2="http://svcs.paypal.com/types/ap"><responseEnvelope><timestamp>2011-10-01T19:20:56.772-07:00</timestamp><ack>Success</ack><correlationId>094b2aa1c2d3f</correlationId><build>2142261</build></responseEnvelope><payKey>AP-7UY0256768590740U</payKey><paymentExecStatus>COMPLETED</paymentExecStatus></ns2:PayResponse></soapenv:Body></soapenv:Envelope>
+04:21:35 10/02/11 caller [info] #####SOAP#####
+04:21:35 10/02/11 caller [info] request: 
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+ <soap:Body><PayRequest>
+    <requestEnvelope>
+        <errorLanguage>en_US</errorLanguage>
+    </requestEnvelope>
+    <clientDetails>
+        <ipAddress>127.0.0.1</ipAddress>
+        <deviceId>127001</deviceId>
+        <applicationId>APP-80W284485P519543T</applicationId>
+    </clientDetails>
+    <actionType>PAY</actionType>
+    <cancelUrl>http://flux.lolwut.net/flux/website/account_home.php</cancelUrl>
+    <currencyCode>EUR</currencyCode>
+    <ipnNotificationUrl>http://flux.lolwut.net/flux/pools/paypalPool/paypal/IPN.php</ipnNotificationUrl>
+    <receiverList>
+        <receiver>
+            <amount>10.00</amount>
+            <email>lsnpre_1235310181_per@yahoo.com</email>
+            <paymentType>PERSONAL</paymentType>
+        </receiver>
+    </receiverList>
+    <senderEmail>seller_1309852781_biz@yahoo.com</senderEmail>
+    <returnUrl>http://flux.lolwut.net/flux/website/account_home.php</returnUrl>
+</PayRequest></soap:Body>
+</soap:Envelope>
+
+04:21:40 10/02/11 caller [info] response: <?xml version='1.0' encoding='utf-8'?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body><ns2:PayResponse xmlns:ns2="http://svcs.paypal.com/types/ap"><responseEnvelope><timestamp>2011-10-01T19:21:40.890-07:00</timestamp><ack>Success</ack><correlationId>dcac58d1cf923</correlationId><build>2142261</build></responseEnvelope><payKey>AP-0C958343H29657255</payKey><paymentExecStatus>COMPLETED</paymentExecStatus></ns2:PayResponse></soapenv:Body></soapenv:Envelope>
+04:28:50 10/02/11 caller [info] #####SOAP#####
+04:28:50 10/02/11 caller [info] request: 
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+ <soap:Body><PayRequest>
+    <requestEnvelope>
+        <errorLanguage>en_US</errorLanguage>
+    </requestEnvelope>
+    <clientDetails>
+        <ipAddress>127.0.0.1</ipAddress>
+        <deviceId>127001</deviceId>
+        <applicationId>APP-80W284485P519543T</applicationId>
+    </clientDetails>
+    <actionType>PAY</actionType>
+    <cancelUrl>http://flux.lolwut.net/flux/website/account_home.php</cancelUrl>
+    <currencyCode>EUR</currencyCode>
+    <ipnNotificationUrl>http://flux.lolwut.net/flux/pools/paypalPool/paypal/IPN.php</ipnNotificationUrl>
+    <receiverList>
+        <receiver>
+            <amount>10.00</amount>
+            <email>lsnpre_1235310181_per@yahoo.com</email>
+            <paymentType>PERSONAL</paymentType>
+        </receiver>
+    </receiverList>
+    <senderEmail>seller_1309852781_biz@yahoo.com</senderEmail>
+    <returnUrl>http://flux.lolwut.net/flux/website/account_home.php</returnUrl>
+</PayRequest></soap:Body>
+</soap:Envelope>
+
+04:28:56 10/02/11 caller [info] response: <?xml version='1.0' encoding='utf-8'?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body><ns2:PayResponse xmlns:ns2="http://svcs.paypal.com/types/ap"><responseEnvelope><timestamp>2011-10-01T19:28:56.056-07:00</timestamp><ack>Success</ack><correlationId>4e5fad6c55aa1</correlationId><build>2142261</build></responseEnvelope><payKey>AP-3CF75862WC026221D</payKey><paymentExecStatus>COMPLETED</paymentExecStatus></ns2:PayResponse></soapenv:Body></soapenv:Envelope>
+17:41:06 10/02/11 caller [info] #####SOAP#####
+17:41:06 10/02/11 caller [info] request: 
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+ <soap:Body><PayRequest>
+    <requestEnvelope>
+        <errorLanguage>en_US</errorLanguage>
+    </requestEnvelope>
+    <clientDetails>
+        <ipAddress>127.0.0.1</ipAddress>
+        <deviceId>127001</deviceId>
+        <applicationId>APP-80W284485P519543T</applicationId>
+    </clientDetails>
+    <actionType>PAY</actionType>
+    <cancelUrl>http://flux.lolwut.net/flux/website/account_home.php</cancelUrl>
+    <currencyCode>EUR</currencyCode>
+    <ipnNotificationUrl>http://flux.lolwut.net/flux/pools/paypalPool/paypal/IPN.php</ipnNotificationUrl>
+    <receiverList>
+        <receiver>
+            <amount>10.00</amount>
+            <email>lsnpre_1235310181_per@yahoo.com</email>
+            <paymentType>PERSONAL</paymentType>
+        </receiver>
+    </receiverList>
+    <senderEmail>seller_1309852781_biz@yahoo.com</senderEmail>
+    <returnUrl>http://flux.lolwut.net/flux/website/account_home.php</returnUrl>
+    <trackingId>4e8886116ba11</trackingId>
+</PayRequest></soap:Body>
+</soap:Envelope>
+
+17:41:11 10/02/11 caller [info] response: <?xml version='1.0' encoding='utf-8'?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body><ns2:PayResponse xmlns:ns2="http://svcs.paypal.com/types/ap"><responseEnvelope><timestamp>2011-10-02T08:41:11.840-07:00</timestamp><ack>Success</ack><correlationId>ca6edb338d093</correlationId><build>2142261</build></responseEnvelope><payKey>AP-4MK7355201028904F</payKey><paymentExecStatus>COMPLETED</paymentExecStatus></ns2:PayResponse></soapenv:Body></soapenv:Envelope>
+18:14:12 10/02/11 caller [info] #####SOAP#####
+18:14:12 10/02/11 caller [info] request: 
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+ <soap:Body><PayRequest>
+    <requestEnvelope>
+        <errorLanguage>en_US</errorLanguage>
+    </requestEnvelope>
+    <clientDetails>
+        <ipAddress>127.0.0.1</ipAddress>
+        <deviceId>127001</deviceId>
+        <applicationId>APP-80W284485P519543T</applicationId>
+    </clientDetails>
+    <actionType>PAY</actionType>
+    <cancelUrl>http://flux.lolwut.net/flux/website/account_home.php</cancelUrl>
+    <currencyCode>EUR</currencyCode>
+    <ipnNotificationUrl>http://flux.lolwut.net/flux/pools/paypalPool/paypal/IPN.php</ipnNotificationUrl>
+    <receiverList>
+        <receiver>
+            <amount>10.00</amount>
+            <email>lsnpre_1235310181_per@yahoo.com</email>
+            <paymentType>PERSONAL</paymentType>
+        </receiver>
+    </receiverList>
+    <senderEmail>seller_1309852781_biz@yahoo.com</senderEmail>
+    <returnUrl>http://flux.lolwut.net/flux/website/account_home.php</returnUrl>
+    <trackingId>4e888dd379727</trackingId>
+</PayRequest></soap:Body>
+</soap:Envelope>
+
+18:14:18 10/02/11 caller [info] response: <?xml version='1.0' encoding='utf-8'?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body><ns2:PayResponse xmlns:ns2="http://svcs.paypal.com/types/ap"><responseEnvelope><timestamp>2011-10-02T09:14:18.075-07:00</timestamp><ack>Success</ack><correlationId>c2bc0a96b86e8</correlationId><build>2142261</build></responseEnvelope><payKey>AP-9T7284395C166304C</payKey><paymentExecStatus>COMPLETED</paymentExecStatus></ns2:PayResponse></soapenv:Body></soapenv:Envelope>
+18:17:15 10/02/11 caller [info] #####SOAP#####
+18:17:15 10/02/11 caller [info] request: 
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+ <soap:Body><PayRequest>
+    <requestEnvelope>
+        <errorLanguage>en_US</errorLanguage>
+    </requestEnvelope>
+    <clientDetails>
+        <ipAddress>127.0.0.1</ipAddress>
+        <deviceId>127001</deviceId>
+        <applicationId>APP-80W284485P519543T</applicationId>
+    </clientDetails>
+    <actionType>PAY</actionType>
+    <cancelUrl>http://flux.lolwut.net/flux/website/account_home.php</cancelUrl>
+    <currencyCode>EUR</currencyCode>
+    <ipnNotificationUrl>http://flux.lolwut.net/flux/pools/paypalPool/paypal/IPN.php</ipnNotificationUrl>
+    <receiverList>
+        <receiver>
+            <amount>10.00</amount>
+            <email>lsnpre_1235310181_per@yahoo.com</email>
+            <paymentType>PERSONAL</paymentType>
+        </receiver>
+    </receiverList>
+    <senderEmail>seller_1309852781_biz@yahoo.com</senderEmail>
+    <returnUrl>http://flux.lolwut.net/flux/website/account_home.php</returnUrl>
+    <trackingId>4e888e8aabe7d</trackingId>
+</PayRequest></soap:Body>
+</soap:Envelope>
+
+18:17:21 10/02/11 caller [info] response: <?xml version='1.0' encoding='utf-8'?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body><ns2:PayResponse xmlns:ns2="http://svcs.paypal.com/types/ap"><responseEnvelope><timestamp>2011-10-02T09:17:21.085-07:00</timestamp><ack>Success</ack><correlationId>4e5ca256fb198</correlationId><build>2142261</build></responseEnvelope><payKey>AP-9B246687C45609807</payKey><paymentExecStatus>COMPLETED</paymentExecStatus></ns2:PayResponse></soapenv:Body></soapenv:Envelope>
+18:25:47 10/02/11 caller [info] #####SOAP#####
+18:25:47 10/02/11 caller [info] request: 
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+ <soap:Body><PayRequest>
+    <requestEnvelope>
+        <errorLanguage>en_US</errorLanguage>
+    </requestEnvelope>
+    <clientDetails>
+        <ipAddress>127.0.0.1</ipAddress>
+        <deviceId>127001</deviceId>
+        <applicationId>APP-80W284485P519543T</applicationId>
+    </clientDetails>
+    <actionType>PAY</actionType>
+    <cancelUrl>http://flux.lolwut.net/flux/website/account_home.php</cancelUrl>
+    <currencyCode>EUR</currencyCode>
+    <ipnNotificationUrl>http://flux.lolwut.net/flux/pools/paypalPool/paypal/IPN.php</ipnNotificationUrl>
+    <receiverList>
+        <receiver>
+            <amount>10.00</amount>
+            <email>lsnpre_1235310181_per@yahoo.com</email>
+            <paymentType>PERSONAL</paymentType>
+        </receiver>
+    </receiverList>
+    <senderEmail>seller_1309852781_biz@yahoo.com</senderEmail>
+    <returnUrl>http://flux.lolwut.net/flux/website/account_home.php</returnUrl>
+    <trackingId>4e88908b174b9</trackingId>
+</PayRequest></soap:Body>
+</soap:Envelope>
+
+18:25:53 10/02/11 caller [info] response: <?xml version='1.0' encoding='utf-8'?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body><ns2:PayResponse xmlns:ns2="http://svcs.paypal.com/types/ap"><responseEnvelope><timestamp>2011-10-02T09:25:53.168-07:00</timestamp><ack>Success</ack><correlationId>129619c852108</correlationId><build>2142261</build></responseEnvelope><payKey>AP-2S3328475N8869546</payKey><paymentExecStatus>COMPLETED</paymentExecStatus></ns2:PayResponse></soapenv:Body></soapenv:Envelope>
+18:34:02 10/02/11 caller [info] #####SOAP#####
+18:34:02 10/02/11 caller [info] request: 
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+ <soap:Body><PayRequest>
+    <requestEnvelope>
+        <errorLanguage>en_US</errorLanguage>
+    </requestEnvelope>
+    <clientDetails>
+        <ipAddress>127.0.0.1</ipAddress>
+        <deviceId>127001</deviceId>
+        <applicationId>APP-80W284485P519543T</applicationId>
+    </clientDetails>
+    <actionType>PAY</actionType>
+    <cancelUrl>http://flux.lolwut.net/flux/website/account_home.php</cancelUrl>
+    <currencyCode>EUR</currencyCode>
+    <ipnNotificationUrl>http://flux.lolwut.net/flux/pools/paypalPool/paypal/IPN.php</ipnNotificationUrl>
+    <receiverList>
+        <receiver>
+            <amount>4.45</amount>
+            <email>lsnpre_1235310181_per@yahoo.com</email>
+            <paymentType>PERSONAL</paymentType>
+        </receiver>
+    </receiverList>
+    <senderEmail>seller_1309852781_biz@yahoo.com</senderEmail>
+    <returnUrl>http://flux.lolwut.net/flux/website/account_home.php</returnUrl>
+    <trackingId>4e88927ab4b5d</trackingId>
+</PayRequest></soap:Body>
+</soap:Envelope>
+
+18:34:08 10/02/11 caller [info] response: <?xml version='1.0' encoding='utf-8'?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body><ns2:PayResponse xmlns:ns2="http://svcs.paypal.com/types/ap"><responseEnvelope><timestamp>2011-10-02T09:34:08.240-07:00</timestamp><ack>Success</ack><correlationId>08559df5db4e7</correlationId><build>2142261</build></responseEnvelope><payKey>AP-2PF73206R2646141M</payKey><paymentExecStatus>COMPLETED</paymentExecStatus></ns2:PayResponse></soapenv:Body></soapenv:Envelope>
+18:48:59 10/02/11 caller [info] #####SOAP#####
+18:48:59 10/02/11 caller [info] request: 
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+ <soap:Body><PayRequest>
+    <requestEnvelope>
+        <errorLanguage>en_US</errorLanguage>
+    </requestEnvelope>
+    <clientDetails>
+        <ipAddress>127.0.0.1</ipAddress>
+        <deviceId>127001</deviceId>
+        <applicationId>APP-80W284485P519543T</applicationId>
+    </clientDetails>
+    <actionType>PAY</actionType>
+    <cancelUrl>http://flux.lolwut.net/flux/website/account_home.php</cancelUrl>
+    <currencyCode>EUR</currencyCode>
+    <ipnNotificationUrl>http://flux.lolwut.net/flux/pools/paypalPool/paypal/IPN.php</ipnNotificationUrl>
+    <receiverList>
+        <receiver>
+            <amount>105.01</amount>
+            <email>lsnpre_1235310181_per@yahoo.com</email>
+            <paymentType>PERSONAL</paymentType>
+        </receiver>
+    </receiverList>
+    <senderEmail>seller_1309852781_biz@yahoo.com</senderEmail>
+    <returnUrl>http://flux.lolwut.net/flux/website/account_home.php</returnUrl>
+    <trackingId>4e8895fb39338</trackingId>
+</PayRequest></soap:Body>
+</soap:Envelope>
+
+18:49:04 10/02/11 caller [info] response: <?xml version='1.0' encoding='utf-8'?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body><ns2:PayResponse xmlns:ns2="http://svcs.paypal.com/types/ap"><responseEnvelope><timestamp>2011-10-02T09:49:04.635-07:00</timestamp><ack>Success</ack><correlationId>6e1504008667e</correlationId><build>2142261</build></responseEnvelope><payKey>AP-0U157717SE4786146</payKey><paymentExecStatus>COMPLETED</paymentExecStatus></ns2:PayResponse></soapenv:Body></soapenv:Envelope>
+18:53:21 10/02/11 caller [info] #####SOAP#####
+18:53:21 10/02/11 caller [info] request: 
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+ <soap:Body><PayRequest>
+    <requestEnvelope>
+        <errorLanguage>en_US</errorLanguage>
+    </requestEnvelope>
+    <clientDetails>
+        <ipAddress>127.0.0.1</ipAddress>
+        <deviceId>127001</deviceId>
+        <applicationId>APP-80W284485P519543T</applicationId>
+    </clientDetails>
+    <actionType>PAY</actionType>
+    <cancelUrl>http://flux.lolwut.net/flux/website/account_home.php</cancelUrl>
+    <currencyCode>EUR</currencyCode>
+    <ipnNotificationUrl>http://flux.lolwut.net/flux/pools/paypalPool/paypal/IPN.php</ipnNotificationUrl>
+    <receiverList>
+        <receiver>
+            <amount>0.00</amount>
+            <email>lsnpre_1235310181_per@yahoo.com</email>
+            <paymentType>PERSONAL</paymentType>
+        </receiver>
+    </receiverList>
+    <senderEmail>seller_1309852781_biz@yahoo.com</senderEmail>
+    <returnUrl>http://flux.lolwut.net/flux/website/account_home.php</returnUrl>
+    <trackingId>4e88970028f49</trackingId>
+</PayRequest></soap:Body>
+</soap:Envelope>
+
+18:53:22 10/02/11 caller [info] response: <?xml version='1.0' encoding='utf-8'?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body><soapenv:Fault xmlns:axis2ns154042="http://schemas.xmlsoap.org/soap/envelope/"><faultcode>axis2ns154042:Server</faultcode><faultstring>Invalid request parameter: amount must be greater than zero</faultstring><detail><ns3:FaultMessage xmlns:ns3="http://svcs.paypal.com/types/common" xmlns:ns2="http://svcs.paypal.com/types/ap"><responseEnvelope><timestamp>2011-10-02T09:53:22.557-07:00</timestamp><ack>Failure</ack><correlationId>feda3b6be87f6</correlationId><build>2142261</build></responseEnvelope><error><errorId>580022</errorId><domain>PLATFORM</domain><subdomain>Application</subdomain><severity>Error</severity><category>Application</category><message>Invalid request parameter: amount must be greater than zero</message><parameter>amount</parameter><parameter>0.00</parameter></error></ns3:FaultMessage></detail></soapenv:Fault></soapenv:Body></soapenv:Envelope>
+18:57:50 10/02/11 caller [info] #####SOAP#####
+18:57:50 10/02/11 caller [info] request: 
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+ <soap:Body><PayRequest>
+    <requestEnvelope>
+        <errorLanguage>en_US</errorLanguage>
+    </requestEnvelope>
+    <clientDetails>
+        <ipAddress>127.0.0.1</ipAddress>
+        <deviceId>127001</deviceId>
+        <applicationId>APP-80W284485P519543T</applicationId>
+    </clientDetails>
+    <actionType>PAY</actionType>
+    <cancelUrl>http://flux.lolwut.net/flux/website/account_home.php</cancelUrl>
+    <currencyCode>EUR</currencyCode>
+    <ipnNotificationUrl>http://flux.lolwut.net/flux/pools/paypalPool/paypal/IPN.php</ipnNotificationUrl>
+    <receiverList>
+        <receiver>
+            <amount>0.00</amount>
+            <email>lsnpre_1235310181_per@yahoo.com</email>
+            <paymentType>PERSONAL</paymentType>
+        </receiver>
+    </receiverList>
+    <senderEmail>seller_1309852781_biz@yahoo.com</senderEmail>
+    <returnUrl>http://flux.lolwut.net/flux/website/account_home.php</returnUrl>
+    <trackingId>4e88970028f49</trackingId>
+</PayRequest></soap:Body>
+</soap:Envelope>
+
+18:57:51 10/02/11 caller [info] response: <?xml version='1.0' encoding='utf-8'?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body><soapenv:Fault xmlns:axis2ns154087="http://schemas.xmlsoap.org/soap/envelope/"><faultcode>axis2ns154087:Server</faultcode><faultstring>Invalid request parameter: amount must be greater than zero</faultstring><detail><ns3:FaultMessage xmlns:ns3="http://svcs.paypal.com/types/common" xmlns:ns2="http://svcs.paypal.com/types/ap"><responseEnvelope><timestamp>2011-10-02T09:57:51.332-07:00</timestamp><ack>Failure</ack><correlationId>c3155be929ddb</correlationId><build>2142261</build></responseEnvelope><error><errorId>580022</errorId><domain>PLATFORM</domain><subdomain>Application</subdomain><severity>Error</severity><category>Application</category><message>Invalid request parameter: amount must be greater than zero</message><parameter>amount</parameter><parameter>0.00</parameter></error></ns3:FaultMessage></detail></soapenv:Fault></soapenv:Body></soapenv:Envelope>
+18:58:43 10/02/11 caller [info] #####SOAP#####
+18:58:43 10/02/11 caller [info] request: 
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+ <soap:Body><PayRequest>
+    <requestEnvelope>
+        <errorLanguage>en_US</errorLanguage>
+    </requestEnvelope>
+    <clientDetails>
+        <ipAddress>127.0.0.1</ipAddress>
+        <deviceId>127001</deviceId>
+        <applicationId>APP-80W284485P519543T</applicationId>
+    </clientDetails>
+    <actionType>PAY</actionType>
+    <cancelUrl>http://flux.lolwut.net/flux/website/account_home.php</cancelUrl>
+    <currencyCode>EUR</currencyCode>
+    <ipnNotificationUrl>http://flux.lolwut.net/flux/pools/paypalPool/paypal/IPN.php</ipnNotificationUrl>
+    <receiverList>
+        <receiver>
+            <amount>4.45</amount>
+            <email>lsnpre_1235310181_per@yahoo.com</email>
+            <paymentType>PERSONAL</paymentType>
+        </receiver>
+    </receiverList>
+    <senderEmail>seller_1309852781_biz@yahoo.com</senderEmail>
+    <returnUrl>http://flux.lolwut.net/flux/website/account_home.php</returnUrl>
+    <trackingId>4e889841a084b</trackingId>
+</PayRequest></soap:Body>
+</soap:Envelope>
+
+18:58:48 10/02/11 caller [info] response: <?xml version='1.0' encoding='utf-8'?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body><ns2:PayResponse xmlns:ns2="http://svcs.paypal.com/types/ap"><responseEnvelope><timestamp>2011-10-02T09:58:48.915-07:00</timestamp><ack>Success</ack><correlationId>f101f9ad1a7d2</correlationId><build>2142261</build></responseEnvelope><payKey>AP-2C5254141U022524E</payKey><paymentExecStatus>COMPLETED</paymentExecStatus></ns2:PayResponse></soapenv:Body></soapenv:Envelope>

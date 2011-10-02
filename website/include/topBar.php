@@ -9,7 +9,7 @@ else echo (sprintf('Goodmorning <a href="me.php">%s</a>,',$_SESSION['username'])
 if ($_SESSION['temp']==1) {
 ?>
 <div class="warning">
-    WARNING: You are logged in as a temporary user. <a href="register.php">Register</a> for free or <a href="login.php">login</a> to save you changes.
+    Welcome <?=$_SESSION['username']?>, <a href="register.php">click here</a> to change your nick, or <a href="login.php">login</a> if you already have an account.
 </div>
 <?php } ?>
 

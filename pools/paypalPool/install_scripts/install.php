@@ -48,7 +48,7 @@ function try_to_create_tables($username,$password) {
 }
 
 function install_tables($db) {
-    $db_dbname="lovePool";
+    $db_dbname="paypalPool";
     //put all the queries we want to execute in an array
     $queries = array(
         "DROP DATABASE IF EXISTS $db_dbname",
@@ -68,9 +68,10 @@ function install_tables($db) {
         
         "CREATE TABLE transactions(
         transaction_id VARCHAR(36),
-        amount DECIMAL(5,2),
+        amount DECIMAL(7,2),
         type INTEGER NOT NULL,
 		ack BOOL DEFAULT 0,
+        successful BOOL DEFAULT 1,
         PRIMARY KEY (transaction_id)
         ) ENGINE = InnoDB"
     );
@@ -86,11 +87,11 @@ function update_LocalSettings($username,$password) {
     $data .= '$C_password = "password";'."\n";
     $data .= '$C_API_base_url = "http://'.$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME']."/../../../../API/\";\n";
     $data .= "?>";
-    $result = file_put_contents("../LocalSettings.php",$data);
+    $result = file_put_contents("../internal/LocalSettings.php",$data);
     if ($result) {
-        echo "localsettings.php succesfully saved";
+        echo '<div class="success">localsettings.php succesfully saved</div>';
     } else {
-        echo "ERROR while saving localsettings.php!!";
+        echo '<div class="fail">ERROR while saving localsettings.php!!</div>';
     }
 }
 

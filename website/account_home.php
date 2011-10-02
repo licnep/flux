@@ -61,7 +61,7 @@ function gotFluxList(json) {
                         "pool/create_transaction_key.php?key="+_session["hash"]+"&pool_id=1&flux_to_id="+id,
                         function(json) {
                             transaction_key = json;
-                            window.location = "../pools/lovePool/sendLove.php?transaction_key="+transaction_key;
+                            window.location = "../pools/paypalPool/donate.php?transaction_key="+transaction_key;
                         }
                     );
                 });
@@ -97,7 +97,7 @@ $(document).ready(function() {
             "pool/start_withdrawal_get_key.php?key="+_session['hash'],
             function(json) {
                 transaction_key = json;
-                window.location = "../pools/lovePool/withdraw.php?transaction_key="+transaction_key;
+                window.location = "../pools/paypalPool/withdraw.php?transaction_key="+transaction_key;
             }
         );
     });

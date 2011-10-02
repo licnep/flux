@@ -18,7 +18,7 @@
  * we find out the sum of all successful deposit transaction,
  * and subtract the sum of all successful withdraw transactions
  */
-require_once(dirname(__FILE__)."/db_connect.php");
+require_once(dirname(__FILE__)."/internal/db_connect.php");
 $db = db_connect();
 $query = "SELECT sum(amount) AS total FROM transactions WHERE type=0 AND ack=1";
 $result = mysql_query($query);

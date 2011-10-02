@@ -30,7 +30,7 @@ $amount = $row['money'];
 /*
  * TODO: this needs to be changed, but for now we're just testing so let's put the relative pool address on here.
  */
-$result = get_webpage("http://".$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME']."/../../pools/lovePool/convert.php?amount=$amount&total=$total");
+$result = get_webpage("http://".$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME']."/../../pools/paypalPool/convert.php?amount=$amount&total=$total");
 print_formatted_result($result, $format, $callback);
 
 ?>

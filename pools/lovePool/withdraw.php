@@ -75,7 +75,8 @@ I2SvDkQ5CmrzkW5qPaE2oO7BSqAhRZxiYpZFb5CI
     if ($response=="SUCCESS") {
             require_once("db_connect.php");
             $db = db_connect();
-            $query="UPDATE transactions SET ack=1 WHERE transaction_id='".
+            $query="INSERT INTO transactions SET ack=".($success?1:2).", type=1, amount='".
+                            mysql_real_escape_string($amount)."' ,transaction_id='".
                             mysql_real_escape_string($key)."'";
             $result = mysql_query($query,$db);
             if(!$result) {
