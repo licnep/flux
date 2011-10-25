@@ -12,6 +12,11 @@
 	<!--jqueryUI's css, not really necessary:-->
 	<link href="include/jquery/css/vader/jquery-ui.css" rel="stylesheet" type="text/css"/>
 	<link href="css/main.css" rel="stylesheet" type="text/css"/>	
+        <!--[BOOTSTRAP] the bootstrap style, then we launch less.js to compile it-->
+        <link rel="stylesheet/less" type="text/css" href="css/bootstrap/lib/bootstrap.less">
+        <script src="css/bootstrap/less.js" type="text/javascript"></script>
+        <!--[/BOOTSTRAP]-->
+        
 	<link href="include/horizontal_flux/fluxContainer.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="include/jquery/jquery-1.6.2.min.js"></script>
 <script type="text/javascript" src="include/jquery/jquery-ui.min.js"></script>
