@@ -10,8 +10,9 @@
         <!--[JS VALIDATION]-->
         <script type="text/javascript" src="include/jquery/jquery.validate.min.js"></script>
         <script type="text/javascript">
+            var validator;
             $(document).ready( function() {
-                $('#registrationForm').validate( {
+                validator = $('#registrationForm').validate( {
                     rules: {
                         username: {
                             required: true
@@ -60,6 +61,7 @@
                 flux_api_call(apiurl,registrationCallback);
                 return false; //<- preventing form submit and page reload
             }
+            
             function registrationCallback(array) {
                 if (array==true) {
                     /*yay registration is successful!*/
@@ -67,28 +69,14 @@
                         +$('input[name=username]').val()
                         +"&password="+$('input[name=password]').val();
                 } else {
-                    alert(array);
+                    if (array=="error: duplicated username") {
+                        validator.showErrors({'username':'Username already in use'});
+                    }
                 }
             }
 
         </script>
         <!--[/JS VALIDATION]-->
-	<script type="text/javascript">
-		$(document).ready( function() {
-			$('#rAAAAegistrationForm').submit(function () {
-				password = $('input[name=password]').val();
-				username = $('input[name=username]').val();
-                                email = $('input[name=email]').val();
-				apiurl = "register_account.php?password="+password+"&username="+username+"&email="+email;
-                                /*if it's a temporary user we add his details, so the API just upgrades his existing temp account*/
-                                if (_session['temp']) {
-                                    apiurl = apiurl+"&oldId="+_session['uid']+"&oldHash="+_session['hash'];
-                                }
-				flux_api_call(apiurl,registrationCallback);
-				return false; //<- preventing form submit and page reload
-			});
-		})
-	</script>
 </head>
 <body>
         

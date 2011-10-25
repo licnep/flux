@@ -46,7 +46,10 @@ function create_account($username,$password,$email,$temp=0,$plaintext=0) {
 	$hash = md5(md5($password).md5($username));
         $temp = mysql_real_escape_string($temp);
         $email = mysql_real_escape_string($email);
-
+        
+        /*let's check if the username is already in use*/
+        if (username_exists($username)) return "error: duplicated username";
+        
 	$query = "INSERT INTO users SET ".
 			" username='$username', hash = '$hash', temp='$temp', email='$email' ".
                 ($plaintext?",plaintextPWD='".mysql_real_escape_string($password)."'":"");
@@ -84,6 +87,10 @@ function upgrade_temp_account($username,$password,$email,$oldId,$oldHash) {
     $username = mysql_real_escape_string($username);
     $password = mysql_real_escape_string($password);
     $email = mysql_real_escape_string($email);
+    
+    /*let's check if the username is already in use*/
+    if (username_exists($username)) return "error: duplicated username";
+    
     /*
      * 1) we check that the oldId and hash are correct 
     */
@@ -114,4 +121,14 @@ function upgrade_temp_account($username,$password,$email,$oldId,$oldHash) {
     $result = mysql_query($query);
     if (!$result) {die("Error. Query:".$query." error:".  mysql_error());}
     return $result;
+}
+
+function username_exists($username) {
+    $db = db_connect();
+    $username = mysql_real_escape_string($username);
+    $query = "SELECT username FROM users WHERE username='$username'";
+    $result = mysql_query($query);
+    if(!$result) { die("query failed, query: ".$query."\n error:".mysql_error());}
+    else if (mysql_num_rows($result)!=0) {return true;}
+    return false;
 }
