@@ -24,7 +24,8 @@
                         <?=$_SESSION['username']?>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="scripts/logout.php">Logout</a></li>
+                        <li><a href="#">Settings</a></li>
+                        <li><a href="scripts/logout.php?goto=<?php echo urlencode('http://'.$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"]); ?>">Logout</a></li>
                     </ul> 
                 </li>
             </ul>
@@ -32,12 +33,4 @@
     </div>
 </div>
 <!--[/TOPBAR]-->
-<!-- if he's a temporary user we show the warning bar-->
-<?php
-if ($_SESSION['temp']==1) {
-?>
-<div class="warning">
-    Welcome <?=$_SESSION['username']?>, <a href="register.php">click here</a> to change your nick, or <a href="login.php">login</a> if you already have an account.
-</div>
-<?php } ?>
 

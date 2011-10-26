@@ -1,10 +1,5 @@
-<?php include(dirname(__FILE__).'/include/phpTOP.php');
-        /* OLD, now even unregistered users are logged in as guests
-	//if he's not logged in redirect to the login window 
-	if (!($_SESSION['logged'])) {
-    	header("location: login.php");
-	}*/
-?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<?php include(dirname(__FILE__).'/include/phpTOP.php');?>
 <html>
 <head>
 	<!--vvIMPORTANT! charset must be utf8 for box2d-->	
@@ -32,16 +27,40 @@
 		});
    	});
 </script>
+<!--[MODAL POPUP STUFF]-->
+<script src="css/bootstrap/js/bootstrap-modal.js" type="text/javascript"></script>
+<script type="text/javascript">
+	function popup(url) {
+            $.get(url, '', popupCallback, 'html');
+        }
+        function popupCallback(data) {
+            dialog = $('<div class="modal hide fade"></div>').html(data).appendTo('body')
+                .modal({backdrop: true});
+            dialog.modal('show');
+        }
+        //$(document).ready( function() {popup('include/login.php');});
+</script>
+<!--[/MODAL POPUP STUFF]-->
 </head>
 <body>
 <?php include('include/topBar.php');?>
+<div class="container">
+<!-- if he's a temporary user we show the warning bar-->
+<?php
+if ($_SESSION['temp']==1) {
+?>
+<div class="alert-message warning">
+    Welcome <?=$_SESSION['username']?>, <a href="register.php">click here</a> to change your nick, or <a onclick="popup('include/login.php')" href="#">login</a> if you already have an account.
+</div>
+<?php } ?>
+    
+<!-- Deprecated. The searchbar will be included in the topbar 
 <div id="searchbox">
     Search fluxes:<br/>
     <input id="searchbar" type="text" class="search" name="search" value="insert keyword or email" size="30"/>
     <div id="results"></div>
 </div>
-<h1>[This is your personal page. Welcome]</h1>
-
+-->
 <h2>My FLUXES:</h2>
 <div id="myfluxes">
 </div>
@@ -112,5 +131,6 @@ $(document).ready(function() {
 <h2>My Account:</h2>
 <span id="myFlux" class="blueBox draggable" flux_id="FLUXID" name="USERNAME" description="---">USERNAME</span><span class="blueBox"><span id="myMoney">MONEY</span> <a id="withdrawBtn" href="#">Withdraw</a></span>
 <br/>
+</div>
 </body>
 </html>

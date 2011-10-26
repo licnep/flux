@@ -1,0 +1,44 @@
+<!--    <script src="css/bootstrap/js/bootstrap-alerts.js" type="text/javascript"></script>-->
+<form id="loginForm" method="GET" action="scripts/login.php">
+    <fieldset>
+        <div class="modal-header"><legend>Login</legend></div>
+        <div class="modal-body">
+             <div id="error" class="alert-message error hide">Wrong username or password.</div>                
+      <div class="clearfix">
+        <label for="username">Username</label>
+        <div class="input">
+          <input class="xlarge" id="username" name="username" size="30" type="text">
+        </div>
+      </div><!-- /clearfix -->
+      <div class="clearfix">
+        <label for="password">Password</label>
+        <div class="input">
+          <input class="xlarge" id="password" name="password" size="30" type="password">
+        </div>
+      </div><!-- /clearfix -->
+        </div><!--modal body-->
+    </fieldset>
+  </form>
+    <div class="modal-footer">
+        <div style="padding-left:150px">
+        <input onClick="submitCallback()" type="submit" class="btn primary" value="Login">&nbsp;or <a href="register.php">Register</a>
+        </div>
+    </div>
+<script type="text/javascript">
+
+function submitCallback() {
+    //when the form is submitted we pass the value to the login script, which will return either 'true' or 'false''
+    //the return value will be passed to the loginCallback function
+    $.get("scripts/login.php", {"username":$('#username').val(),"password":$('#password').val()}, loginCallback,'text');
+    return false;
+}
+
+function loginCallback(json) {
+    if (json=="true") {
+        window.location = 'account_home.php';
+    } else {
+        $('#error').fadeIn(1000);
+    }
+}
+
+</script>
