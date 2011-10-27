@@ -1,7 +1,9 @@
 <!--    <script src="css/bootstrap/js/bootstrap-alerts.js" type="text/javascript"></script>-->
-<form id="loginForm" method="GET" action="scripts/login.php">
+<form id="loginForm" method="GET" action="scripts/login.php" style="margin-bottom: 0px">
     <fieldset>
-        <div class="modal-header"><legend>Login</legend></div>
+        <div class="modal-header">
+            <legend>Login</legend>
+        </div>
         <div class="modal-body">
              <div id="error" class="alert-message error hide">Wrong username or password.</div>                
       <div class="clearfix">
@@ -18,14 +20,14 @@
       </div><!-- /clearfix -->
         </div><!--modal body-->
     </fieldset>
-  </form>
     <div class="modal-footer">
         <div style="padding-left:150px">
-        <input onClick="submitCallback()" type="submit" class="btn primary" value="Login">&nbsp;or <a href="register.php">Register</a>
+        <input type="submit" class="btn primary" value="Login">&nbsp;or <a onClick="switchToRegister()" href="#">Register</a>
         </div>
     </div>
+</form>
 <script type="text/javascript">
-
+    $('#loginForm').submit(submitCallback);
 function submitCallback() {
     //when the form is submitted we pass the value to the login script, which will return either 'true' or 'false''
     //the return value will be passed to the loginCallback function
@@ -39,6 +41,14 @@ function loginCallback(json) {
     } else {
         $('#error').fadeIn(1000);
     }
+}
+
+//transform the modal dialog into a registration dialog
+function switchToRegister() {
+    $('.modal').bind('hidden',function() {
+            popup('include/register.php');
+    });
+    $('.modal').modal('hide');
 }
 
 </script>

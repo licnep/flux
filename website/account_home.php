@@ -34,9 +34,10 @@
             $.get(url, '', popupCallback, 'html');
         }
         function popupCallback(data) {
-            dialog = $('<div class="modal hide fade"></div>').html(data).appendTo('body')
-                .modal({backdrop: true});
+            dialog = $('<div class="modal hide fade"></div>').appendTo('body');
+            dialog.html(data).modal({backdrop: true});
             dialog.modal('show');
+            dialog.bind('hidden',function() {$('.modal').remove()});
         }
         //$(document).ready( function() {popup('include/login.php');});
 </script>
@@ -50,7 +51,7 @@
 if ($_SESSION['temp']==1) {
 ?>
 <div class="alert-message warning">
-    Welcome <?=$_SESSION['username']?>, <a href="register.php">click here</a> to change your nick, or <a onclick="popup('include/login.php')" href="#">login</a> if you already have an account.
+    WARNING, logged in as Guest, <a onclick="popup('include/register.php')" href="#">register</a> or <a onclick="popup('include/login.php')" href="#">login</a> to save your changes.
 </div>
 <?php } ?>
     
