@@ -14,34 +14,35 @@ $body='';
 ob_start(); //i call ob_start, so that instead of outputting everything directly, we can buffer the output and pass it to the create_page function
 ?>
 <div class="well">
-    <h2>My Fluxes:</h2>
-    <table id="myFluxes" style="background-color: white">
+    <h2>Transactions:</h2>
+    <table id="transactions" style="background-color: white">
         <tbody>
         </tbody>
     </table>
-    <div class="btn success" onclick="$FW.popupUrl('include/popups/create_flux.php')">+ Create a new flux</div>
+</div>
+<div class="well">
+    <h2>Account balance:</h2>
+    <spann id="myMoney"></span>
 </div>
 <script type="text/javascript">
     $(document).ready(function() {
-        /*we retrieve the list of the fluxes owned by the user to populate his page.*/
-        flux_api_call("get_fluxes_owned_by.php?user_id="+_session["uid"],
+        flux_api_call("get_user_balance.php?pool_id=1&user_id="+_session['uid'],
             function (json) {
-                for (var i=0; i<json.length; i++) {
-                    $Flux.addFluxToList(json[i]);
+                $('#myMoney').html(json);
+            }
+        );
+        flux_api_call("get_user_transactions.php?user_id="+_session['uid'], 
+            function (json) {
+                for (var i=0;i<json.length;i++) {
+                    console.log(json[i]);
+                    $('<tr><td>'+json[i]['timestamp']+'</td></tr>').appendTo('#transactions tbody');
+                }
+                if (json.length==0) {
+                    $('<tr><td>No transactions to show.</td></tr>').appendTo('#transactions tbody');
                 }
             }
         );
     });
-    
-    //we put all our functions in an object $Flux, to avoid polluting the global namespace
-    $Flux = {
-        addFluxToList: function (flux) {
-            $('<tr><td><div class="fluxIcon" /><a href="flux.php?id='+flux['flux_id']+'">'
-                +flux['name']
-                +'</a></td></tr>').appendTo('#myFluxes tbody');
-        }
-    }
-    
 </script>
 <?php
 $body .= ob_get_clean();

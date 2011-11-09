@@ -15,7 +15,8 @@ function FluxContainer(container,flux_id) {
 }
 
 /*the callback called when we get the list of receivers*/
-FluxContainer.prototype.gotFluxInfo = function(array) {
+FluxContainer.prototype.gotFluxInfo = function(json) {
+        array = json['children'];
 	var thisObj = this;
 	for (var i=0;i<array.length;i++) {
 		//this.addReceiver(array[i]["flux_to_id"],array[i]["name"],array[i]["description"],array[i]["share"],thisObj);

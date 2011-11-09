@@ -13,7 +13,7 @@
         <div class="container">
             <a class="brand">Fluxhub</a>
             <ul class="nav">
-                <li class="active"><a href="#">Home</a></li>
+                <li class="active"><a href="account_home.php">Home</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Community</a></li>
                 <li><a href="#">Development</a></li>
@@ -24,9 +24,10 @@
                         <?=$_SESSION['username']?>
                     </a>
                     <ul class="dropdown-menu">
+                        <li><a href="account.php">My account</a></li>
                         <li><a href="#">Settings</a></li>
                         <li><a href="scripts/logout.php?goto=<?php echo urlencode('http://'.$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"]); ?>">Logout</a></li>
-                    </ul> 
+                    </ul>
                 </li>
             </ul>
         </div>

@@ -22,7 +22,7 @@ print_formatted_result($result, $format, $callback);
 function get_user_flux_id($user_id) {
     $db = db_connect();
     $query = "SELECT flux_id,money FROM fluxes WHERE
-             owner='".mysql_real_escape_string($user_id)."' AND userflux=1";
+             owner='".mysql_real_escape_string($user_id)."' AND userflux=2";
     $result = mysql_query($query);
     if (!$result) {
         die("query failed, query: ".$query."\n error:".mysql_error());

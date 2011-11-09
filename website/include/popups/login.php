@@ -1,4 +1,3 @@
-<!--    <script src="css/bootstrap/js/bootstrap-alerts.js" type="text/javascript"></script>-->
 <form id="loginForm" method="GET" action="scripts/login.php" style="margin-bottom: 0px">
     <fieldset>
         <div class="modal-header">
@@ -27,13 +26,17 @@
     </div>
 </form>
 <script type="text/javascript">
+    $('.modal').bind('shown',function() {
+            $('#username').focus();
+    });
+    
     $('#loginForm').submit(submitCallback);
-function submitCallback() {
-    //when the form is submitted we pass the value to the login script, which will return either 'true' or 'false''
-    //the return value will be passed to the loginCallback function
-    $.get("scripts/login.php", {"username":$('#username').val(),"password":$('#password').val()}, loginCallback,'text');
-    return false;
-}
+    function submitCallback() {
+        //when the form is submitted we pass the value to the login script, which will return either 'true' or 'false''
+        //the return value will be passed to the loginCallback function
+        $.get("scripts/login.php", {"username":$('#username').val(),"password":$('#password').val()}, loginCallback,'text');
+        return false;
+    }
 
 function loginCallback(json) {
     if (json=="true") {
@@ -46,7 +49,7 @@ function loginCallback(json) {
 //transform the modal dialog into a registration dialog
 function switchToRegister() {
     $('.modal').bind('hidden',function() {
-            popup('include/register.php');
+            $FW.popupUrl('include/popups/register.php');
     });
     $('.modal').modal('hide');
 }

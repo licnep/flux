@@ -15,5 +15,6 @@ session_write_close();
 //passing the user variables to javascript, in case it's needed in the page:
 echo "<script type=\"text/javascript\">\n";
 echo 'var _session = '.json_encode($_SESSION).";\n";
+echo 'var _get = '.json_encode($_GET) .";\n";
 echo "</script>\n";
 ?>

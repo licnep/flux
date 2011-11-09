@@ -21,11 +21,17 @@
  *   It's our turn now. BE THE GIANT."
  */
 
+/**
+ * Params:
+ * name: the name of the flux you want to create
+ * description: [OPTIONAL] a short description of the flux
+ */
+
 include('API_common.php');
 
 $user_id = $_GET['user_id'];
-$name = $_GET['name'];
-$description = $_GET['description'];
+$name = isset($_GET['name'])? $_GET['name'] : "";
+$description = $_GET['description']; 
 $result = create_flux($user_id,$name,$description);
 
 require_once('print_formatted_result.php');

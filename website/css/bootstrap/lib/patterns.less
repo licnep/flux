@@ -752,7 +752,7 @@ input[type=submit].btn {
 .well {
   background-color: #f5f5f5;
   margin-bottom: 20px;
-  padding: 19px;
+  padding: 13px;
   min-height: 20px;
   border: 1px solid #eee;
   border: 1px solid rgba(0,0,0,.05);
@@ -785,8 +785,9 @@ input[type=submit].btn {
 }
 
 .modal {
-  position: fixed;
-  top: 50%;
+  position: absolute;
+  //top: 50%;
+  top: 300px;
   left: 50%;
   z-index: 11000;
   width: 560px;
@@ -801,9 +802,13 @@ input[type=submit].btn {
   .close { margin-top: 7px; }
   &.fade {
     .transition(e('opacity .3s linear, top .3s ease-out'));
-    top: -25%;
+    //top: -25%;
+    top: 0px;
   }
-  &.fade.in { top: 50%; }
+  &.fade.in { 
+    //top: 50%; 
+    top: 300px;
+  }
 }
 .modal-header {
   border-bottom: 1px solid #eee;
