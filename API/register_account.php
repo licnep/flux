@@ -67,15 +67,15 @@ function create_account($username,$password,$email,$temp=0,$plaintext=0) {
 	//this returns the last autoincrement id, that is the id of the just inserted user
 	//are we sure this works and returns the new user's id 100% of the times??
 	$id = mysql_insert_id();
-	$query = "INSERT INTO fluxes SET owner=$id, userflux=1, ".
-		"name='$username', description=''";
-
-	$result = mysql_query($query,$db);
-    if(!$result) {
-        //query failed
-		//TODO do something here
-        die("query failed, query: ".$query."\n error:".mysql_error());
-    }
+        $result = create_user_flux($id,$username);
+//	$query = "INSERT INTO fluxes SET owner=$id, userflux=1, ".
+//		"name='$username', description=''";
+//
+//	$result = mysql_query($query,$db);
+        if(!$result) {
+            //TODO do something here
+            die("failed to create userflux");
+        }
 
 	return $result;
 }
@@ -117,12 +117,17 @@ function upgrade_temp_account($username,$password,$email,$oldId,$oldHash) {
     /*
      * 3) we also update the name of his 'userflux', whic was 'guestSomething'
      */
-    $query = "UPDATE fluxes SET name='$username' WHERE owner='$oldId' AND userflux=1";
+    $query = "UPDATE fluxes SET name='$username' WHERE owner='$oldId' AND userflux=1 OR userflux=2";
     $result = mysql_query($query);
-    if (!$result) {die("Error. Query:".$query." error:".  mysql_error());}
+    if (!$result) {die("Error updating the userflux name.");}
     return $result;
 }
 
+/**
+ *
+ * @param username string
+ * @return true if the username is already in the db, false otherwise
+ */
 function username_exists($username) {
     $db = db_connect();
     $username = mysql_real_escape_string($username);
@@ -131,4 +136,39 @@ function username_exists($username) {
     if(!$result) { die("query failed, query: ".$query."\n error:".mysql_error());}
     else if (mysql_num_rows($result)!=0) {return true;}
     return false;
+}
+
+/**
+ * This function, given a user id, creates the two layers of 'userfluxes'.
+ * Basically when someone donates to a user the donation goes to the userflux of layer 2, which by default, redirects all the amount
+ * to the userflux of layer 1 (the actual user account, kind of like a bank account).
+ * A user can modify the way donations towards him are routed, by modifying the userflux of level 2.
+ * The userflux of level 1 (the actual account), is 'private' and unmodifyable. All the money that arrives to a userflux of level 1 
+ * stays in the userflux of level 1
+ * 
+ * @param string $uid 
+ * @param strin $username
+ */
+function create_user_flux($uid,$username) {
+    $db = db_connect();
+    $uid = mysql_real_escape_string($uid);
+    $username = mysql_real_escape_string($username);
+    //create the 'private', un-redirectable, userflix of level one. Basically the user's bank account
+    $query = "INSERT INTO fluxes SET owner='$uid', userflux=1, ".
+            "name='$username'";
+    $result = mysql_query($query);
+    $userflux1_id = mysql_insert_id();
+    if (!$result) {die("Error: query:".$query." error:".mysql_error());}
+    //creating the userflux of level 2. The ones people see, and that is redirectable
+    $query = "INSERT INTO fluxes SET owner=$uid, userflux=2, ".
+            "name='$username'";
+    $result = mysql_query($query);
+    $userflux2_id = mysql_insert_id();
+    if (!$result) {die("Error: query:".$query." error:".mysql_error());}
+    //connect the public userflux, with the private 'bank account'.
+    //by default all money donated to the user goes in his account, but he can change that
+    $query = "INSERT INTO routing SET flux_from_id='$userflux2_id', flux_to_id='$userflux1_id', share='100'";
+    $result = mysql_query($query);
+    if (!$result) {die("Error: query:".$query." error:".mysql_error());}
+    return true;
 }

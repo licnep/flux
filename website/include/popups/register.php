@@ -106,5 +106,9 @@
             }
         }
     }
+    
+    $('#username').parents('.modal').bind('shown', function () {
+      $('#username').focus();
+    });
 
 </script>

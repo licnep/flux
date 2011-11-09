@@ -77,6 +77,9 @@
   margin-left: auto;
   margin-right: auto;
   .clearfix();
+    > .content {
+        padding-top: 20px;
+      }
 }
 .columns(@columnSpan: 1) {
   width: (@gridColumnWidth * @columnSpan) + (@gridGutterWidth * (@columnSpan - 1));

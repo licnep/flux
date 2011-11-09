@@ -86,7 +86,7 @@ function install_tables($db) {
         description TEXT(100),
         money DECIMAL(7,2)  NOT NULL DEFAULT 0,
         last_update TIMESTAMP DEFAULT NOW(),
-        userflux BOOL DEFAULT 0,
+        userflux INT DEFAULT 0,
         PRIMARY KEY (flux_id)
         ) ENGINE = InnoDB",
         

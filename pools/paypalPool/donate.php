@@ -13,7 +13,7 @@ email: lsnpre_1235310181_per@yahoo.com<br/>
 password: 00000000  (8 zeros)<br/>
 <br/>
 <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
-Amount:<input type="text" name="amount" value="5.00" /> USD
+<!--Amount:<input type="text" name="amount" value="5.00" /> USD-->
 <input type="hidden" name="cmd" value="_donations">
 <input type="hidden" name="notify_url" value="http://flux.lolwut.net/flux/pools/paypalPool/paypal/IPN.php" />
 <input type="hidden" name="currency_code" value="EUR">
