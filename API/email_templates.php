@@ -15,7 +15,8 @@ password: $password
 }
 
 function send_flux_mail($receiver,$subject,$body) {
-    mail($receiver,$subject,$body);
+    $header = "From: no-reply@flux.lolwut.net";
+    mail($receiver,$subject,$body,$header);
 }
 
 ?>
