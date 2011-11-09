@@ -9,7 +9,7 @@ $body='';
 
 ob_start();
 ?>
-<h1 id="title"></h1>
+<h1 id="title">Loading...</h1>
 <div class="well">
     <h2>Actions:</h2>
     <button class="btn success" id="donateBtn">Support $$$</button>
@@ -25,9 +25,10 @@ ob_start();
             </tr>
         </thead>
         <tbody>
+            <tr><td>Loading...</td></tr>
         </tbody>
     </table>
-    <div class="btn success" id="addRecipientBtn">+ Add a recipient</div>
+    <div class="btn info" id="addRecipientBtn">+ Add a recipient</div>
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
@@ -35,6 +36,7 @@ ob_start();
             function(json) {
                 $Flux.flux = json;
                 $('#title').html($Flux.flux['name']);
+                $('#recipients tbody').html('');
                 for (var i=0; i<json.children.length; i++) {
                     $Flux.addRecipientToList(json.children[i]);
                 }

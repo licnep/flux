@@ -5,6 +5,7 @@ include(dirname(__FILE__).'/../API_common.php');
 GET: 
 	transaction_id
 	amount
+    amount_readable
 	signature (a base64 encoded binary RSA signature of the string $transaction_id.$amount)
 ******************/
 
@@ -67,7 +68,8 @@ If we're here everything is ok, we just gotta store the transaction in our db an
 $amount = mysql_real_escape_string($_GET['amount']);
 
 mysql_query("START TRANSACTION");
-$r1 = mysql_query("UPDATE transactions SET status=1,amount='$amount' WHERE transaction_id='".mysql_real_escape_string($transaction_id)."'");
+$r1 = mysql_query("UPDATE transactions SET status=1,amount='$amount',amount_readable='"
+    .mysql_real_escape_string($_GET['amount_readable'])."' WHERE transaction_id='".mysql_real_escape_string($transaction_id)."'");
 if (!$r1) {echo mysql_error();}
 $r2 = mysql_query("UPDATE fluxes SET money=money+'$amount' WHERE flux_id='$flux_to_id'");
 if (!$r2) {echo mysql_error();}

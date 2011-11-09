@@ -4,19 +4,27 @@ array_push($queries,
     "DROP PROCEDURE IF EXISTS move_money;",
     "CREATE PROCEDURE move_money (from_id INT)
     #this procedures moves the money from a flux to the right recipients
-    BEGIN # {
+    main:BEGIN # {
+    
         DECLARE totalM DECIMAL(7,2); #the money to be moved
         DECLARE total INT; #the sum of all the shares
-        #totalM is simply the amount of money to be moved, let's set it:
-        SELECT money FROM fluxes
-           WHERE flux_id = from_id
-           INTO totalM;
         
         #now we set total to the sum of the shares coming from 'from_id'
         SELECT SUM(share) FROM routing
            WHERE flux_from_id = from_id
            GROUP BY flux_from_id 
            INTO total;
+        #if there are no recipients, we don't move any money, and just update the timetamp
+        IF total IS NULL
+            THEN
+            UPDATE fluxes SET last_update = NOW() WHERE flux_id = from_id;
+            LEAVE main;
+        END IF;
+           
+       #totalM is simply the amount of money to be moved, let's set it:
+        SELECT money FROM fluxes
+           WHERE flux_id = from_id
+           INTO totalM;
 
         #money movement has to be a transactions, either the 2 queries are both successfull, or they both fail
         START TRANSACTION; #{

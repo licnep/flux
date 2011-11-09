@@ -16,13 +16,20 @@ ob_start(); //i call ob_start, so that instead of outputting everything directly
 <div class="well">
     <h2>Transactions:</h2>
     <table id="transactions" style="background-color: white">
+        <thead>
+            <tr>
+                <th>Type:</th><th>Amount:</th><th>Date:</th>
+            </tr>
+        </thead>
         <tbody>
+            <tr><td>Loading...</td></tr>
         </tbody>
     </table>
 </div>
 <div class="well">
     <h2>Account balance:</h2>
-    <spann id="myMoney"></span>
+    <span id="myMoney">Loading...</span>
+    <a href="#" id="withdrawBtn">Withdraw</a>
 </div>
 <script type="text/javascript">
     $(document).ready(function() {
@@ -33,15 +40,36 @@ ob_start(); //i call ob_start, so that instead of outputting everything directly
         );
         flux_api_call("get_user_transactions.php?user_id="+_session['uid'], 
             function (json) {
+                console.log(json);
+                $('#transactions tbody').html('');
                 for (var i=0;i<json.length;i++) {
-                    console.log(json[i]);
-                    $('<tr><td>'+json[i]['timestamp']+'</td></tr>').appendTo('#transactions tbody');
+                    if (json[i]['type']==='1') {//withdrawal
+                        $('<tr><td>withdrawal</td><td>'
+                            +json[i]['amount_readable']+'</td><td>'
+                            +json[i]['timestamp']+'</td></tr>').appendTo('#transactions tbody');
+                    } else {//donation
+                        id = json[i]['flux_to_id']
+                        $('<tr><td>donation to <a href="flux.php?id='+id+'" flux_id="'+id+'">'+json[i]['name']+'</a></td><td>'
+                            +json[i]['amount_readable']+'</td><td>'
+                            +json[i]['timestamp']+'</td></tr>').appendTo('#transactions tbody');
+                    }
+                    
                 }
                 if (json.length==0) {
                     $('<tr><td>No transactions to show.</td></tr>').appendTo('#transactions tbody');
                 }
             }
         );
+        /*Initialize the withdraw button:*/
+        $('#withdrawBtn').click(function() {
+            flux_api_call(
+                "pool/start_withdrawal_get_key.php?key="+_session['hash'],
+                function(json) {
+                    transaction_key = json;
+                    window.location = "../pools/paypalPool/withdraw.php?transaction_key="+transaction_key;
+                }
+            );
+        });
     });
 </script>
 <?php

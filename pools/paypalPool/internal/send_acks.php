@@ -1,6 +1,6 @@
 <?php
 require_once(dirname(__FILE__).'/common/error_handling.php');
-
+send_acks();//just for test phase
 /**
 This function gets the most recent unacked transaction and tries to send an ACK to the flux api.
 This function should be called frequently from a cron job or something.
@@ -50,7 +50,8 @@ I2SvDkQ5CmrzkW5qPaE2oO7BSqAhRZxiYpZFb5CI
     include("LocalSettings.php");
 	$url = $C_API_base_url."/pool/ack_transaction.php?".
 			"transaction_id=".$transaction_id.
-			"&&amount=".$amount.
+			"&amount=".$amount.
+            "&amount_readable=".$amount.urlencode(" $").
 			"&signature=".urlencode(base64_encode($signature));
 	$response=get_webpage($url);
 	if ($response=="SUCCESS") {

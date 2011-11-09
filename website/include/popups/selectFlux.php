@@ -113,7 +113,7 @@
     flux_api_call("get_user_flux_ID.php?user_id="+_session["uid"],
         function (json) {
             $('#myAccount a').click(function () {
-                $FluxSelector.returnFlux(json['flux_id']);
+                $FluxSelector.returnFlux(parseInt(json['flux_id']));
             });
         }
     );

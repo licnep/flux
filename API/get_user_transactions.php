@@ -19,17 +19,18 @@ print_formatted_result($result, $format, $callback);
 function get_user_transactions($user_id) {
     $db = db_connect();
     $user_id = mysql_real_escape_string($user_id);
-    $query = "SELECT * FROM transactions WHERE user_id='$user_id' AND status=1";
+    $query = "SELECT * FROM transactions AS t LEFT JOIN fluxes AS f ON t.flux_to_id=f.flux_id WHERE user_id='$user_id' AND status=1";
     $result = mysql_query($query);
     if (!$result) {
         return "error in the query:".$query.' error:'.mysql_error();
-    } else {
-        $rows = array();
-        while($r = mysql_fetch_assoc($result)) {
-                array_push($rows,$r);
-        }
-        return $rows;
+    } 
+    //convert the results to an array
+    $rows = array();
+    while($r = mysql_fetch_assoc($result)) {
+            array_push($rows,$r);
     }
+    return $rows;
+    
 }
 
 ?>

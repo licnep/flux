@@ -5,6 +5,7 @@ include(dirname(__FILE__).'/../API_common.php');
  * -status (either "SUCCESS" or "FAIL")
  * -transactioni_id
  * -amount
+ * -amount_readable
  * -signature (the rsa signature of the string $transaction_id.$amount, encoded in base64)
  * 
  */
@@ -19,6 +20,8 @@ if (!isset($_GET['transaction_id'])) die("'transaction_id' must be set.");
 $transaction_id = mysql_real_escape_string($_GET['transaction_id']);
 if (!isset($_GET['amount'])) die("'amount' must be set.");
 $amount = mysql_real_escape_string($_GET['amount']);
+if (!isset($_GET['amount_readable'])) die("'amount_readable' must be set.");
+$amount_readable = mysql_real_escape_string($_GET['amount_readable']);
 
 /*
  * 1) Retrieve the transaction and the pool data from the database.
@@ -66,7 +69,7 @@ if ($status=="SUCCESS") {
     mysql_query("START TRANSACTION");
     $r1 = mysql_query("UPDATE pools SET total=total-$amount WHERE pool_id=1");
     if (!$r1) echo "error:".mysql_error();
-    $r2 = mysql_query("UPDATE transactions SET status=1 WHERE transaction_id='$transaction_id'");
+    $r2 = mysql_query("UPDATE transactions SET status=1,amount='$amount',amount_readable='$amount_readable' WHERE transaction_id='$transaction_id'");
     if (!$r2) echo "error:".mysql_error();
     if ($r1 and $r2) {$result = mysql_query("COMMIT");} else {$result = mysql_query("ROLLBACK");}
     if (!$result) {die(mysql_error()) ;}

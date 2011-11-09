@@ -45,7 +45,7 @@ $r2 = mysql_query("UPDATE fluxes SET money=0 WHERE owner='$uid' AND userflux=1")
  */
 //generate the unique transaction id:
 $transaction_id = uniqid(); 
-$r3 = mysql_query("INSERT INTO transactions SET transaction_id='$transaction_id', user_id='$uid',pool_id=1,flux_to_id=0,amount='$amount',type=1");
+$r3 = mysql_query("INSERT INTO transactions SET transaction_id='$transaction_id', user_id='$uid',pool_id=1,flux_to_id=0,amount='$amount',type=1,status=0");
 if (!$r3) {
     echo mysql_error();
 }

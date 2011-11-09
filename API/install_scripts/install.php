@@ -108,6 +108,7 @@ function install_tables($db) {
         pool_id INT UNSIGNED NOT NULL,
         flux_to_id INT UNSIGNED NOT NULL,
         amount DECIMAL(7,2),
+        amount_readable VARCHAR(32),
         type INT NOT NULL,
         status INT DEFAULT 0,
         timestamp TIMESTAMP DEFAULT NOW(),

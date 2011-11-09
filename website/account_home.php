@@ -17,6 +17,7 @@ ob_start(); //i call ob_start, so that instead of outputting everything directly
     <h2>My Fluxes:</h2>
     <table id="myFluxes" style="background-color: white">
         <tbody>
+            <tr><td>Loading...</td></tr>
         </tbody>
     </table>
     <div class="btn success" onclick="$FW.popupUrl('include/popups/create_flux.php')">+ Create a new flux</div>
@@ -26,6 +27,7 @@ ob_start(); //i call ob_start, so that instead of outputting everything directly
         /*we retrieve the list of the fluxes owned by the user to populate his page.*/
         flux_api_call("get_fluxes_owned_by.php?user_id="+_session["uid"],
             function (json) {
+                $('#myFluxes tbody').html('');
                 for (var i=0; i<json.length; i++) {
                     $Flux.addFluxToList(json[i]);
                 }
@@ -36,7 +38,11 @@ ob_start(); //i call ob_start, so that instead of outputting everything directly
     //we put all our functions in an object $Flux, to avoid polluting the global namespace
     $Flux = {
         addFluxToList: function (flux) {
-            $('<tr><td><div class="fluxIcon" /><a href="flux.php?id='+flux['flux_id']+'">'
+            console.log(flux);
+            var icon;
+            if (flux['userflux']==='2') {icon = 'userIcon';}
+            else if (flux['userflux']==='0') {icon = 'fluxIcon';}
+            $('<tr><td><div class="'+icon+'" /><a href="flux.php?id='+flux['flux_id']+'">'
                 +flux['name']
                 +'</a></td></tr>').appendTo('#myFluxes tbody');
         }
