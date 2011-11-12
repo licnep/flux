@@ -97,12 +97,13 @@
         flux_api_call("get_fluxes_owned_by.php?user_id="+_session["uid"],
             function (json) {
                 for (var i=0; i<json.length; i++) {
-                    
                     (function (flux) {
-                        $('<tr><td><div class="fluxIcon" /><a href="#" onclick="$FluxSelector.returnFlux('
-                            +flux['flux_id']+')">'
-                            +flux['name']
-                            +'</a></td></tr>').appendTo('#myFluxes tbody');
+                        if (flux['userflux']==0) {
+                            $('<tr><td><div class="fluxIcon" /><a href="#" onclick="$FluxSelector.returnFlux('
+                                +flux['flux_id']+')">'
+                                +flux['name']
+                                +'</a></td></tr>').appendTo('#myFluxes tbody');
+                        }
                     })(json[i]);
                 }
             }

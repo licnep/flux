@@ -94,8 +94,15 @@
     }
 
     function registrationCallback(array) {
-        if (array==true) {
+        if (array['user_id']!=undefined) {
             /*yay registration is successful!*/
+            
+            //trying to save the default userflux description
+            flux_api_call("get_user_flux_ID.php?user_id="+array['user_id'],function(data) {
+                description = "##This is your personal flux, it represents you as a person\n\nBy default all donations to your flux are redirected to your account, but if you feel generous you you can redirect them to other projects";
+                flux_api_call("change_flux_opt.php?flux_id="+data['flux_id']+'&name=desc&value='+encodeURIComponent(description), function() {});
+            });
+            
             url = "scripts/login.php?username="
                 +$('input[name=username]').val()
                 +"&password="+$('input[name=password]').val();

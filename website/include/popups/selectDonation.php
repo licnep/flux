@@ -11,7 +11,9 @@
             "pool/create_transaction_key.php?key="+_session["hash"]+"&pool_id=1&flux_to_id="+$FW.popups.selectDonationMethod.data['flux_id'],
             function(json) {
                 transaction_key = json;
-                window.location = "../pools/paypalPool/donate.php?transaction_key="+transaction_key;
+                flux_api_call("get_pool_info.php?",function (data) {
+                        window.location = data['address']+"/donate.php?transaction_key="+transaction_key;
+                    });
             }
         );
     });

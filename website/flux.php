@@ -11,12 +11,22 @@ ob_start();
 ?>
 <h1 id="title">Loading...</h1>
 <div class="well">
-    <h2>Actions:</h2>
+    <div class="wellTitleBar">
+        <div class="wellTitle">Actions:</div>
+    </div>
     <button class="btn success" id="donateBtn">Support $$$</button>
-    <button class="btn info" id="addBtn">Add to one of my fluxes</button>
+    <button class="btn info" id="addBtn">Connect to another flux</button>
 </div>
 <div class="well">
-    <h2>Recipients:</h2>
+    <div class="wellTitleBar">
+        <div class="wellTitle">Description:</div>
+    </div>
+    <div id="description"></div>
+</div>
+<div class="well">
+    <div class="wellTitleBar">
+        <div class="wellTitle">Recipients:</div>
+    </div>
     <table id="recipients" style="background-color: white">
         <thead>
             <tr>
@@ -30,18 +40,35 @@ ob_start();
     </table>
     <div class="btn info" id="addRecipientBtn">+ Add a recipient</div>
 </div>
+<script type="text/javascript" src="include/markdown/showdown.js"></script>
 <script type="text/javascript">
+    
     $(document).ready(function () {
         flux_api_call("get_flux_info.php?flux_id=<?=$_GET['id']?>",
             function(json) {
                 $Flux.flux = json;
                 $('#title').html($Flux.flux['name']);
+                if ($Flux.flux['opt']==undefined) {
+                    $Flux.flux['opt'] = {desc:''}
+                }
+                $('#description').html( $Flux.converter.makeHtml($FW.stripHtmlTags($Flux.flux['opt']['desc'])) );
+                $('<div class="editIcon"></div>').click(
+                    function() {
+                        $FW.popups.editMarkdown.show(function(data) {
+                            flux_api_call("change_flux_opt.php?flux_id="+_get['id']+'&name=desc&value='+encodeURIComponent(data['text']), 
+                                function() {
+                                    window.location.reload();
+                            });
+                        },
+                        {text:$Flux.flux['opt']['desc']});
+                    }).appendTo($('#description').siblings('.wellTitleBar'));
+                
                 $('#recipients tbody').html('');
                 for (var i=0; i<json.children.length; i++) {
                     $Flux.addRecipientToList(json.children[i]);
                 }
                 //make the edit buttons clickable:
-                $.each($('.editIcon'), function(index,elem) {
+                $.each($('.editIcon[flux_id]'), function(index,elem) {
                     $(elem).click(
                         (function() {
                             var fluxID = $(elem).attr('flux_id');
@@ -68,24 +95,26 @@ ob_start();
         //this function is used to populate the list of recipient fluxes.
         addRecipientToList: function(recipient) {
             var icon = '';
+            var element;
             if (recipient['userflux']==='1') {
                 //it's an unclickable, user account'
-                $('<tr><td><div class="homeIcon"/><a href="#">'
+                element = $('<tr><td><div class="homeIcon"/><a href="#">'
                     +recipient['name']+"'s account"
-                    +'</a></td><td>'+recipient['share']+'    ('+(recipient['share']*100/$Flux.flux['total']).toFixed(4)+' %)'
+                    +'</a></td><td><div class="shareBar" style="width: '+recipient['share']+'px"></div>'+recipient['share']+'    ('+(recipient['share']*100/$Flux.flux['total']).toFixed(4)+' %)'
                     +'<div class="editIcon"/ flux_id="'+recipient['flux_to_id']+'">'+'</td></tr>').appendTo('#recipients tbody');
             }
             else {
                 if (recipient['userflux']==='2') {icon = 'userIcon';}
                 else if (recipient['userflux']==='0') {icon = 'fluxIcon';}
-                $('<tr><td><div class="' + icon +'"/><a href="flux.php?id='+recipient['flux_to_id']+'">'
+                element = $('<tr><td><div class="' + icon +'"/><a href="flux.php?id='+recipient['flux_to_id']+'">'
                     +recipient['name']
-                    +'</a></td><td>'+recipient['share']+'    ('+(recipient['share']*100/$Flux.flux['total']).toFixed(4)+' %)'
+                    +'</a></td><td><div class="shareBar" style="width: '+recipient['share']+'px"></div>'+recipient['share']+'    ('+(recipient['share']*100/$Flux.flux['total']).toFixed(4)+' %)'
                     +'<div class="editIcon"/ flux_id="'+recipient['flux_to_id']+'">'+'</td></tr>').appendTo('#recipients tbody');
             }
-        }
+        },
+        //the markdown converter (used for the description)
+        converter: new Showdown.converter()
     }
-    
 </script>
 <?php
 $body .= ob_get_clean();

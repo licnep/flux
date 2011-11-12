@@ -36,7 +36,7 @@ print_formatted_result($rows,$format,$callback);
 function get_fluxes_owned_by($user_id) {
 	require_once('execute_query.php');
 	$db = db_connect("flux_changer");
-	$query = "SELECT flux_id, name, description,userflux FROM
+	$query = "SELECT flux_id, name, opt,userflux FROM
 		fluxes
 		WHERE owner='".mysql_real_escape_string($user_id)."' AND userflux!=1;";
 	$result = mysql_query($query,$db);

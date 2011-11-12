@@ -24,20 +24,20 @@
 /**
  * Params:
  * name: the name of the flux you want to create
- * description: [OPTIONAL] a short description of the flux
+ * opt: [OPTIONAL] any additional data related to the flux
  */
 
 include('API_common.php');
 
 $user_id = $_GET['user_id'];
-$name = isset($_GET['name'])? $_GET['name'] : "";
-$description = $_GET['description']; 
-$result = create_flux($user_id,$name,$description);
+$name = isset($_GET['name'])? $_GET['name'] : '';
+$opt = isset($_GET['opt'])? $_GET['opt'] : ''; 
+$result = create_flux($user_id,$name,$opt);
 
 require_once('print_formatted_result.php');
 print_formatted_result($result,$format,$callback);
 
-function create_flux($user_id,$name,$description) {
+function create_flux($user_id,$name,$opt) {
 	//TODO login check
 
 	require_once('execute_query.php');
@@ -45,15 +45,17 @@ function create_flux($user_id,$name,$description) {
 
 	$user_id = mysql_real_escape_string($user_id);
 	$name = mysql_real_escape_string($name);
-	$description = mysql_real_escape_string($description);
+	$opt = mysql_real_escape_string($opt);
 
-	$query = "INSERT INTO fluxes SET name='$name', owner='$user_id', description='$description'";
+	$query = "INSERT INTO fluxes SET name='$name', owner='$user_id', opt='$opt'";
 	$result = mysql_query($query,$db);
-    if(!$result) {
-        //query failed
-		//TODO do something here
-        die("query failed, query: ".$query."\n error:".mysql_error());
-    }
+        if(!$result) {
+            //query failed
+            //TODO do something here
+            die("query failed, query: ".$query."\n error:".mysql_error());
+        }
+        
+        
 	return true;
 }
 ?>

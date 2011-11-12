@@ -1,3 +1,4 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <style type= "text/css">
 <!--
 div {
@@ -14,6 +15,9 @@ div {
 }
 -->
 </style>
+<link rel="stylesheet/less" type="text/css" href="../../website/css/bootstrap/lib/bootstrap.less">
+<script src="../../website/css/bootstrap/less.js" type="text/javascript"></script>
+<div class="container">
 <?php
 #FOR DEBUG: (enable error reporting)
 ini_set('display_errors',1);
@@ -23,10 +27,17 @@ error_reporting(E_ALL|E_STRICT);
 if (!isset($_GET['user'])) {
     ?>
     <form method="GET">
-    Please insert the database credential to install the database:
-        <p>Username: <input type="text" name="user" value="" /></p>
-        <p>Password: <input type="text" name="password" value="" /></p>
-        <input type="submit" name="submit" value="Create"/>
+        <h2>1) Change the API url</h2>
+        <p>Open /API/javascriptAPI/fluxAPI.js AND change the API base url, so that the website can communicate with the api (default is localhost)</p>
+        <h2>2) Connect to the paypal pool:</h2>
+        <p>the API must know where the paypal pool is located (url) in order to communicate with it. (defalt is localhost):</p>
+            PayPal pool URL: <input type="text" class="xxlarge" name="paypalPool" value="http://<?=$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME']?>/../../../pools/paypalPool/">
+            <p>(attention: the pool too must be set to communicate with this version of the API, at this url, otherwise it won't work)</p>
+        <h2>3) Install the database:</h2>
+            <p>Please insert the database credential to install the database:</p>
+            <p>Username: <input type="text" name="user" value="" /></p>
+            <p>Password: <input type="text" name="password" value="" /></p>
+            <input type="submit" name="submit" value="Create"/>
     </form>
     <?php
 }
@@ -83,10 +94,10 @@ function install_tables($db) {
         flux_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
         name VARCHAR(32),
         owner INT UNSIGNED NOT NULL,
-        description TEXT(100),
         money DECIMAL(7,2)  NOT NULL DEFAULT 0,
         last_update TIMESTAMP DEFAULT NOW(),
         userflux INT DEFAULT 0,
+        opt TEXT,
         PRIMARY KEY (flux_id)
         ) ENGINE = InnoDB",
         
@@ -143,6 +154,7 @@ function update_LocalSettings($username,$password) {
     $data .= '$C_username = "fluxAPIuser";'."\n";
     $data .= '$C_password = "password";'."\n";
     $data .= '$C_API_base_url = "http://'.$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME']."/../../\";\n";
+    $data .= '$C_paypal_pool_url = "'.$_GET['paypalPool'].'";';
     $data .= "?>";
     $result = file_put_contents("../LocalSettings.php",$data);
     if ($result) {
@@ -150,7 +162,7 @@ function update_LocalSettings($username,$password) {
     } else {
         echo "<div class=\"fail\">ERROR while saving localsettings.php!!</div>";
     }
-    echo "NOW remember to open /API/javascriptAPI/fluxAPI.js AND change the API base url (default is localhost)";
 }
 
 ?>
+</div>

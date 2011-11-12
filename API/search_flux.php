@@ -18,7 +18,7 @@ print_formatted_result($result, $format,$callback);
 function search_flux($string) {
     $db = db_connect();
     $string = mysql_real_escape_string($string);
-    $query = "SELECT * FROM fluxes WHERE name LIKE '$string%' LIMIT 10";
+    $query = "SELECT * FROM fluxes WHERE name LIKE '$string%' AND userflux!=1 LIMIT 10";
     $result = mysql_query($query);
     if (!$result) {die("XP query:".$query." error:".mysql_error());}
     $rows = array();
@@ -31,7 +31,7 @@ function search_flux($string) {
 function search_email($string) {
     $db = db_connect();
     $string = mysql_real_escape_string($string);
-    $query = "SELECT f.flux_id, f.name, f.userflux, u.email FROM fluxes AS f,users AS u WHERE u.email LIKE '$string%' AND f.owner = u.user_id AND f.userflux='1' LIMIT 10";
+    $query = "SELECT f.flux_id, f.name, f.userflux, u.email FROM fluxes AS f,users AS u WHERE u.email LIKE '$string%' AND f.owner = u.user_id AND f.userflux='2' LIMIT 10";
     $result = mysql_query($query);
     if (!$result) {die("XP query:".$query." error:".mysql_error());}
     $rows = array();

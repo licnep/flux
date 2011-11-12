@@ -26,6 +26,7 @@ isset($_GET['plaintext'])? $plaintext=1:$plaintext=0;
 if (isset($_GET['oldId'])&&isset($_GET['oldHash'])) {
     //we're just upgrading a temporary account:
     $result = upgrade_temp_account($username,$password,$email,$_GET['oldId'],$_GET['oldHash']);
+    $result = array( 'user_id' => $_GET['oldId'] );
 } else {
     //it's a new account from scratch:
     $result = create_account($username,$password,$email,$temp,$plaintext);
@@ -160,8 +161,11 @@ function create_user_flux($uid,$username) {
     $userflux1_id = mysql_insert_id();
     if (!$result) {die("Error: query:".$query." error:".mysql_error());}
     //creating the userflux of level 2. The ones people see, and that is redirectable
+    $description = 
+    "##This is your personal flux\\n\\nBy default all donations to your flux are redirected to your account, but if you feel generous you you can redirect them to other projects";
+    $opt = base64_encode(json_encode( array('desc' => $description) ));
     $query = "INSERT INTO fluxes SET owner=$uid, userflux=2, ".
-            "name='$username'";
+            "name='$username', opt='$opt'";
     $result = mysql_query($query);
     $userflux2_id = mysql_insert_id();
     if (!$result) {die("Error: query:".$query." error:".mysql_error());}

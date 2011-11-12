@@ -27,7 +27,7 @@
             function (json) {
                 for (var i=0; i<json.length; i++) {
                     (function (flux) {
-                        $('<tr><td><div class="fluxIcon" /><a href="#" onclick="$FluxSelector.returnFlux('
+                        $('<tr><td><div class="'+(flux['userflux']==0?'fluxIcon':'userIcon')+'" /><a href="#" onclick="$FluxSelector.returnFlux('
                             +flux['flux_id']+')">'
                             +flux['name']
                             +'</a></td></tr>').appendTo('#myFluxes tbody');

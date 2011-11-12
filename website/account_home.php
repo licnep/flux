@@ -38,13 +38,22 @@ ob_start(); //i call ob_start, so that instead of outputting everything directly
     //we put all our functions in an object $Flux, to avoid polluting the global namespace
     $Flux = {
         addFluxToList: function (flux) {
-            console.log(flux);
             var icon;
             if (flux['userflux']==='2') {icon = 'userIcon';}
             else if (flux['userflux']==='0') {icon = 'fluxIcon';}
-            $('<tr><td><div class="'+icon+'" /><a href="flux.php?id='+flux['flux_id']+'">'
+            var newRow = $('<tr><td><div class="'+icon+'" /><a rel="twipsy" href="flux.php?id='+flux['flux_id']+'">'
                 +flux['name']
                 +'</a></td></tr>').appendTo('#myFluxes tbody');
+            //Tooltip for your default personal user flux:
+            if (flux['userflux']==='2') {
+                newRow.find('a').twipsy({
+                    title: function() {return "<big><b>Your personal flux</b></big><br/>By default 100% of donations go to your account. If you want you can redirect them somewhere else";},
+                    content: function() {return 'content';},
+                    placement: 'right',
+                    html: true,
+                    offset:20
+                });
+            }
         }
     }
     
@@ -54,6 +63,14 @@ $body .= ob_get_clean();
 /*
  * END 1) list of fluxes ===============================================================
  */
+
+//START TOOLTIPS/POPOVERS
+ob_start(); ?>
+<script type="text/javascript" src="css/bootstrap/js/bootstrap-twipsy.js"></script>
+<script type="text/javascript" src="css/bootstrap/js/bootstrap-popover.js"></script>
+<?php
+$head .= ob_get_clean();
+//END TOOLTIPS/POPOVERS
 
 require_once(dirname(__FILE__).'/scripts/page_creator.php');
 $html = create_page($body,$head);

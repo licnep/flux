@@ -1,3 +1,4 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <style type= "text/css">
 <!--
 div {
@@ -14,6 +15,9 @@ div {
 }
 -->
 </style>
+<link rel="stylesheet/less" type="text/css" href="../../../website/css/bootstrap/lib/bootstrap.less">
+<script src="../../../website/css/bootstrap/less.js" type="text/javascript"></script>
+<div class="container">
 <?php
 #FOR DEBUG: (enable error reporting)
 ini_set('display_errors',1);
@@ -23,7 +27,11 @@ error_reporting(E_ALL|E_STRICT);
 if (!isset($_GET['user'])) {
     ?>
     <form method="GET">
-    Please insert the database credential to install the database:
+        <h2>1) Connect with the API</h2>
+        <p>Insert the API base url (ending in API/)</p>
+        <input type="text" class="xxlarge" name="APIurl" value="http://<?=$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME']?>/../../../../API/">
+        <h2>2) Install the database:</h2>
+    <p>Please insert the database credential to install the database:</p>
         <p>Username: <input type="text" name="user" value="" /></p>
         <p>Password: <input type="text" name="password" value="" /></p>
         <input type="submit" name="submit" value="Create"/>
@@ -85,7 +93,7 @@ function update_LocalSettings($username,$password) {
     $data = "<?php\n";
     $data .= '$C_username = "poolUser";'."\n";
     $data .= '$C_password = "password";'."\n";
-    $data .= '$C_API_base_url = "http://'.$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME']."/../../../../API/\";\n";
+    $data .= '$C_API_base_url = "'.$_GET['APIurl']."\";\n";
     $data .= "?>";
     $result = file_put_contents("../internal/LocalSettings.php",$data);
     if ($result) {
@@ -96,3 +104,4 @@ function update_LocalSettings($username,$password) {
 }
 
 ?>
+</div>

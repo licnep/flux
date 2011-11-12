@@ -40,7 +40,7 @@
 
 function loginCallback(json) {
     if (json=="true") {
-        window.location = 'account_home.php';
+        window.location.reload();
     } else {
         $('#error').fadeIn(1000);
     }

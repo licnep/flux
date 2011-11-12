@@ -14,6 +14,11 @@ $body='';
 ob_start(); //i call ob_start, so that instead of outputting everything directly, we can buffer the output and pass it to the create_page function
 ?>
 <div class="well">
+    <h2>Account balance:</h2>
+    <span id="myMoney">Loading...</span>
+    <a href="#" id="withdrawBtn">Withdraw</a>
+</div>
+<div class="well">
     <h2>Transactions:</h2>
     <table id="transactions" style="background-color: white">
         <thead>
@@ -25,11 +30,6 @@ ob_start(); //i call ob_start, so that instead of outputting everything directly
             <tr><td>Loading...</td></tr>
         </tbody>
     </table>
-</div>
-<div class="well">
-    <h2>Account balance:</h2>
-    <span id="myMoney">Loading...</span>
-    <a href="#" id="withdrawBtn">Withdraw</a>
 </div>
 <script type="text/javascript">
     $(document).ready(function() {
@@ -66,9 +66,10 @@ ob_start(); //i call ob_start, so that instead of outputting everything directly
                 "pool/start_withdrawal_get_key.php?key="+_session['hash'],
                 function(json) {
                     transaction_key = json;
-                    window.location = "../pools/paypalPool/withdraw.php?transaction_key="+transaction_key;
-                }
-            );
+                    flux_api_call("get_pool_info.php?",function (data) {
+                        window.location = data['address']+"/withdraw.php?transaction_key="+transaction_key;
+                    });
+                });
         });
     });
 </script>
