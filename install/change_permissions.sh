@@ -1,4 +1,4 @@
 #!/bin/bash
 
-find ./ -name "LocalSettings.php" | xargs chmod a+w
+find ../ -name "LocalSettings.php" | xargs chmod a+w
 

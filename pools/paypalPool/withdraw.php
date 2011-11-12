@@ -20,7 +20,8 @@ else $receiver = $_POST['receiver'];
  */
 
 require_once(dirname(__FILE__)."/internal/common/get_webpage.php");
-$url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME']."/../../../API/pool/get_transaction_amount.php?transaction_id=$key";
+include('internal/LocalSettings.php');
+$url = $C_API_base_url."/pool/get_transaction_amount.php?transaction_id=$key";
 $data = json_decode(get_webpage($url));
 if(!isset($data)) die("error getting the json transaction amount from the API");
 
