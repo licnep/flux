@@ -47,6 +47,6 @@ if ($amount>$total) die("ERROR amount greater than total.");
 
 if ($_GET['total']==0) $amount=0; //avoid division by zero when the total is 0
 else $amount = ($poolTotal*$_GET['amount'])/$_GET['total'];
-echo number_format($amount, 2)." $";
+echo number_format($amount, 2)." €";
 
 ?>

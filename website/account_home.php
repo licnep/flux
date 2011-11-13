@@ -45,15 +45,15 @@ ob_start(); //i call ob_start, so that instead of outputting everything directly
                 +flux['name']
                 +'</a></td></tr>').appendTo('#myFluxes tbody');
             //Tooltip for your default personal user flux:
-            if (flux['userflux']==='2') {
-                newRow.find('a').twipsy({
-                    title: function() {return "<big><b>Your personal flux</b></big><br/>By default 100% of donations go to your account. If you want you can redirect them somewhere else";},
-                    content: function() {return 'content';},
-                    placement: 'right',
-                    html: true,
-                    offset:20
-                });
-            }
+//            if (flux['userflux']==='2') {
+//                newRow.find('a').twipsy({
+//                    title: function() {return "<big><b>Your personal flux</b></big><br/>By default 100% of donations go to your account. If you want you can redirect them somewhere else";},
+//                    content: function() {return 'content';},
+//                    placement: 'right',
+//                    html: true,
+//                    offset:20
+//                });
+//            }
         }
     }
     
