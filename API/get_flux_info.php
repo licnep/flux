@@ -5,8 +5,10 @@ $flux_id = $_GET['flux_id'];
 
 $result = get_flux_info($flux_id,$format);
 $rows = array();
+$total = 0;
 while($r = mysql_fetch_assoc($result)) {
 	array_push($rows,$r);
+        $total += $r['share'];
 }
 $result = get_name_desc($flux_id);
 $row  = mysql_fetch_array($result);
@@ -14,7 +16,7 @@ $row  = mysql_fetch_array($result);
 $object = (object)array('flux_id'=>$row['flux_id'],
                         'name' => $row['name'],
                         'opt' => (json_decode(stripslashes(base64_decode($row['opt'])))), 
-                        'total'=> $row['total'],
+                        'total'=> $total,
                         'userflux' =>  $row['userflux'],
                         'children' => $rows);
 
@@ -38,8 +40,7 @@ function get_flux_info($flux_id) {
 function get_name_desc($flux_id) {
     require_once('execute_query.php');
     $db = db_connect("flux_changer");
-    $query = "SELECT SUM(share) AS total,f.flux_id,f.name,f.opt,f.userflux FROM fluxes AS f,routing AS r WHERE f.flux_id='".mysql_real_escape_string($flux_id)."'
-        AND r.flux_from_id=f.flux_id GROUP BY f.flux_id";
+    $query = "SELECT f.flux_id,f.name,f.opt,f.userflux FROM fluxes AS f WHERE f.flux_id='".mysql_real_escape_string($flux_id)."'";
     $result = mysql_query($query,$db);
     if(!$result) {//TODO something
             die("query failed, query: ".$query."\n error:".mysql_error());
