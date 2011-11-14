@@ -51,7 +51,7 @@ I2SvDkQ5CmrzkW5qPaE2oO7BSqAhRZxiYpZFb5CI
 	$url = $C_API_base_url."/pool/ack_transaction.php?".
 			"transaction_id=".$transaction_id.
 			"&amount=".$amount.
-            "&amount_readable=".$amount.urlencode(" $").
+            "&amount_readable=".$amount.urlencode(" €").
 			"&signature=".urlencode(base64_encode($signature));
 	$response=get_webpage($url);
 	if ($response=="SUCCESS") {

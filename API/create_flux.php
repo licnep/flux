@@ -45,7 +45,8 @@ function create_flux($user_id,$name,$opt) {
 
 	$user_id = mysql_real_escape_string($user_id);
 	$name = mysql_real_escape_string($name);
-	$opt = mysql_real_escape_string($opt);
+        //todo change this temporary opt thing:
+	$opt = base64_encode(json_encode( array('desc' => '') ));
 
 	$query = "INSERT INTO fluxes SET name='$name', owner='$user_id', opt='$opt'";
 	$result = mysql_query($query,$db);
