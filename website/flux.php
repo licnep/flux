@@ -15,7 +15,7 @@ ob_start();
         <div class="wellTitle">Actions:</div>
     </div>
     <button class="btn success" id="donateBtn">Support $$$</button>
-    <button class="btn info" id="addBtn">Connect to another flux</button>
+    <button class="btn info" id="addBtn">Add to one of my fluxes</button>
 </div>
 <div class="well">
     <div class="wellTitleBar">
