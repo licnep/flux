@@ -32,6 +32,8 @@ $txn_id = $_POST['txn_id'];
 $receiver_email = $_POST['receiver_email'];
 $payer_email = $_POST['payer_email'];
 
+E_log('RAW='.$raw_post_data);
+
 if (!$fp) {
 // TODO log the error
 } else {
@@ -52,7 +54,7 @@ if (strcmp ($res, "VERIFIED") == 0) {
         $result = store_transaction($_POST['item_number'],$_POST['mc_gross']-$_POST['mc_fee']);
         // TODO check that we stored the transaction successfully
     }
-    else if (is_successful_withdrawal($_POST,$raw_post_data)) {
+/*    else if (is_successful_withdrawal($_POST,$raw_post_data)) {
         E_log('its a successful withdrawal');
         E_log('RAW='.$raw_post_data);
         require_once('../internal/store_withdrawal.php');
@@ -60,6 +62,13 @@ if (strcmp ($res, "VERIFIED") == 0) {
         $postArray = getIPNResponseObject($raw_post_data);
         $amount = $postArray['transaction'][0]['amount'];
         $amount = substr($amount,4); //the first 3 characters are the currency
+        store_withdrawal($key,$amount,1);
+    }*/
+    else if (is_successful_mass_withdrawal($_POST)) {
+        E_log('its a successful mass withdrawal');
+        require_once('../internal/store_withdrawal.php');
+        $key = $_POST['unique_id_1'];
+        $amount = $_POST['mc_gross_1'];
         store_withdrawal($key,$amount,1);
     }
     
@@ -106,6 +115,25 @@ function is_successful_withdrawal(&$post,&$rawpost) {
         //so he has to manually accept the payment
         return false;
     }
+    return true;
+}
+
+function is_successful_mass_withdrawal(&$post) {
+    /*
+        REQUIREMENTS:
+        txn_type=masspay
+        payer_email=seller_1309852781_biz@yahoo.com
+        status_1=Completed
+    */
+    if (!isset($post['payer_email'])) return false;
+    if ($post['payer_email']!='seller_1309852781_biz@yahoo.com') return false;
+    
+    if (!isset($post['txn_type']) || $post['txn_type']!="masspay") return false;
+    
+    if(!isset($post['status_1']) || $post['status_1']!='Completed') return false;
+    
+    if(!isset($post['notify_version']) || $post['notify_version']!='3.4') return false;
+    
     return true;
 }
 

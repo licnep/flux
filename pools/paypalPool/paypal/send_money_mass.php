@@ -1,6 +1,6 @@
 <?php
+send_money_mass('123','100');
 
-$environment = 'sandbox';	// or 'beta-sandbox' or 'live'
 
 /**
  * Send HTTP POST Request
@@ -10,8 +10,8 @@ $environment = 'sandbox';	// or 'beta-sandbox' or 'live'
  * @return	array	Parsed HTTP Response body
  */
 function PPHttpPost($methodName_, $nvpStr_) {
-	global $environment;
 
+    $environment='sandbox';
 	// Set up your API credentials, PayPal end point, and API version.
 	$API_UserName = urlencode('seller_1309852781_biz_api1.yahoo.com');
 	$API_Password = urlencode('1309852826');
