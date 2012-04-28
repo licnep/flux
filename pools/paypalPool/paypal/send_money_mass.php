@@ -1,6 +1,4 @@
 <?php
-send_money_mass('123','100');
-
 
 /**
  * Send HTTP POST Request
