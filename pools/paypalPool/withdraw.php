@@ -33,8 +33,8 @@ if(!isset($data)) die("error getting the json transaction amount from the API");
 //the next line is very simplified, we should actually make a conversion
 $amount = $data->{'amount'};
 
-require_once(dirname(__FILE__).'/paypal/send_money.php');
-send_money($key,$amount,$receiver);
+require_once(dirname(__FILE__).'/paypal/send_money_mass.php');
+send_money_mass($key,$amount,$receiver);
 
 ?>
 </div>
