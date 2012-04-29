@@ -118,7 +118,7 @@ function upgrade_temp_account($username,$password,$email,$oldId,$oldHash) {
     /*
      * 3) we also update the name of his 'userflux', whic was 'guestSomething'
      */
-    $query = "UPDATE fluxes SET name='$username' WHERE owner='$oldId' AND userflux=1 OR userflux=2";
+    $query = "UPDATE fluxes SET name='$username' WHERE owner='$oldId' AND (userflux=1 OR userflux=2)";
     $result = mysql_query($query);
     if (!$result) {die("Error updating the userflux name.");}
     return $result;
