@@ -73,6 +73,6 @@ $head .= ob_get_clean();
 //END TOOLTIPS/POPOVERS
 
 require_once(dirname(__FILE__).'/scripts/page_creator.php');
-$html = create_page($body,$head);
+$html = create_page($body,$head,true);
 echo $html;
 ?>
