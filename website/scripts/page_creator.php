@@ -20,7 +20,7 @@
  * 
  */
 
-function create_page($body,$head="", $needs_registration=false) {
+function create_page($body,$head="", $pageID="", $needs_registration=false) {
     
     ob_start(); //we call this so that the output is kept in a buffer, because we want to return it as a string, not output it
 
@@ -67,7 +67,10 @@ function create_page($body,$head="", $needs_registration=false) {
         <?=$head;?>
     </head>
     <body>
-    <?php include(dirname(__FILE__).'../../include/topBar.php');?>
+    <?php 
+        include(dirname(__FILE__).'../../include/topBar.php');
+        echo generate_topBar($pageID);
+    ?>
         <div class="container" style="min-height:400px">
             <div class="content">
                 <?php
