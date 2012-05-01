@@ -45,8 +45,8 @@ function create_account($username,$password,$email,$temp=0,$plaintext=0) {
 
 	$username = mysql_real_escape_string($username);
 	$hash = md5(md5($password).md5($username));
-        $temp = mysql_real_escape_string($temp);
-        $email = mysql_real_escape_string($email);
+    $temp = mysql_real_escape_string($temp);
+    $email = mysql_real_escape_string($email);
         
         /*let's check if the username is already in use*/
         if (username_exists($username)) return "error: duplicated username";
@@ -77,6 +77,18 @@ function create_account($username,$password,$email,$temp=0,$plaintext=0) {
             //TODO do something here
             die("failed to create userflux");
         }
+
+    //the registration webpage wants the new userId to be returned after successful registration,
+    //don't know how much sense this makes but let's do it for now
+    $query = "SELECT user_id FROM users WHERE username='$username'";
+
+	$result = mysql_query($query,$db);
+    if(!$result) {
+        //query failed
+		//TODO do something here
+        die("query failed, query: ".$query."\n error:".mysql_error());
+    }
+    $result = mysql_fetch_array($result);
 
 	return $result;
 }
