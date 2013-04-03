@@ -47,11 +47,11 @@ div.receiverShare {
 }
 
 /*used for the flux title, and opssibly in many other places, but not yet*/
-span.blueBox {
+.blueBox {
 	margin-right: 10px;
 	padding: 10px;
 	height: 20px;
-	width: 50px;
+        min-width: 70px;
 	background-color:#4E6685;
 	border:0px solid #101010;
     -webkit-border-radius: 4px;    /* for Safari */

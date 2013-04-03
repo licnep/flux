@@ -1,3 +1,4 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <style type= "text/css">
 <!--
 div {
@@ -14,6 +15,9 @@ div {
 }
 -->
 </style>
+<link rel="stylesheet/less" type="text/css" href="../../website/css/bootstrap/lib/bootstrap.less">
+<script src="../../website/css/bootstrap/less.js" type="text/javascript"></script>
+<div class="container">
 <?php
 #FOR DEBUG: (enable error reporting)
 ini_set('display_errors',1);
@@ -22,11 +26,18 @@ error_reporting(E_ALL|E_STRICT);
 //when the user first opens the page we show a form where he must insert the database credential to install:
 if (!isset($_GET['user'])) {
     ?>
-    Please insert the database credential to install the databases:
     <form method="GET">
-        <p>Username:</p><input type="text" name="user" value="" />
-        <p>Password:</p><input type="text" name="password" value="" />
-        <input type="submit" name="submit" value="Create"/>
+        <h2>1) Change the API url</h2>
+        <p>Open /API/javascriptAPI/fluxAPI.js AND change the API base url, so that the website can communicate with the api (default is localhost)</p>
+        <h2>2) Connect to the paypal pool:</h2>
+        <p>the API must know where the paypal pool is located (url) in order to communicate with it. (defalt is localhost):</p>
+            PayPal pool URL: <input type="text" class="xxlarge" name="paypalPool" value="http://<?=$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME']?>/../../../pools/paypalPool/">
+            <p>(attention: the pool too must be set to communicate with this version of the API, at this url, otherwise it won't work)</p>
+        <h2>3) Install the database:</h2>
+            <p>Please insert the database credential to install the database:</p>
+            <p>Username: <input type="text" name="user" value="" /></p>
+            <p>Password: <input type="text" name="password" value="" /></p>
+            <input type="submit" name="submit" value="Create"/>
     </form>
     <?php
 }
@@ -69,8 +80,12 @@ function install_tables($db) {
         "CREATE TABLE users(
         user_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
         username VARCHAR(32),
+        email VARCHAR(32),
         hash VARCHAR(32),
         confirmed BOOL DEFAULT 0,
+        temp BOOL DEFAULT 0,
+        plaintextPWD VARCHAR(32),
+        created TIMESTAMP DEFAULT NOW(),
         PRIMARY KEY (user_id),
         UNIQUE (username)
         ) ENGINE = InnoDB",
@@ -79,9 +94,10 @@ function install_tables($db) {
         flux_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
         name VARCHAR(32),
         owner INT UNSIGNED NOT NULL,
-        description TEXT(100),
         money DECIMAL(7,2)  NOT NULL DEFAULT 0,
-        userflux BOOL DEFAULT 0,
+        last_update TIMESTAMP DEFAULT NOW(),
+        userflux INT DEFAULT 0,
+        opt TEXT,
         PRIMARY KEY (flux_id)
         ) ENGINE = InnoDB",
         
@@ -94,30 +110,39 @@ function install_tables($db) {
         PRIMARY KEY (flux_from_id,flux_to_id)
         ) ENGINE = InnoDB;",
 
-		"CREATE TABLE transactions(
-		transaction_id VARCHAR(32) NOT NULL,
-		user_id INT UNSIGNED NOT NULL,
-		pool_id INT UNSIGNED NOT NULL,
-		flux_to_id INT UNSIGNED NOT NULL,
-		status INT DEFAULT 0,
-		PRIMARY KEY (transaction_id)
-		) ENGINE = InnoDB;",
+        /*i put a timestamp so we could eliminate unused transaction keys after a while*/
+        /*STATUS is 0 when the key is generated, 1 when the transaction is completed, 2 when it has failed (but the key can't be used again)*/
+        /*TYPE is the type of transaction. 0 for donation, 1 for withdrawal*/
+        "CREATE TABLE transactions(
+        transaction_id VARCHAR(36),
+        user_id INT UNSIGNED NOT NULL,
+        pool_id INT UNSIGNED NOT NULL,
+        flux_to_id INT UNSIGNED NOT NULL,
+        amount DECIMAL(7,2),
+        amount_readable VARCHAR(32),
+        type INT NOT NULL,
+        status INT DEFAULT 0,
+        timestamp TIMESTAMP DEFAULT NOW(),
+        PRIMARY KEY (transaction_id)
+        ) ENGINE = InnoDB;",
 
-		"INSERT INTO transactions SET transaction_id=1, pool_id=1",
+        "CREATE TABLE pools(
+        pool_id INT UNSIGNED NOT NULL,
+        public_key BLOB NOT NULL,
+        ack_url BLOB NOT NULL,
+        total DECIMAL(7,2) NOT NULL DEFAULT 0,
+        PRIMARY KEY (pool_id)
+        ) ENGINE = InnoDB;",
 
-		"CREATE TABLE pools(
-		pool_id INT UNSIGNED NOT NULL,
-		public_key BLOB NOT NULL,
-		ack_url BLOB NOT NULL,
-		PRIMARY KEY (pool_id)
-		) ENGINE = InnoDB;",
-
-		"INSERT INTO pools SET pool_id=1,ack_url='www.google.com',public_key=
+        "INSERT INTO pools SET pool_id=1,ack_url='www.google.com',public_key=
 '-----BEGIN PUBLIC KEY-----
 MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBANDiE2+Xi/WnO+s120NiiJhNyIButVu6
 zxqlVzz0wy2j4kQVUC4ZRZD80IY+4wIiX2YxKBZKGnd2TtPkcJ/ljkUCAwEAAQ==
 -----END PUBLIC KEY-----'"
+        
     );
+    /*we append the queries to create the procedures that move the money around*/
+    include("add_procedure_creation_queries.php");
     foreach ($queries as $query) {
         $result = mysql_query($query,$db);
         echo '<div class="'.($result?"success":"fail").'"><small>'.$query.'</small> : <b>'.($result?"SUCCESS":"FAIL: ".mysql_error()).'</b></div>';
@@ -128,13 +153,16 @@ function update_LocalSettings($username,$password) {
     $data = "<?php\n";
     $data .= '$C_username = "fluxAPIuser";'."\n";
     $data .= '$C_password = "password";'."\n";
+    $data .= '$C_API_base_url = "http://'.$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME']."/../../\";\n";
+    $data .= '$C_paypal_pool_url = "'.$_GET['paypalPool'].'";';
     $data .= "?>";
     $result = file_put_contents("../LocalSettings.php",$data);
     if ($result) {
-        echo "localsettings.php succesfully saved";
+        echo "<div class=\"success\">localsettings.php succesfully saved</div>";
     } else {
-        echo "ERROR while saving localsettings.php!!";
+        echo "<div class=\"fail\">ERROR while saving localsettings.php!!</div>";
     }
 }
 
 ?>
+</div>

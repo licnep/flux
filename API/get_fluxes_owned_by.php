@@ -31,15 +31,14 @@ $rows = array();
 while($r = mysql_fetch_assoc($result)) {
 	array_push($rows,$r);
 }
-require_once("print_formatted_result.php");
 print_formatted_result($rows,$format,$callback);
 
 function get_fluxes_owned_by($user_id) {
 	require_once('execute_query.php');
 	$db = db_connect("flux_changer");
-	$query = "SELECT flux_id, name, description FROM
+	$query = "SELECT flux_id, name, opt,userflux FROM
 		fluxes
-		WHERE owner='".mysql_real_escape_string($user_id)."' AND userflux=0;";
+		WHERE owner='".mysql_real_escape_string($user_id)."' AND userflux!=1;";
 	$result = mysql_query($query,$db);
 	if(!$result) {//TODO something
 		die("query failed, query: ".$query."\n error:".mysql_error());

@@ -39,7 +39,7 @@ define('PROXY_PORT', '808');
 
 /**
 # API user: The user that is identified as making the call. you can
-# also use your own API username that you created on PayPal’s sandbox
+# also use your own API username that you created on PayPalï¿½s sandbox
 # or the PayPal live site
 */
 
@@ -68,7 +68,7 @@ define('API_SIGNATURE', 'AQU0e5vuZCvSg-XJploSa.sGUDlpAxy.5aes1k0X7kos-o-yVRe1SgI
  * specifies the Log file path.
  * 
  */
-define('LOGFILENAME','logs/paypal_platform.log');
+define('LOGFILENAME',dirname(__FILE__).'/../Log/testLog.log');
 
 /**
  * Use the following setting (false) if you are testing or using SDK against live PayPal's production server

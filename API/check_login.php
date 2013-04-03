@@ -31,7 +31,10 @@ function login($username,$hash) {
     }
 	if (mysql_numrows($result)==1) {
 		$row = mysql_fetch_array($result);
-		$result = array("uid" => $row['user_id'], 'username'=>$row['username'],'hash'=>$row['hash']);	
+		$result = array("uid" => $row['user_id'], 
+                                'username'=>$row['username'],
+                                'hash'=>$row['hash'],
+                                'temp'=>$row['temp']);	
 		return $result;
 	} else {
 		return false;

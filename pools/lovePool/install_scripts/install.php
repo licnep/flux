@@ -22,10 +22,10 @@ error_reporting(E_ALL|E_STRICT);
 //when the user first opens the page we show a form where he must insert the database credential to install:
 if (!isset($_GET['user'])) {
     ?>
-    Please insert the database credential to install the database:
     <form method="GET">
-        <p>Username:</p><input type="text" name="user" value="" />
-        <p>Password:</p><input type="text" name="password" value="" />
+    Please insert the database credential to install the database:
+        <p>Username: <input type="text" name="user" value="" /></p>
+        <p>Password: <input type="text" name="password" value="" /></p>
         <input type="submit" name="submit" value="Create"/>
     </form>
     <?php
@@ -67,8 +67,9 @@ function install_tables($db) {
         "GRANT ALL ON $db_dbname.* TO 'poolUser'@'localhost'",
         
         "CREATE TABLE transactions(
-        transaction_id INT UNSIGNED NOT NULL,
+        transaction_id VARCHAR(36),
         amount DECIMAL(5,2),
+        type INTEGER NOT NULL,
 		ack BOOL DEFAULT 0,
         PRIMARY KEY (transaction_id)
         ) ENGINE = InnoDB"
@@ -83,6 +84,7 @@ function update_LocalSettings($username,$password) {
     $data = "<?php\n";
     $data .= '$C_username = "poolUser";'."\n";
     $data .= '$C_password = "password";'."\n";
+    $data .= '$C_API_base_url = "http://'.$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME']."/../../../../API/\";\n";
     $data .= "?>";
     $result = file_put_contents("../LocalSettings.php",$data);
     if ($result) {
