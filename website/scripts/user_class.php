@@ -24,15 +24,21 @@ class user {
 		} elseif ( isset($_COOKIE['mtwebLogin']) ) {
 			$this->_checkRememberedCookie($_COOKIE['mtwebLogin']);
 		} else {
-			user_logout();
+                        $this->_login_as_temp_user();
+			//user_logout();
 		}
 	}
+        
+        function _login_as_temp_user() {
+                require_once(dirname(__FILE__).'/../../API/phpAPI/phpAPI.php');
+                $json = flux_api_call("create_temp_user.php");
+                $result = json_decode($json);
+                if (!$result) {user_logout();return false;}
+                $this->_setSession($result, true);
+        }
 
 	function _CheckLogin ($username, $hash, $remember) {
-		//TODO: this has to change, did it because the require wouldn't work 
-		//from both the root and scripts directory
-		if (file_exists('../../API/phpAPI/phpAPI.php')) require_once('../../API/phpAPI/phpAPI.php');
-		else require_once('../API/phpAPI/phpAPI.php');
+		require_once(dirname(__FILE__).'/../../API/phpAPI/phpAPI.php');
 		$output = flux_api_call("check_login.php?username=".$username."&hash=".$hash);
 		//done with the remote connection, now the result of the login operation is in $output
 		$result = json_decode($output);
@@ -47,9 +53,15 @@ class user {
 	}
 
 	function _setSession($result, $remember = true, $init = true) {
+                if (!$result) {
+                    /*there's been some problem with the API call, we must logout*/
+                    user_logout();
+                    return;
+                }
 		$_SESSION['uid'] = $result->{'uid'};
 		$_SESSION['username'] = $result->{'username'};
 		$_SESSION['hash'] = $result->{'hash'};
+                $_SESSION['temp'] = $result->{'temp'};
 		$_SESSION['logged'] = true;
 		
 		if ($remember) {

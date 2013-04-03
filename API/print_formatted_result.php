@@ -16,6 +16,7 @@ function print_formatted_result($result,$format,$callback="") {
 			echo str_replace("%s",json_encode($result),stripslashes($callback));
 		}
 		else echo json_encode($result);
+        return;
 	}
 	//TODO other formats
 }

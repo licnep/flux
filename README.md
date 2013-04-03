@@ -15,8 +15,8 @@ Installation
 
 Requirements: apache, php, mysql.
 
-open up your browser and go to:
-API/install_scripts/install.php
+Open up your browser and go to:
+install/install.php
 
 Help
 =========

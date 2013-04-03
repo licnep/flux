@@ -4,8 +4,8 @@ require_once("db_connect.php");
 
 $db = db_connect();
 
-$query = "INSERT INTO transactions SET transaction_id=".mysql_real_escape_string($_POST['transaction_key']).
-		 ", amount=".mysql_real_escape_string($_POST['amount']);
+$query = "INSERT INTO transactions SET transaction_id='".mysql_real_escape_string($_POST['transaction_key']).
+		 "', amount=".mysql_real_escape_string($_POST['amount']).', type=0';
 $result = mysql_query($query,$db);
 if(!$result) {
     die("Transaction FAILED, query: ".$query."\n error:".mysql_error());

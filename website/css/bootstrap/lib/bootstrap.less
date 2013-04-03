@@ -1,0 +1,116 @@
+/*!
+ * Bootstrap @VERSION
+ *
+ * Copyright 2011 Twitter, Inc
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Designed and built with all the love in the world @twitter by @mdo and @fat.
+ * Date: @DATE
+ */
+
+// CSS Reset
+@import "reset.less";
+
+// Core variables and mixins
+@import "variables.less"; // Modify this for custom colors, font-sizes, etc
+@import "mixins.less";
+
+// Grid system and page structure
+@import "scaffolding.less";
+
+// Styled patterns and elements
+@import "type.less";
+@import "forms.less";
+@import "tables.less";
+@import "patterns.less";
+
+//flux-specific stuff (better putit all in a file later)
+.fluxIcon {
+    background: url('../../../img/fluxIcon.png');
+    display: block;
+    float:left;
+    height: 14px;
+    width: 12px;
+    margin-right:6px;
+    margin-top:2px;
+}
+
+.userIcon {
+    background: url('../../../img/userIcon.png');
+    display: block;
+    float:left;
+    height: 14px;
+    width: 13px;
+    margin-right:6px;
+    margin-top:2px;
+}
+
+.editIcon {
+    background: url('../../../img/edit.png');
+    display: inline-block;
+    //float:right;
+    cursor:pointer;
+    height: 15px;
+    width: 13px;
+    margin-left:6px;
+    margin-top:2px;
+}
+
+.emailIcon {
+    background: url('../../../img/emailIcon.png');
+    display: inline-block;
+    float:left;
+    height: 12px;
+    width: 15px;
+    margin-right:6px;
+    margin-top:3px;
+}
+
+.homeIcon {
+    background: url('../../../img/homeIcon.png');
+    display: inline-block;
+    float:left;
+    height: 12px;
+    width: 15px;
+    margin-right:6px;
+    margin-top:3px;
+}
+
+.wellTitleBar {
+    position: relative;
+    width:100%;
+    height:31px;
+    top: -14px;
+    padding-top:5px;
+}
+
+.wellTitle {
+    float:left;
+    color: @grayDark;
+    display: block;
+    padding: 5px 14px 6px;
+    text-shadow: 0 1px 1px rgba(255,255,255,.75);
+    color: #333;
+    border: 1px solid #ccc;
+    border-bottom-color: #bbb;
+    //#gradient > .vertical(#eeeeee, darken(#eeeeee, 5%));
+    position: relative;
+    top: -5px;
+    cursor: default;
+    .border-radius(0px);
+    .bottom-border-radius(8px);
+}
+
+.shareBar {
+    display: inline-block;
+    float: left;
+    width:50px;
+    margin-right: 10px;
+    margin-top:2px;
+    height: 15px;
+    border: 1px solid #ccc;
+    border-bottom-color: #bbb;
+    .border-radius(4px);
+    .gradientBar(#5bc0de, #339bb9);
+}
