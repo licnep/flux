@@ -6,7 +6,7 @@ ob_start(); //i call ob_start, so that instead of outputting everything directly
 ?>
 <h1 style="text-align:center">FluxHub is the best way to accept donations.</h1>
 <div class="container" style="text-align:center">
-    <button class="btn success">Join Now</button>
+    <button class="btn success" onclick="$FW.popupUrl('include/popups/register.php')">Join Now</button>
 </div>
 <br/>
 <br/>
@@ -14,7 +14,7 @@ ob_start(); //i call ob_start, so that instead of outputting everything directly
     <div class="well span7">
         <h3>100% Free</h3>
         <p>
-            No transaction fees*, no hidden fees.<br/>
+            No transaction fees, no hidden fees.<br/>
             Free, forever.
         </p>
     </div>
